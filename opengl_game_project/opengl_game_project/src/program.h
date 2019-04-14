@@ -2,13 +2,16 @@
 
 #include "shader.h"
 
+#include <string>
 #include <vector>
+#include <unordered_map>
 
 class program
 {
 private:
 	unsigned int renderer_id;
 	std::vector<shader> shaders;
+	std::unordered_map<std::string, unsigned int> uniform_loc_cache;
 
 public:
 	program();
