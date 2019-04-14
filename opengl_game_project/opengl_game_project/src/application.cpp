@@ -9,6 +9,8 @@
 #include "vertex_array.h"
 #include "vertex_buffer.h"
 #include "index_buffer.h"
+#include "program.h"
+#include "shader.h"
 
 static void APIENTRY glCheckErrors( GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message, const void *user_param )
 {
@@ -107,75 +109,8 @@ static void APIENTRY glCheckErrors( GLenum source, GLenum type, GLuint id, GLenu
 	if( severity > GL_DEBUG_SEVERITY_NOTIFICATION )
 	{
 		printf( "[ERROR %d] %s of %s severity, raised from %s: \n%s\n", id, _type, _severity, _source, message );
-		std::cin.get();
-		exit( -1 );
+		__debugbreak();
 	}
-}
-
-static std::string load_shader( const char* file_name )
-{
-	std::ifstream shader_file( file_name );
-
-	if( !shader_file.good() )
-	{
-		std::cout << "[ERROR] Could not find shader: " << file_name << std::endl;
-		std::cin.get();
-		exit( -1 );
-	}
-
-	shader_file.seekg( 0, std::ios::end );
-	size_t size = shader_file.tellg();
-	std::string shader_src( size, ' ' );
-	shader_file.seekg( 0 );
-	shader_file.read( &shader_src[0], size );
-
-	return shader_src;
-}
-
-static unsigned int compile_shader( unsigned int type, const std::string& source )
-{
-	unsigned int id = glCreateShader( type );
-	const char* src = source.c_str();
-	glShaderSource( id, 1, &src, nullptr );
-	glCompileShader( id );
-
-	int result;
-	glGetShaderiv( id, GL_COMPILE_STATUS, &result );
-	if( result == GL_FALSE )
-	{
-		int length;
-		glGetShaderiv( id, GL_INFO_LOG_LENGTH, &length );
-		char* message = new char[length];
-		glGetShaderInfoLog( id, length, &length, message );
-		const char* shader_type = type == GL_VERTEX_SHADER ? "vertex" : "fragment";
-		std::cout << "[ERROR] Failed to compile " << shader_type << " shader:" << std::endl;
-		std::cout << message << std::endl;
-		glDeleteShader( id );
-		delete[] message;
-		return 0;
-	}
-
-	return id;
-}
-
-static unsigned int create_program( const std::string& vertex_shader, const std::string& fragment_shader )
-{
-	unsigned int program = glCreateProgram();
-	unsigned int vs = compile_shader( GL_VERTEX_SHADER, vertex_shader );
-	unsigned int fs = compile_shader( GL_FRAGMENT_SHADER, fragment_shader );
-
-	glAttachShader( program, vs );
-	glAttachShader( program, fs );
-	glLinkProgram( program );
-	glValidateProgram( program );
-
-	/* Delete the shaders as they are now compiled into the program and are no longer needed */
-	glDetachShader( program, vs );
-	glDetachShader( program, fs );
-	glDeleteShader( vs );
-	glDeleteShader( fs );
-
-	return program;
 }
 
 int main( void )
@@ -240,20 +175,24 @@ int main( void )
 
 	index_buffer ib( indices, 6 );
 
-	std::string vertex_shader = load_shader( "res/shaders/vertex.glsl" );
-	std::string fragment_shader = load_shader( "res/shaders/fragment.glsl" );
+	const std::string vertex_filename = "res/shaders/vertex.glsl";
+	const std::string fragment_filename = "res/shaders/fragment.glsl";
 
-	unsigned int program = create_program( vertex_shader, fragment_shader );
-	glUseProgram( program );
+	program program;
+	shader vertex_shader( GL_VERTEX_SHADER, vertex_filename );
+	shader fragment_shader( GL_FRAGMENT_SHADER, fragment_filename );
+	
+	program.attach_shader( vertex_shader );
+	program.attach_shader( fragment_shader );
+	program.compile();
 
-	int location = glGetUniformLocation( program, "u_color" );
-	assert( location > -1 );
-	glUniform4f( location, 0.2f, 0.3f, 0.8f, 1.0f );
+	program.bind();
+	program.set_uniform_4f( "u_color", 0.2, 0.3, 0.8, 1.0 );
+	program.unbind();
 
-	glUseProgram( 0 );
-	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
-	glBindBuffer( GL_ARRAY_BUFFER, 0 );
-	glBindVertexArray( 0 );
+	ib.unbind();
+	vb.unbind();
+	va.unbind();
 
 	float r = 0.0f;
 	float increment = 0.005f;
@@ -263,8 +202,8 @@ int main( void )
 		/* Render here */
 		glClear( GL_COLOR_BUFFER_BIT );
 
-		glUseProgram( program );
-		glUniform4f( location, r, 0.3f, 0.8f, 1.0f );
+		program.bind();
+		program.set_uniform_4f( "u_color", r, 0.3, 0.8, 1.0 );
 
 		va.bind();
 		ib.bind();
@@ -274,14 +213,16 @@ int main( void )
 		if( r > 1.0f || r < 0.0f ) increment = -increment;
 		r += increment;
 
+		ib.unbind();
+		va.unbind();
+		program.unbind();
+
 		/* Swap front and back buffers */
 		glfwSwapBuffers( window );
 
 		/* Poll for and process events */
 		glfwPollEvents();
 	}
-
-	glDeleteProgram( program );
 
 	glfwTerminate();
 	return 0;
