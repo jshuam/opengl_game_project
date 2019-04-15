@@ -186,21 +186,19 @@ int main( void )
 	program.attach_shader( fragment_shader );
 	program.compile();
 
-	program.bind();
-	program.set_uniform_4f( "u_color", 0.2, 0.3, 0.8, 1.0 );
-	program.unbind();
-
 	ib.unbind();
 	vb.unbind();
 	va.unbind();
 
 	float r = 0.0f;
 	float increment = 0.005f;
+
+	renderer renderer;
 	/* Loop until the user closes the window */
 	while( !glfwWindowShouldClose( window ) )
 	{
 		/* Render here */
-		glClear( GL_COLOR_BUFFER_BIT );
+		renderer.clear();
 
 		program.bind();
 		program.set_uniform_4f( "u_color", r, 0.3, 0.8, 1.0 );
@@ -208,7 +206,7 @@ int main( void )
 		va.bind();
 		ib.bind();
 
-		glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr );
+		renderer.draw();
 
 		if( r > 1.0f || r < 0.0f ) increment = -increment;
 		r += increment;
