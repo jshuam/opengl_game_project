@@ -69,5 +69,8 @@
     <ClInclude Include="src\display.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
