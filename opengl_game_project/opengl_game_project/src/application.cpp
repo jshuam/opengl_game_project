@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 
+#include "display.h"
 #include "renderer.h"
 #include "vertex_array.h"
 #include "vertex_buffer.h"
@@ -115,28 +116,7 @@ static void APIENTRY glCheckErrors( GLenum source, GLenum type, GLuint id, GLenu
 
 int main( void )
 {
-	GLFWwindow* window;
-
-	/* Initialize the library */
-	if( !glfwInit() )
-		return -1;
-
-	glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );
-	glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 4 );
-	glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
-
-	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow( 640, 480, "Hello World", NULL, NULL );
-	if( !window )
-	{
-		glfwTerminate();
-		return -1;
-	}
-
-	/* Make the window's context current */
-	glfwMakeContextCurrent( window );
-	glfwSwapInterval( 1 );
-
+	display display;
 	GLenum err = glewInit();
 	if( GLEW_OK != err )
 	{
@@ -195,7 +175,7 @@ int main( void )
 
 	renderer renderer;
 	/* Loop until the user closes the window */
-	while( !glfwWindowShouldClose( window ) )
+	while( !display.should_close() )
 	{
 		/* Render here */
 		renderer.clear();
@@ -215,13 +195,8 @@ int main( void )
 		va.unbind();
 		program.unbind();
 
-		/* Swap front and back buffers */
-		glfwSwapBuffers( window );
-
-		/* Poll for and process events */
-		glfwPollEvents();
+		display.update();
 	}
 
-	glfwTerminate();
 	return 0;
 }
