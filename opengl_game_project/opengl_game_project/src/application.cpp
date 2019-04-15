@@ -12,6 +12,7 @@
 #include "index_buffer.h"
 #include "program.h"
 #include "shader.h"
+#include "texture.h"
 #include "utils.h"
 
 int main( void )
@@ -57,6 +58,7 @@ int main( void )
 
 	const std::string vertex_filename = "res/shaders/vertex.glsl";
 	const std::string fragment_filename = "res/shaders/fragment.glsl";
+	const std::string texture_filepath = "res/textures/logo.png";
 
 	program program;
 	shader vertex_shader( GL_VERTEX_SHADER, vertex_filename );
@@ -66,6 +68,11 @@ int main( void )
 	program.attach_shader( fragment_shader );
 	program.compile();
 
+	texture texture( texture_filepath );
+	texture.bind();
+	program.set_uniform_1i( "u_texture", 0 );
+
+	texture.unbind();
 	ib.unbind();
 	vb.unbind();
 	va.unbind();

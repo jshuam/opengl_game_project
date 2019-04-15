@@ -45,6 +45,11 @@ void program::compile() const
 	}
 }
 
+void program::set_uniform_1i( const std::string& name, int v0 )
+{
+	glUniform1i( get_uniform_location( name ), v0 );
+}
+
 void program::set_uniform_4f( const std::string& name, float v0, float v1, float v2, float v3 )
 {
 	glUniform4f( get_uniform_location( name ), v0, v1, v2, v3 );
@@ -67,7 +72,7 @@ void program::check_compile_status( unsigned int param ) const
 	}
 }
 
-unsigned int program::get_uniform_location( const std::string& name )
+int program::get_uniform_location( const std::string& name )
 {
 	if( uniform_loc_cache.find( name ) != uniform_loc_cache.end() ) return uniform_loc_cache[name];
 
