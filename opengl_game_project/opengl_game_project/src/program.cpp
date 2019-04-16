@@ -77,12 +77,7 @@ int program::get_uniform_location( const std::string& name )
 	if( uniform_loc_cache.find( name ) != uniform_loc_cache.end() ) return uniform_loc_cache[name];
 
 	int loc = glGetUniformLocation( renderer_id, name.c_str() );
-	if( loc < 0 )
-	{
-		std::cout << "[ERROR] Uniform location not found" << std::endl;
-		std::cin.get();
-		exit( -1 );
-	}
+	if( loc < 0 ) std::cout << "[WARNING] Uniform not in use" << std::endl;
 	uniform_loc_cache[name] = loc;
 	return loc;
 }
