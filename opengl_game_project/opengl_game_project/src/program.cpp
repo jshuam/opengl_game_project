@@ -55,6 +55,11 @@ void program::set_uniform_4f( const std::string& name, float v0, float v1, float
 	glUniform4f( get_uniform_location( name ), v0, v1, v2, v3 );
 }
 
+void program::set_uniform_mat4f( const std::string& name, glm::mat4& matrix )
+{
+	glUniformMatrix4fv( get_uniform_location( name ), 1, GL_FALSE, &matrix[0][0] );
+}
+
 void program::check_compile_status( unsigned int param ) const
 {
 	int status;

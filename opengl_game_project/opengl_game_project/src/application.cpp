@@ -1,5 +1,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include <cassert>
 #include <iostream>
@@ -58,6 +60,8 @@ int main( void )
 
 	index_buffer ib( indices, 6 );
 
+	glm::mat4 proj = glm::ortho( -2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f );
+
 	const std::string vertex_filename = "res/shaders/vertex.glsl";
 	const std::string fragment_filename = "res/shaders/fragment.glsl";
 	const std::string texture_filepath = "res/textures/logo.png";
@@ -75,6 +79,7 @@ int main( void )
 	texture.bind();
 
 	program.set_uniform_1i( "u_texture", 0 );
+	program.set_uniform_mat4f( "u_mvp", proj );
 
 	program.unbind();
 	ib.unbind();
