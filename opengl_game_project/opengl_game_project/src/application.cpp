@@ -36,10 +36,11 @@ int main( void )
 
 	float positions[] =
 	{
-		-0.5f, -0.5f,
-		 0.5f, -0.5f,
-		 0.5f,  0.5f,
-		-0.5f,  0.5f,
+		/* Position  Texture */
+		-0.5f, -0.5f, 0.0f, 0.0f,
+		 0.5f, -0.5f, 1.0f, 0.0f,
+		 0.5f,  0.5f, 1.0f, 1.0f,
+		-0.5f,  0.5f, 0.0f, 1.0f
 	};
 
 	unsigned int indices[] =
@@ -49,8 +50,9 @@ int main( void )
 	};
 
 	vertex_array va;
-	vertex_buffer vb( positions, sizeof( float ) * 8 );
+	vertex_buffer vb( positions, sizeof( float ) * 16 );
 	vertex_buffer_layout vbl;
+	vbl.push<float>( 2 );
 	vbl.push<float>( 2 );
 	va.add_buffer( vb, vbl );
 
@@ -88,7 +90,6 @@ int main( void )
 		renderer.clear();
 
 		program.bind();
-		program.set_uniform_4f( "u_color", r, 0.3, 0.8, 1.0 );
 
 		va.bind();
 		ib.bind();
