@@ -49,9 +49,6 @@ int main( void )
 		2, 3, 0
 	};
 
-	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-	glEnable( GL_BLEND );
-
 	vertex_array va;
 	vertex_buffer vb( positions, sizeof( float ) * 16 );
 	vertex_buffer_layout vbl;
