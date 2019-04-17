@@ -300,6 +300,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\display.h" />
+    <ClInclude Include="src\entity.h" />
     <ClInclude Include="src\program.h" />
     <ClInclude Include="src\shader.h" />
     <ClInclude Include="src\index_buffer.h" />

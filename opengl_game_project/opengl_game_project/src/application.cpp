@@ -39,10 +39,10 @@ int main( void )
 	float positions[] =
 	{
 		/* Position  Texture */
-		-0.5f, -0.5f, 0.0f, 0.0f,
-		 0.5f, -0.5f, 1.0f, 0.0f,
-		 0.5f,  0.5f, 1.0f, 1.0f,
-		-0.5f,  0.5f, 0.0f, 1.0f
+		250.0f,  250.0f, 0.0f, 0.0f,
+		350.0f,  250.0f, 1.0f, 0.0f,
+		350.0f,  350.0f, 1.0f, 1.0f,
+		250.0f,  350.0f, 0.0f, 1.0f
 	};
 
 	unsigned int indices[] =
@@ -60,7 +60,7 @@ int main( void )
 
 	index_buffer ib( indices, 6 );
 
-	glm::mat4 proj = glm::ortho( -2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f );
+	glm::mat4 proj = glm::ortho( 0.0f, static_cast<float>( display.get_width() ), 0.0f, static_cast<float>( display.get_height() ), -1.0f, 1.0f );
 
 	const std::string vertex_filename = "res/shaders/vertex.glsl";
 	const std::string fragment_filename = "res/shaders/fragment.glsl";
@@ -69,7 +69,7 @@ int main( void )
 	program program;
 	shader vertex_shader( GL_VERTEX_SHADER, vertex_filename );
 	shader fragment_shader( GL_FRAGMENT_SHADER, fragment_filename );
-	
+
 	program.attach_shader( vertex_shader );
 	program.attach_shader( fragment_shader );
 	program.compile();
@@ -90,6 +90,8 @@ int main( void )
 	float increment = 0.005f;
 
 	renderer renderer;
+	display.set_renderer( &renderer );
+
 	/* Loop until the user closes the window */
 	while( !display.should_close() )
 	{

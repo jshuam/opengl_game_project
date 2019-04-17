@@ -29,6 +29,8 @@ display::display()
 	/* Make the window's context current */
 	glfwMakeContextCurrent( window );
 	glfwSwapInterval( 1 );
+
+	glfwSetWindowUserPointer( window, user_pointer );
 }
 
 display::~display()
@@ -45,4 +47,9 @@ void display::update() const
 {
 	glfwSwapBuffers( window );
 	glfwPollEvents();
+}
+
+void display::set_renderer( renderer* renderer )
+{
+	game_renderer = renderer;
 }
