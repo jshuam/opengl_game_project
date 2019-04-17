@@ -12,6 +12,7 @@
 #include "vertex_array.h"
 #include "vertex_buffer.h"
 #include "index_buffer.h"
+#include "entity.h"
 #include "program.h"
 #include "shader.h"
 #include "texture.h"
@@ -53,12 +54,11 @@ int main( void )
 
 	vertex_array va;
 	vertex_buffer vb( positions, sizeof( float ) * 16 );
-	vertex_buffer_layout vbl;
-	vbl.push<float>( 2 );
-	vbl.push<float>( 2 );
-	va.add_buffer( vb, vbl );
-
+	vb.layout.push<float>( 2 );
+	vb.layout.push<float>( 2 );
+	va.add_buffer( vb );
 	index_buffer ib( indices, 6 );
+	entity logo( va, ib );
 
 	glm::mat4 proj = glm::ortho( 0.0f, static_cast<float>( display.get_width() ), 0.0f, static_cast<float>( display.get_height() ), -1.0f, 1.0f );
 
@@ -81,14 +81,6 @@ int main( void )
 	program.set_uniform_1i( "u_texture", 0 );
 	program.set_uniform_mat4f( "u_mvp", proj );
 
-	program.unbind();
-	ib.unbind();
-	vb.unbind();
-	va.unbind();
-
-	float r = 0.0f;
-	float increment = 0.005f;
-
 	renderer renderer;
 	display.set_renderer( &renderer );
 
@@ -100,17 +92,9 @@ int main( void )
 
 		program.bind();
 
-		va.bind();
-		ib.bind();
+		logo.bind();
 
 		renderer.draw();
-
-		if( r > 1.0f || r < 0.0f ) increment = -increment;
-		r += increment;
-
-		ib.unbind();
-		va.unbind();
-		program.unbind();
 
 		display.update();
 	}
