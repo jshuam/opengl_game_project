@@ -8,7 +8,9 @@
 #include <fstream>
 
 #include "display.h"
+#include "mouse.h"
 #include "renderer.h"
+#include "font_renderer.h"
 #include "vertex_array.h"
 #include "vertex_buffer.h"
 #include "index_buffer.h"
@@ -21,6 +23,7 @@
 int main( void )
 {
 	display display;
+	mouse mouse( display );
 	GLenum err = glewInit();
 	if( GLEW_OK != err )
 	{
@@ -74,9 +77,7 @@ int main( void )
 	program.attach_shader( fragment_shader );
 	program.compile();
 
-	texture texture( texture_filepath );
 	program.bind();
-	texture.bind();
 
 	program.set_uniform_1i( "u_texture", 0 );
 	program.set_uniform_mat4f( "u_mvp", proj );
@@ -84,17 +85,18 @@ int main( void )
 	renderer renderer;
 	display.set_renderer( &renderer );
 
+	font_renderer font;
+
+	float sx = 2.0 / display.get_width();
+	float sy = 2.0 / display.get_height();
+
 	/* Loop until the user closes the window */
 	while( !display.should_close() )
 	{
 		/* Render here */
 		renderer.clear();
 
-		program.bind();
-
-		logo.bind();
-
-		renderer.draw();
+		font.render_text( "LITERALLY WANT TO KILL MYSELF :)))", 100.0f, 200.0f, 1.0f, glm::vec3( 0.5f, 0.8f, 0.2f ) );
 
 		display.update();
 	}

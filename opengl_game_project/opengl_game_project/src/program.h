@@ -25,6 +25,7 @@ public:
 	void compile() const;
 
 	void set_uniform_1i( const std::string& name, int v0 );
+	void set_uniform_3f( const std::string& name, float v0, float v1, float v2 );
 	void set_uniform_4f( const std::string& name, float v0, float v1, float v2, float v3 );
 	void set_uniform_mat4f( const std::string& name, glm::mat4& matrix );
 

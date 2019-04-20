@@ -51,6 +51,12 @@
     <ClCompile Include="src\entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\mouse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\font_renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\fragment.glsl" />
@@ -451,6 +457,8 @@
     <None Include="src\vendor\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="res\shaders\font_fragment.glsl" />
+    <None Include="res\shaders\font_vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\vertex_buffer.h">
@@ -1212,10 +1220,33 @@
     <ClInclude Include="src\entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\mouse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\font_renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\logo.png">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\fonts\Roboto\LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="res\fonts\Roboto\Roboto-Black.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-Bold.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-Italic.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-Light.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-LightItalic.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-Medium.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-Regular.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-Thin.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-ThinItalic.ttf" />
   </ItemGroup>
 </Project>

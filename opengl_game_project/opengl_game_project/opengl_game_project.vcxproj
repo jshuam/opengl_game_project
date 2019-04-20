@@ -91,12 +91,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\glfw\include;$(SolutionDir)dependencies\glew\include;src\vendor</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\freetype\include;$(SolutionDir)dependencies\glfw\include;$(SolutionDir)dependencies\glew\include;src\vendor</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;DEBUG;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\glew\lib;$(SolutionDir)dependencies\glfw\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\freetype\lib;$(SolutionDir)dependencies\glew\lib;$(SolutionDir)dependencies\glfw\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freetype.lib;glfw3.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -105,12 +105,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\glfw\include;$(SolutionDir)dependencies\glew\include;src\vendor</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\freetype\include;$(SolutionDir)dependencies\glfw\include;$(SolutionDir)dependencies\glew\include;src\vendor</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;DEBUG;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\glew\lib;$(SolutionDir)dependencies\glfw\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\freetype\lib;$(SolutionDir)dependencies\glew\lib;$(SolutionDir)dependencies\glfw\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freetype.lib;glfw3.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -121,14 +121,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\glfw\include;$(SolutionDir)dependencies\glew\include;src\vendor</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\freetype\include;$(SolutionDir)dependencies\glfw\include;$(SolutionDir)dependencies\glew\include;src\vendor</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\glew\lib;$(SolutionDir)dependencies\glfw\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\freetype\lib;$(SolutionDir)dependencies\glew\lib;$(SolutionDir)dependencies\glfw\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freetype.lib;glfw3.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -139,19 +139,21 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\glfw\include;$(SolutionDir)dependencies\glew\include;src\vendor</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\freetype\include;$(SolutionDir)dependencies\glfw\include;$(SolutionDir)dependencies\glew\include;src\vendor</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\glew\lib;$(SolutionDir)dependencies\glfw\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\freetype\lib;$(SolutionDir)dependencies\glew\lib;$(SolutionDir)dependencies\glfw\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freetype.lib;glfw3.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\display.cpp" />
     <ClCompile Include="src\entity.cpp" />
+    <ClCompile Include="src\font_renderer.cpp" />
+    <ClCompile Include="src\mouse.cpp" />
     <ClCompile Include="src\program.cpp" />
     <ClCompile Include="src\shader.cpp" />
     <ClCompile Include="src\index_buffer.cpp" />
@@ -164,6 +166,8 @@
     <ClCompile Include="src\vertex_array.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\shaders\font_fragment.glsl" />
+    <None Include="res\shaders\font_vertex.glsl" />
     <None Include="res\shaders\vertex.glsl" />
     <None Include="res\shaders\fragment.glsl" />
     <None Include="src\vendor\glm\detail\func_common.inl" />
@@ -302,6 +306,8 @@
   <ItemGroup>
     <ClInclude Include="src\display.h" />
     <ClInclude Include="src\entity.h" />
+    <ClInclude Include="src\font_renderer.h" />
+    <ClInclude Include="src\mouse.h" />
     <ClInclude Include="src\program.h" />
     <ClInclude Include="src\shader.h" />
     <ClInclude Include="src\index_buffer.h" />
@@ -556,6 +562,23 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\fonts\Roboto\LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="res\fonts\Roboto\Roboto-Black.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-Bold.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-Italic.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-Light.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-LightItalic.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-Medium.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-Regular.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-Thin.ttf" />
+    <Font Include="res\fonts\Roboto\Roboto-ThinItalic.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

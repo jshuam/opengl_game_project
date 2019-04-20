@@ -101,6 +101,5 @@ static void APIENTRY glCheckErrors( GLenum source, GLenum type, GLuint id, GLenu
 	if( severity > GL_DEBUG_SEVERITY_NOTIFICATION )
 	{
 		printf( "[ERROR %d] %s of %s severity, raised from %s: \n%s\n", id, _type, _severity, _source, message );
-		__debugbreak();
 	}
 }

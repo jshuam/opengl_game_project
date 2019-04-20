@@ -50,6 +50,11 @@ void program::set_uniform_1i( const std::string& name, int v0 )
 	glUniform1i( get_uniform_location( name ), v0 );
 }
 
+void program::set_uniform_3f( const std::string& name, float v0, float v1, float v2 )
+{
+	glUniform3f( get_uniform_location( name ), v0, v1, v2 );
+}
+
 void program::set_uniform_4f( const std::string& name, float v0, float v1, float v2, float v3 )
 {
 	glUniform4f( get_uniform_location( name ), v0, v1, v2, v3 );
