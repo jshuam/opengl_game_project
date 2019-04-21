@@ -1,36 +1,36 @@
-#include "program.h"
-#include "renderer.h"
+#include "Program.h"
+#include "Renderer.h"
 
 #include <cassert>
 #include <iostream>
 
-program::program()
+Program::Program()
 {
 	renderer_id = glCreateProgram();
 }
 
-program::~program()
+Program::~Program()
 {
 	glDeleteProgram( renderer_id );
 }
 
-void program::bind() const
+void Program::bind() const
 {
 	glUseProgram( renderer_id );
 }
 
-void program::unbind() const
+void Program::unbind() const
 {
 	glUseProgram( 0 );
 }
 
-void program::attach_shader( shader shader )
+void Program::attach_shader( Shader shader )
 {
 	shader.attach( renderer_id );
 	shaders.push_back( shader );
 }
 
-void program::compile() const
+void Program::compile() const
 {
 	glLinkProgram( renderer_id );
 	check_compile_status( GL_LINK_STATUS );
@@ -45,27 +45,27 @@ void program::compile() const
 	}
 }
 
-void program::set_uniform_1i( const std::string& name, int v0 )
+void Program::set_uniform_1i( const std::string& name, int v0 )
 {
 	glUniform1i( get_uniform_location( name ), v0 );
 }
 
-void program::set_uniform_3f( const std::string& name, float v0, float v1, float v2 )
+void Program::set_uniform_3f( const std::string& name, float v0, float v1, float v2 )
 {
 	glUniform3f( get_uniform_location( name ), v0, v1, v2 );
 }
 
-void program::set_uniform_4f( const std::string& name, float v0, float v1, float v2, float v3 )
+void Program::set_uniform_4f( const std::string& name, float v0, float v1, float v2, float v3 )
 {
 	glUniform4f( get_uniform_location( name ), v0, v1, v2, v3 );
 }
 
-void program::set_uniform_mat4f( const std::string& name, glm::mat4& matrix )
+void Program::set_uniform_mat4f( const std::string& name, glm::mat4& matrix )
 {
 	glUniformMatrix4fv( get_uniform_location( name ), 1, GL_FALSE, &matrix[0][0] );
 }
 
-void program::check_compile_status( unsigned int param ) const
+void Program::check_compile_status( unsigned int param ) const
 {
 	int status;
 	glGetProgramiv( renderer_id, param, &status );
@@ -82,7 +82,7 @@ void program::check_compile_status( unsigned int param ) const
 	}
 }
 
-int program::get_uniform_location( const std::string& name )
+int Program::get_uniform_location( const std::string& name )
 {
 	if( uniform_loc_cache.find( name ) != uniform_loc_cache.end() ) return uniform_loc_cache[name];
 

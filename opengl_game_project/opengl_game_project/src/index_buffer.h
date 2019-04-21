@@ -1,14 +1,14 @@
 #pragma once
 
-class index_buffer
+class Index_Buffer
 {
 private:
 	unsigned int renderer_id;
 	unsigned int count;
 
 public:
-	index_buffer( const unsigned int* data, unsigned int count );
-	~index_buffer();
+	Index_Buffer( const unsigned int* data, unsigned int count );
+	~Index_Buffer();
 
 	void bind() const;
 	void unbind() const;

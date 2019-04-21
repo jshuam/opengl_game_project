@@ -1,13 +1,13 @@
 #pragma once
 
-#include "display.h"
+#include "Display.h"
 
 #include <GLFW/glfw3.h>
 
-class mouse
+class Mouse
 {
 public:
-	mouse( const display& display );
+	Mouse( const Display& display );
 
 private:
 	static void cursor_position_callback( GLFWwindow* window, double x_pos, double y_pos );

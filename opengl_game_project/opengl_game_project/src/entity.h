@@ -1,16 +1,16 @@
 #pragma once
 
-#include "vertex_array.h"
-#include "index_buffer.h"
+#include "Vertex_Array.h"
+#include "Index_Buffer.h"
 
-class entity
+class Entity
 {
 private:
-	vertex_array va;
-	index_buffer ib;
+	Vertex_Array va;
+	Index_Buffer index_buffer;
 
 public:
-	entity( const vertex_array& va, const index_buffer& ib );
+	Entity( const Vertex_Array& va, const Index_Buffer& index_buffer );
 
 	void bind() const;
 	void unbind() const;

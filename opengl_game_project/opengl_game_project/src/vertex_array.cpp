@@ -1,38 +1,36 @@
-#include "vertex_array.h"
+#include "Vertex_Array.h"
 
-#include "renderer.h"
+#include "Renderer.h"
 
-vertex_array::vertex_array()
+Vertex_Array::Vertex_Array()
 {
 	glGenVertexArrays( 1, &renderer_id );
 }
 
-vertex_array::~vertex_array()
+Vertex_Array::~Vertex_Array()
 {
 	glDeleteVertexArrays( 1, &renderer_id );
 }
 
-void vertex_array::add_buffer( const vertex_buffer& vb )
+void Vertex_Array::add_buffer( const Vertex_Buffer& vb )
 {
 	bind();
 	vb.bind();
-	const auto& elements = vb.layout.get_elements();
-	unsigned int offset = 0;
-	for( unsigned int i = 0; i < elements.size(); i++ )
+	vbos.push_back( vb );
+	vb.attrib_pointer( vbos.size() - 1 );
+}
+
+void Vertex_Array::bind() const
+{
+	glBindVertexArray( renderer_id );
+
+	for( int i = 0; i < vbos.size(); i++ )
 	{
-		const auto& element = elements[i];
-		glVertexAttribPointer( i, element.count, element.type, element.normalized, vb.layout.get_stride(), (const void*) offset );
 		glEnableVertexAttribArray( i );
-		offset += element.count * vertex_buffer_layout::element::get_size( element.type );
 	}
 }
 
-void vertex_array::bind() const
-{
-	glBindVertexArray( renderer_id );
-}
-
-void vertex_array::unbind() const
+void Vertex_Array::unbind() const
 {
 	glBindVertexArray( 0 );
 }

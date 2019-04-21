@@ -1,18 +1,20 @@
 #pragma once
 
-#include "vertex_buffer.h"
-#include "vertex_buffer_layout.h"
+#include "Vertex_Buffer.h"
 
-class vertex_array
+#include <vector>
+
+class Vertex_Array
 {
 private:
 	unsigned int renderer_id;
+	std::vector<Vertex_Buffer> vbos;
 
 public:
-	vertex_array();
-	~vertex_array();
+	Vertex_Array();
+	~Vertex_Array();
 
-	void add_buffer( const vertex_buffer& vb );
+	void add_buffer( const Vertex_Buffer& vb );
 
 	void bind() const;
 	void unbind() const;

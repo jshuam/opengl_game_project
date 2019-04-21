@@ -1,6 +1,6 @@
 #pragma once
 
-#include "shader.h"
+#include "Shader.h"
 
 #include <glm/glm.hpp>
 
@@ -8,20 +8,20 @@
 #include <vector>
 #include <unordered_map>
 
-class program
+class Program
 {
 private:
 	unsigned int renderer_id;
-	std::vector<shader> shaders;
+	std::vector<Shader> shaders;
 	std::unordered_map<std::string, int> uniform_loc_cache;
 
 public:
-	program();
-	~program();
+	Program();
+	~Program();
 
 	void bind() const;
 	void unbind() const;
-	void attach_shader( shader shader );
+	void attach_shader( Shader shader );
 	void compile() const;
 
 	void set_uniform_1i( const std::string& name, int v0 );

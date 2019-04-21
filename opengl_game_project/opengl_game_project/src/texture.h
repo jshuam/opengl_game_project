@@ -1,10 +1,10 @@
 #pragma once
 
-#include "renderer.h"
+#include "Renderer.h"
 
 #include <string>
  
-class texture
+class Texture
 {
 private:
 	static constexpr const int desired_channels = 4;
@@ -15,8 +15,8 @@ private:
 	std::string file_path;
 
 public:
-	texture( const std::string& file_path );
-	~texture();
+	Texture( const std::string& file_path );
+	~Texture();
 
 	void bind( unsigned int slot = 0 ) const;
 	void unbind() const;

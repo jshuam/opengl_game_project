@@ -1,14 +1,16 @@
-#include "font_renderer.h"
-#include "renderer.h"
-#include "program.h"
-#include "shader.h"
+#include "Font.h"
+#include "Renderer.h"
+#include "Program.h"
+#include "Shader.h"
 
 #include <iostream>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-font_renderer::font_renderer()
+Font::Font( const char* font_filepath, int font_size )
+	:
+	vbo( { sizeof( float ) * 6 * 4, nullptr, 4, GL_FLOAT, GL_FALSE, GL_DYNAMIC_DRAW } )
 {
 	if( FT_Init_FreeType( &ft ) )
 	{
@@ -17,14 +19,14 @@ font_renderer::font_renderer()
 		exit( -1 );
 	}
 
-	if( FT_New_Face( ft, "res/fonts/Roboto/Roboto-Thin.ttf", 0, &face ) )
+	if( FT_New_Face( ft, font_filepath, 0, &face ) )
 	{
 		std::cout << "[ERROR] Could not load font" << std::endl;
 		std::cin.get();
 		exit( -1 );
 	}
 
-	FT_Set_Pixel_Sizes( face, 0, 48 );
+	FT_Set_Pixel_Sizes( face, 0, font_size );
 
 	glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
 
@@ -36,9 +38,9 @@ font_renderer::font_renderer()
 			continue;
 		}
 
-		unsigned int texture;
-		glGenTextures( 1, &texture );
-		glBindTexture( GL_TEXTURE_2D, texture );
+		unsigned int Texture;
+		glGenTextures( 1, &Texture );
+		glBindTexture( GL_TEXTURE_2D, Texture );
 		glTexImage2D( GL_TEXTURE_2D,
 					  0,
 					  GL_RED,
@@ -57,7 +59,7 @@ font_renderer::font_renderer()
 
 		character glyph =
 		{
-			texture,
+			Texture,
 			face->glyph->advance.x,
 			glm::vec2( face->glyph->bitmap.width, face->glyph->bitmap.rows ),
 			glm::vec2( face->glyph->bitmap_left, face->glyph->bitmap_top )
@@ -69,8 +71,8 @@ font_renderer::font_renderer()
 	FT_Done_Face( face );
 	FT_Done_FreeType( ft );
 
-	shader vertex_shader( GL_VERTEX_SHADER, "res/shaders/font_vertex.glsl" );
-	shader fragment_shader( GL_FRAGMENT_SHADER, "res/shaders/font_fragment.glsl" );
+	Shader vertex_shader( GL_VERTEX_SHADER, "res/shaders/font_vertex.glsl" );
+	Shader fragment_shader( GL_FRAGMENT_SHADER, "res/shaders/font_fragment.glsl" );
 
 	program.attach_shader( vertex_shader );
 	program.attach_shader( fragment_shader );
@@ -81,59 +83,63 @@ font_renderer::font_renderer()
 
 	program.set_uniform_mat4f( "u_mvp", proj );
 
-	glGenVertexArrays( 1, &vao );
-	glGenBuffers( 1, &vbo );
-	glBindVertexArray( vao );
-	glBindBuffer( GL_ARRAY_BUFFER, vbo );
-	glBufferData( GL_ARRAY_BUFFER, sizeof( GLfloat ) * 6 * 4, NULL, GL_DYNAMIC_DRAW );
-	glEnableVertexAttribArray( 0 );
-	glVertexAttribPointer( 0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof( GLfloat ), 0 );
-	glBindBuffer( GL_ARRAY_BUFFER, 0 );
-	glBindVertexArray( 0 );
+	vao.add_buffer( vbo );
 
 }
 
-font_renderer::~font_renderer()
-{}
+glm::vec2 Font::get_text_size( const char* text, float scale ) const
+{
+	glm::vec2 size( 0.0f, 0.0f );
+	for( const char* i = &text[0]; *i != '\0'; i++ )
+	{
+		character c = characters.at( *i );
 
-void font_renderer::render_text( std::string text, float x, float y, float scale, glm::vec3 color )
+		size.x += c.size.x * scale;
+		size.y += c.size.y * scale;
+	}
+
+	return size;
+}
+
+void Font::render_text( const char* text, glm::vec2 position, float scale, glm::vec3 color )
 {
 	program.bind();
 	program.set_uniform_3f( "u_tex_color", color.x, color.y, color.z );
 	glActiveTexture( GL_TEXTURE0 );
-	glBindVertexArray( vao );
+	vao.bind();
 
-	std::string::const_iterator c;
-
-	for( c = text.begin(); c != text.end(); c++ )
+	for( const char* i = &text[0]; *i != '\0'; i++ )
 	{
-		character ch = characters[*c];
+		character c = characters.at( *i );
 
-		GLfloat xpos = x + ch.bearing.x * scale;
-		GLfloat ypos = y - ( ch.size.y - ch.bearing.y ) * scale;
+		float x_pos = position.x * scale;
+		float y_pos = position.y - ( c.size.y - c.bearing.y ) * scale;
 
-		GLfloat w = ch.size.x * scale;
-		GLfloat h = ch.size.y * scale;
+		float width = c.size.x * scale;
+		float height = c.size.y * scale;
+
 		// Update VBO for each character
-		GLfloat vertices[6][4] = {
-			{ xpos,     ypos + h,   0.0, 0.0 },
-			{ xpos,     ypos,       0.0, 1.0 },
-			{ xpos + w, ypos,       1.0, 1.0 },
-
-			{ xpos,     ypos + h,   0.0, 0.0 },
-			{ xpos + w, ypos,       1.0, 1.0 },
-			{ xpos + w, ypos + h,   1.0, 0.0 }
+		GLfloat vertices[6][4] =
+		{
+			{ x_pos, y_pos + height, 0.0f, 0.0f },
+			{ x_pos, y_pos, 0.0f, 1.0f },
+			{ x_pos + width, y_pos, 1.0f, 1.0f },
+			{ x_pos, y_pos + height , 0.0f, 0.0f },
+			{ x_pos + width, y_pos, 1.0f, 1.0f },
+			{ x_pos + width, y_pos + height, 1.0f, 0.0f }
 		};
-		// Render glyph texture over quad
-		glBindTexture( GL_TEXTURE_2D, ch.texture );
+
+		// Render glyph Texture over quad
+		glBindTexture( GL_TEXTURE_2D, c.Texture );
+
 		// Update content of VBO memory
-		glBindBuffer( GL_ARRAY_BUFFER, vbo );
-		glBufferSubData( GL_ARRAY_BUFFER, 0, sizeof( vertices ), vertices );
-		glBindBuffer( GL_ARRAY_BUFFER, 0 );
+		vbo.modify_buffer( sizeof( vertices ), vertices );
+
 		// Render quad
 		glDrawArrays( GL_TRIANGLES, 0, 6 );
+
 		// Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-		x += ( ch.advance >> 6 ) * scale; // Bitshift by 6 to get value in pixels (2^6 = 64)
+		position.x += ( c.advance >> 6 ) * scale; // Bitshift by 6 to get value in pixels (2^6 = 64)
 	}
 	glBindVertexArray( 0 );
 	glBindTexture( GL_TEXTURE_2D, 0 );

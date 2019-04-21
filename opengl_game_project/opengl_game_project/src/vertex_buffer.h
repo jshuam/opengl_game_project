@@ -1,20 +1,21 @@
 #pragma once
 
-#include "vertex_buffer_layout.h"
-
-class vertex_buffer
+class Vertex_Buffer
 {
 private:
 	unsigned int renderer_id;
+	int size;
+	unsigned int type;
+	bool normalized;
 
 public:
-	vertex_buffer_layout layout;
-
-public:
-	vertex_buffer( const void* data, unsigned int size );
-	~vertex_buffer();
+	Vertex_Buffer( unsigned int data_size, const void* data, int size, unsigned int type, bool normalized, unsigned int draw_flag );
+	~Vertex_Buffer();
 
 	void bind() const;
 	void unbind() const;
+
+	void attrib_pointer( unsigned int index ) const;
+	void modify_buffer( unsigned int data_size, const void* data );
 };
 

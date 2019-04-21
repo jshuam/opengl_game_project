@@ -1,27 +1,27 @@
-#include "shader.h"
-#include "renderer.h"
+#include "Shader.h"
+#include "Renderer.h"
 
 #include <iostream>
 #include <fstream>
 
-shader::shader( unsigned int type, const std::string& filename )
+Shader::Shader( unsigned int type, const std::string& filename )
 {
 	const std::string& shader_src = load_source( filename );
 	renderer_id = compile_source( type, shader_src );
 }
 
-void shader::attach( unsigned int program ) const
+void Shader::attach( unsigned int program ) const
 {
 	glAttachShader( program, renderer_id );
 }
 
-void shader::detach( unsigned int program ) const
+void Shader::detach( unsigned int program ) const
 {
 	glDetachShader( program, renderer_id );
 	glDeleteShader( renderer_id );
 }
 
-const std::string shader::load_source( const std::string& filename )
+const std::string Shader::load_source( const std::string& filename )
 {
 	std::ifstream shader_file( filename.c_str() );
 
@@ -41,7 +41,7 @@ const std::string shader::load_source( const std::string& filename )
 	return shader_src;
 }
 
-unsigned int shader::compile_source( unsigned int type, const std::string& shader_src )
+unsigned int Shader::compile_source( unsigned int type, const std::string& shader_src )
 {
 	unsigned int id = glCreateShader( type );
 	const char* src = shader_src.c_str();

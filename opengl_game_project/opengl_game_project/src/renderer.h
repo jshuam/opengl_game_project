@@ -2,11 +2,10 @@
 
 #include <GL/glew.h>
 
-class renderer
+class Renderer
 {
 public:
-	renderer();
+	Renderer();
 
-	void clear() const;
 	void draw() const;
 };

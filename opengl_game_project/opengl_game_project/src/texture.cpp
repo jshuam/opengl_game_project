@@ -1,8 +1,8 @@
-#include "texture.h"
+#include "Texture.h"
 
 #include <stb_image/stb_image.h>
 
-texture::texture( const std::string& file_path )
+Texture::Texture( const std::string& file_path )
 	:
 	renderer_id( 0 ),
 	local_buffer( nullptr ),
@@ -28,18 +28,18 @@ texture::texture( const std::string& file_path )
 	if( local_buffer ) stbi_image_free( local_buffer );
 }
 
-texture::~texture()
+Texture::~Texture()
 {
 	glDeleteTextures( 1, &renderer_id );
 }
 
-void texture::bind( unsigned int slot ) const
+void Texture::bind( unsigned int slot ) const
 {
 	glActiveTexture( GL_TEXTURE0 + slot );
 	glBindTexture( GL_TEXTURE_2D, renderer_id );
 }
 
-void texture::unbind() const
+void Texture::unbind() const
 {
 	glBindTexture( GL_TEXTURE_2D, 0 );
 }

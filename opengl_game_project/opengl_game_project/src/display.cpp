@@ -1,8 +1,8 @@
-#include "display.h"
+#include "Display.h"
 
 #include <iostream>
 
-display::display()
+Display::Display()
 {
 	/* Initialize the library */
 	if( !glfwInit() )
@@ -33,23 +33,28 @@ display::display()
 	glfwSetWindowUserPointer( window, user_pointer );
 }
 
-display::~display()
+Display::~Display()
 {
 	glfwTerminate();
 }
 
-bool display::should_close() const
+bool Display::should_close() const
 {
 	return glfwWindowShouldClose( window );
 }
 
-void display::update() const
+void Display::clear() const
+{
+	glClear( GL_COLOR_BUFFER_BIT );
+}
+
+void Display::update() const
 {
 	glfwSwapBuffers( window );
 	glfwPollEvents();
 }
 
-void display::set_renderer( renderer* renderer )
+void Display::set_renderer( Renderer* renderer )
 {
-	game_renderer = renderer;
+	renderer = renderer;
 }

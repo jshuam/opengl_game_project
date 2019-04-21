@@ -1,15 +1,15 @@
 #pragma once
 
-#include "renderer.h"
+#include "Renderer.h"
 
 #include <GLFW/glfw3.h>
 
 
-class display
+class Display
 {
 private:
 	GLFWwindow* window;
-	renderer* game_renderer;
+	Renderer* renderer;
 	void* user_pointer;
 	static constexpr const int width = 1280;
 	static constexpr const int height = 720;
@@ -19,12 +19,13 @@ private:
 	static constexpr const char* title = "OpenGL Game Project";
 
 public:
-	display();
-	~display();
+	Display();
+	~Display();
 
 	bool should_close() const;
+	void clear() const;
 	void update() const;
-	void set_renderer( renderer* renderer );
+	void set_renderer( Renderer* Renderer );
 
 	inline GLFWwindow* get_window() const { return window; }
 	inline int get_width() const { return width; }
