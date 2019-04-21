@@ -14,11 +14,6 @@ Vertex_Buffer::Vertex_Buffer( unsigned int data_size, const void* data, int size
 	glBufferData( GL_ARRAY_BUFFER, data_size, data, draw_flag );
 }
 
-Vertex_Buffer::~Vertex_Buffer()
-{
-	glDeleteBuffers( 1, &renderer_id );
-}
-
 void Vertex_Buffer::bind() const
 {
 	glBindBuffer( GL_ARRAY_BUFFER, renderer_id );

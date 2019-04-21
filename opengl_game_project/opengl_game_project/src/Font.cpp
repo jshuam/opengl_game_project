@@ -38,9 +38,9 @@ Font::Font( const char* font_filepath, int font_size )
 			continue;
 		}
 
-		unsigned int Texture;
-		glGenTextures( 1, &Texture );
-		glBindTexture( GL_TEXTURE_2D, Texture );
+		unsigned int texture;
+		glGenTextures( 1, &texture );
+		glBindTexture( GL_TEXTURE_2D, texture );
 		glTexImage2D( GL_TEXTURE_2D,
 					  0,
 					  GL_RED,
@@ -59,7 +59,7 @@ Font::Font( const char* font_filepath, int font_size )
 
 		character glyph =
 		{
-			Texture,
+			texture,
 			face->glyph->advance.x,
 			glm::vec2( face->glyph->bitmap.width, face->glyph->bitmap.rows ),
 			glm::vec2( face->glyph->bitmap_left, face->glyph->bitmap_top )

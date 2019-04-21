@@ -14,7 +14,7 @@ public:
 	Vertex_Array();
 	~Vertex_Array();
 
-	void add_buffer( const Vertex_Buffer& vb );
+	void add_buffer( Vertex_Buffer vb );
 
 	void bind() const;
 	void unbind() const;

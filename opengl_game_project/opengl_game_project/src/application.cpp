@@ -41,7 +41,52 @@ int main( void )
 	}
 	#endif
 
-	Renderer Renderer;
+	float positions[] =
+	{
+		0.0f, 0.0f,
+		100.0f, 0.0f,
+		100.0f, 100.0f,
+		0.0f, 100.0f
+	};
+
+	float tex_coords[] =
+	{
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f,
+		0.0f, 1.0f
+	};
+
+	unsigned int indices[] = { 0, 1, 2, 2, 3, 0 };
+
+	Vertex_Array vao;
+	Index_Buffer ibo( indices, 6 );
+
+	vao.add_buffer( { sizeof( float ) * 8, positions, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW } );
+	vao.add_buffer( { sizeof( float ) * 8, tex_coords, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW } );
+
+	Entity entity( vao, ibo );
+
+	Program program;
+
+	Shader vertex_shader( GL_VERTEX_SHADER, "res/shaders/vertex.glsl" );
+	Shader fragment_shader( GL_FRAGMENT_SHADER, "res/shaders/fragment.glsl" );
+
+	program.attach_shader( vertex_shader );
+	program.attach_shader( fragment_shader );
+	program.compile();
+
+	program.bind();
+
+	glm::mat4 proj = glm::ortho( 0.0f, (float) display.get_width(), 0.0f, (float) display.get_height() );
+
+	Texture texture( "res/textures/logo.png" );
+
+	program.set_uniform_1i( "u_texture", 1 );
+	program.set_uniform_mat4f( "u_mvp", proj );
+
+	Renderer renderer;
+
 	Font font( "res/fonts/Roboto/Roboto-Regular.ttf", 48 );
 	Text hello( "Hello World!", { 0.0f, 0.0f }, 1.0f, { 1.0f, 1.0f, 1.0f }, &font );
 
@@ -50,6 +95,11 @@ int main( void )
 		display.clear();
 
 		hello.render();
+
+		program.bind();
+		texture.bind( 1 );
+		entity.bind();
+		renderer.draw();
 
 		display.update();
 	}

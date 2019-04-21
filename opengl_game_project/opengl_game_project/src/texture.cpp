@@ -23,7 +23,6 @@ Texture::Texture( const std::string& file_path )
 	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
 
 	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, local_buffer );
-	glBindTexture( GL_TEXTURE_2D, 0 );
 
 	if( local_buffer ) stbi_image_free( local_buffer );
 }

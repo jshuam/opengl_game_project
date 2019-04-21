@@ -1,19 +1,19 @@
 #include "Entity.h"
 
-Entity::Entity( const Vertex_Array& va, const Index_Buffer& index_buffer )
+Entity::Entity( const Vertex_Array& vao, const Index_Buffer& ibo )
 	:
-	va( va ),
-	index_buffer( index_buffer )
+	vao( vao ),
+	ibo( ibo )
 {}
 
 void Entity::bind() const
 {
-	va.bind();
-	index_buffer.bind();
+	vao.bind();
+	ibo.bind();
 }
 
 void Entity::unbind() const
 {
-	va.unbind();
-	index_buffer.unbind();
+	vao.unbind();
+	ibo.unbind();
 }

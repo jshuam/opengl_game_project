@@ -6,11 +6,11 @@
 class Entity
 {
 private:
-	Vertex_Array va;
-	Index_Buffer index_buffer;
+	Vertex_Array vao;
+	Index_Buffer ibo;
 
 public:
-	Entity( const Vertex_Array& va, const Index_Buffer& index_buffer );
+	Entity( const Vertex_Array& va, const Index_Buffer& ibo );
 
 	void bind() const;
 	void unbind() const;
