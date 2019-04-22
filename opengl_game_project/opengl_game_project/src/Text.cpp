@@ -1,15 +1,14 @@
 #include "Text.h"
 
-Text::Text( const char* text, glm::vec2 position, float scale, glm::vec3 color, Font* font )
+Text::Text( const char* text, Font* font, glm::vec2 position, float scale, glm::vec3 color )
 	:
 	text( text ),
+	font( font ),
 	position( position ),
 	scale( scale ),
 	color( color ),
-	font( font )
-{
-	size = font->get_text_size( text, scale );
-}
+	size( font->get_text_size( text, scale ) )
+{}
 
 void Text::render() const
 {

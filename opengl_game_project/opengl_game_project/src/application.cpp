@@ -24,7 +24,7 @@
 int main( void )
 {
 	Display display;
-	Mouse Mouse( display );
+	Mouse mouse( display );
 	GLenum err = glewInit();
 	if( GLEW_OK != err )
 	{
@@ -43,10 +43,10 @@ int main( void )
 
 	float positions[] =
 	{
-		0.0f, 0.0f,
-		100.0f, 0.0f,
+		500.0f, 500.0f,
+		100.0f, 500.0f,
 		100.0f, 100.0f,
-		0.0f, 100.0f
+		500.0f, 100.0f
 	};
 
 	float tex_coords[] =
@@ -82,18 +82,27 @@ int main( void )
 
 	Texture texture( "res/textures/logo.png" );
 
-	program.set_uniform_1i( "u_texture", 1 );
+	program.set_uniform_1i( "u_tex", 1 );
 	program.set_uniform_mat4f( "u_mvp", proj );
 
 	Renderer renderer;
 
 	Font font( "res/fonts/Roboto/Roboto-Regular.ttf", 48 );
-	Text hello( "Hello World!", { 0.0f, 0.0f }, 1.0f, { 1.0f, 1.0f, 1.0f }, &font );
+	Text hello( "Hello World!", &font, { 0, 0 }, 1.0f, { 1.0f, 1.0f, 1.0f } );
+	hello.set_position( { ( display.get_width() / 2 ) - ( hello.get_width() / 2 ), ( display.get_height() / 2 ) - ( hello.get_height() / 2 ) } );
 
 	while( !display.should_close() )
 	{
 		display.clear();
 
+		if( mouse.cursor_within( hello.get_bounds() ) )
+		{
+			hello.set_color( { 1.0, 0.5, 0.5 } );
+		}
+		else
+		{
+			hello.set_color( { 1.0, 1.0, 1.0 } );
+		}
 		hello.render();
 
 		program.bind();

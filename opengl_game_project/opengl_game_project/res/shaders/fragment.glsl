@@ -1,13 +1,19 @@
 #version 330 core
 
+in vec2 v_tex_coord;
+
 out vec4 color;
 
-uniform sampler2D u_texture;
-
-in vec2 v_tex_coord;
+uniform sampler2D u_tex;
 
 void main()
 {
-	vec4 texture_color = texture( u_texture, v_tex_coord );
-	color = texture_color;
+	if( v_tex_coord.x > 0.002 && v_tex_coord.x < 0.998 && v_tex_coord.y > 0.002 && v_tex_coord.y < 0.998 )
+	{
+		color = texture( u_tex, v_tex_coord );
+	}
+	else
+	{
+		color = vec4( 1.0, 1.0, 1.0, 1.0 );
+	}
 };

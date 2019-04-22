@@ -17,7 +17,7 @@ class Font
 private:
 	struct character
 	{
-		unsigned int Texture;
+		unsigned int texture;
 		unsigned int advance;
 		glm::vec2 size;
 		glm::vec2 bearing;

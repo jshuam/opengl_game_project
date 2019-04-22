@@ -94,8 +94,9 @@ glm::vec2 Font::get_text_size( const char* text, float scale ) const
 	{
 		character c = characters.at( *i );
 
-		size.x += c.size.x * scale;
-		size.y += c.size.y * scale;
+		size.x += ( c.advance / 64 ) * scale;
+
+		if( size.y < c.size.y * scale ) size.y = c.size.y * scale;
 	}
 
 	return size;
@@ -122,15 +123,15 @@ void Font::render_text( const char* text, glm::vec2 position, float scale, glm::
 		GLfloat vertices[6][4] =
 		{
 			{ x_pos, y_pos + height, 0.0f, 0.0f },
-			{ x_pos, y_pos, 0.0f, 1.0f },
-			{ x_pos + width, y_pos, 1.0f, 1.0f },
-			{ x_pos, y_pos + height , 0.0f, 0.0f },
-			{ x_pos + width, y_pos, 1.0f, 1.0f },
-			{ x_pos + width, y_pos + height, 1.0f, 0.0f }
+		{ x_pos, y_pos, 0.0f, 1.0f },
+		{ x_pos + width, y_pos, 1.0f, 1.0f },
+		{ x_pos, y_pos + height, 0.0f, 0.0f },
+		{ x_pos + width, y_pos, 1.0f, 1.0f },
+		{ x_pos + width, y_pos + height, 1.0f, 0.0f }
 		};
 
-		// Render glyph Texture over quad
-		glBindTexture( GL_TEXTURE_2D, c.Texture );
+		// Render glyph texture over quad
+		glBindTexture( GL_TEXTURE_2D, c.texture );
 
 		// Update content of VBO memory
 		vbo.modify_buffer( sizeof( vertices ), vertices );
