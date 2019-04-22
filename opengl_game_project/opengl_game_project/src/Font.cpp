@@ -82,7 +82,6 @@ Font::Font( const char* font_filepath, int font_size )
 	glm::mat4 proj = glm::ortho( 0.0f, 1280.0f, 0.0f, 720.0f, -1.0f, 1.0f );
 
 	program.set_uniform_mat4f( "u_mvp", proj );
-
 	vao.add_buffer( vbo );
 
 }

@@ -43,10 +43,10 @@ int main( void )
 
 	float positions[] =
 	{
-		500.0f, 500.0f,
-		100.0f, 500.0f,
-		100.0f, 100.0f,
-		500.0f, 100.0f
+		0.0f, 0.0f,
+		200.0f, 0.0f,
+		200.0f, 200.0f,
+		0.0f, 200.0f
 	};
 
 	float tex_coords[] =
@@ -90,25 +90,46 @@ int main( void )
 	Font font( "res/fonts/Roboto/Roboto-Regular.ttf", 48 );
 	Text hello( "Hello World!", &font, { 0, 0 }, 1.0f, { 1.0f, 1.0f, 1.0f } );
 	hello.set_position( { ( display.get_width() / 2 ) - ( hello.get_width() / 2 ), ( display.get_height() / 2 ) - ( hello.get_height() / 2 ) } );
+	hello.set_color( { 1.0, 1.0, 1.0 } );
+
+	float positions_2[] =
+	{
+		( display.get_width() / 2 ) - ( hello.get_width() / 2 ) - 15.0f, ( display.get_height() / 2 ) - ( hello.get_height() / 2 ) - 15.0f,
+		( display.get_width() / 2 ) - ( hello.get_width() / 2 ) + hello.get_width() + 15.0f, ( display.get_height() / 2 ) - ( hello.get_height() / 2 ) - 15.0f,
+		( display.get_width() / 2 ) - ( hello.get_width() / 2 ) + hello.get_width() + 15.0f, ( display.get_height() / 2 ) - ( hello.get_height() / 2 ) + hello.get_height() + 15.0f,
+		( display.get_width() / 2 ) - ( hello.get_width() / 2 ) - 15.0f, ( display.get_height() / 2 ) - ( hello.get_height() / 2 ) + hello.get_height() + 15.0f
+	};
+
+	unsigned int indices_2[] = { 0, 1, 2, 2, 3, 0 };
+
+	Vertex_Array vao_2;
+	Index_Buffer ibo_2( indices_2, 6 );
+
+	vao_2.add_buffer( { sizeof( float ) * 8, positions_2, 2, GL_FLOAT, GL_FALSE, GL_DYNAMIC_DRAW } );
+
+	Entity entity_2( vao_2, ibo_2 );
 
 	while( !display.should_close() )
 	{
 		display.clear();
 
+		program.bind();
+
 		if( mouse.cursor_within( hello.get_bounds() ) )
 		{
-			hello.set_color( { 1.0, 0.5, 0.5 } );
+			program.set_uniform_4f( "u_color", 1.0, 0.6, 0.6, 1.0 );
 		}
 		else
 		{
-			hello.set_color( { 1.0, 1.0, 1.0 } );
+			program.set_uniform_4f( "u_color", 1.0, 0.5, 0.5, 1.0 );
 		}
-		hello.render();
 
-		program.bind();
 		texture.bind( 1 );
 		entity.bind();
 		renderer.draw();
+		entity_2.bind();
+		renderer.draw();
+		hello.render();
 
 		display.update();
 	}

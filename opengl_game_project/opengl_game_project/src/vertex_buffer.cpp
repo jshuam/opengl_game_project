@@ -29,7 +29,7 @@ void Vertex_Buffer::attrib_pointer( unsigned int index ) const
 	glVertexAttribPointer( index, size, type, normalized, 0, 0 );
 }
 
-void Vertex_Buffer::modify_buffer( unsigned int data_size, const void* data )
+void Vertex_Buffer::modify_buffer( unsigned int data_size, const void* data ) const
 {
 	bind();
 	glBufferSubData( GL_ARRAY_BUFFER, 0, data_size, data );

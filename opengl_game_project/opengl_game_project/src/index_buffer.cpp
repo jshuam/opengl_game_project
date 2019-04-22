@@ -24,3 +24,9 @@ void Index_Buffer::unbind() const
 {
 	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
 }
+
+void Index_Buffer::modify_buffer( unsigned int data_size, const void* data ) const
+{
+	bind();
+	glBufferSubData( GL_ELEMENT_ARRAY_BUFFER, 0, data_size, data );
+}

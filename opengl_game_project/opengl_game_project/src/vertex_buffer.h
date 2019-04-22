@@ -15,7 +15,7 @@ public:
 	void unbind() const;
 
 	void attrib_pointer( unsigned int index ) const;
-	void modify_buffer( unsigned int data_size, const void* data );
+	void modify_buffer( unsigned int data_size, const void* data ) const;
 
 	inline const unsigned int* get_id() const { return &renderer_id; }
 };

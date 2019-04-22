@@ -3,6 +3,7 @@
 #include "Program.h"
 #include "Vertex_Array.h"
 #include "Vertex_Buffer.h"
+#include "Index_Buffer.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
