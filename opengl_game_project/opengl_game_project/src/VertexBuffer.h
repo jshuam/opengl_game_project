@@ -1,6 +1,6 @@
 #pragma once
 
-class Vertex_Buffer
+class VertexBuffer
 {
 private:
 	unsigned int renderer_id;
@@ -9,7 +9,7 @@ private:
 	bool normalized;
 
 public:
-	Vertex_Buffer( unsigned int data_size, const void* data, int size, unsigned int type, bool normalized, unsigned int draw_flag );
+	VertexBuffer( unsigned int data_size, const void* data, int size, unsigned int type, bool normalized, unsigned int draw_flag );
 
 	void bind() const;
 	void unbind() const;

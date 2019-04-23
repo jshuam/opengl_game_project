@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-Entity::Entity( const Vertex_Array& vao, const Index_Buffer& ibo )
+Entity::Entity( const VertexArray& vao, const IndexBuffer& ibo )
 	:
 	vao( vao ),
 	ibo( ibo )

@@ -1,17 +1,19 @@
 #pragma once
 
-#include "Vertex_Array.h"
-#include "Index_Buffer.h"
+#include "VertexArray.h"
+#include "IndexBuffer.h"
 
 class Entity
 {
 private:
-	Vertex_Array vao;
-	Index_Buffer ibo;
+	VertexArray vao;
+	IndexBuffer ibo;
 
 public:
-	Entity( const Vertex_Array& va, const Index_Buffer& ibo );
+	Entity( const VertexArray& va, const IndexBuffer& ibo );
 
 	void bind() const;
 	void unbind() const;
+
+	inline int get_vertex_count() const { return ibo.get_count(); }
 };

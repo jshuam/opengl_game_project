@@ -28,7 +28,7 @@ public:
 	void set_renderer( Renderer* Renderer );
 
 	inline GLFWwindow* get_window() const { return window; }
-	inline int get_width() const { return width; }
-	inline int get_height() const { return height; }
+	static inline int get_width() { return width; }
+	static inline int get_height() { return height; }
 
 };

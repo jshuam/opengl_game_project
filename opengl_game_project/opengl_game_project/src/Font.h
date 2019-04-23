@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Program.h"
-#include "Vertex_Array.h"
-#include "Vertex_Buffer.h"
-#include "Index_Buffer.h"
+#include "VertexArray.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -31,8 +31,8 @@ private:
 
 	Program program;
 
-	Vertex_Array vao;
-	Vertex_Buffer vbo;
+	VertexArray vao;
+	VertexBuffer vbo;
 
 public:
 	Font( const char* font_filepath, int font_size );

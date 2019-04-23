@@ -1,14 +1,14 @@
-#include "Vertex_Array.h"
+#include "VertexArray.h"
 
 #include "Renderer.h"
 
-Vertex_Array::Vertex_Array()
+VertexArray::VertexArray()
 {
 	glGenVertexArrays( 1, &renderer_id );
 	glBindVertexArray( renderer_id );
 }
 
-Vertex_Array::~Vertex_Array()
+VertexArray::~VertexArray()
 {
 	for( auto& vbo : vbos )
 	{
@@ -18,7 +18,7 @@ Vertex_Array::~Vertex_Array()
 	glDeleteVertexArrays( 1, &renderer_id );
 }
 
-void Vertex_Array::add_buffer( Vertex_Buffer vb )
+void VertexArray::add_buffer( VertexBuffer vb )
 {
 	bind();
 	vb.bind();
@@ -27,12 +27,12 @@ void Vertex_Array::add_buffer( Vertex_Buffer vb )
 	glEnableVertexAttribArray( vbos.size() - 1 );
 }
 
-void Vertex_Array::bind() const
+void VertexArray::bind() const
 {
 	glBindVertexArray( renderer_id );
 }
 
-void Vertex_Array::unbind() const
+void VertexArray::unbind() const
 {
 	glBindVertexArray( 0 );
 }
