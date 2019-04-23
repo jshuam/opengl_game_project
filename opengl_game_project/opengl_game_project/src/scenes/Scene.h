@@ -7,16 +7,13 @@
 
 class Scene
 {
-private:
-	Renderer renderer;
-
 protected:
-	std::vector<Program> programs;
+	Renderer renderer;
 
 protected:
 	Scene() = default;
 
 public:
 	virtual ~Scene() = default;
-	virtual void render() const = 0;
+	virtual void render() const;
 };

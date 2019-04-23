@@ -13,7 +13,6 @@ class Program
 {
 private:
 	unsigned int renderer_id;
-	std::vector<Entity> entities;
 	std::vector<Shader> shaders;
 	std::unordered_map<std::string, int> uniform_loc_cache;
 
@@ -23,8 +22,6 @@ public:
 
 	void bind() const;
 	void unbind() const;
-
-	void add_entity( Entity entity );
 
 	void attach_shader( Shader shader );
 	void compile() const;

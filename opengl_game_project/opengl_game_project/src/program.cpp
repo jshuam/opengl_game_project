@@ -24,11 +24,6 @@ void Program::unbind() const
 	glUseProgram( 0 );
 }
 
-void Program::add_entity( Entity entity )
-{
-	entities.emplace_back( entity );
-}
-
 void Program::attach_shader( Shader shader )
 {
 	shader.attach( renderer_id );

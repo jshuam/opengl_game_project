@@ -38,27 +38,23 @@ TestScene::TestScene()
 	vao.add_buffer( { sizeof( float ) * 8, positions, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW } );
 	vao.add_buffer( { sizeof( float ) * 8, tex_coords, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW } );
 
-	Program program;
-
-	program.add_entity( { vao, ibo } );
+	entities.push_back( { vao, ibo } );
 
 	Shader vertex_shader( GL_VERTEX_SHADER, "res/shaders/vertex.glsl" );
 	Shader fragment_shader( GL_FRAGMENT_SHADER, "res/shaders/fragment.glsl" );
 
-	program.attach_shader( vertex_shader );
-	program.attach_shader( fragment_shader );
-	program.compile();
+	program_1.attach_shader( vertex_shader );
+	program_1.attach_shader( fragment_shader );
+	program_1.compile();
 
-	program.bind();
+	program_1.bind();
 
 	glm::mat4 proj = glm::ortho( 0.0f, (float) Display::get_width(), 0.0f, (float) Display::get_height() );
 
 	Texture texture( "res/textures/logo.png" );
 
-	program.set_uniform_1i( "u_tex", 1 );
-	program.set_uniform_mat4f( "u_mvp", proj );
-
-	Renderer renderer;
+	program_1.set_uniform_1i( "u_tex", 1 );
+	program_1.set_uniform_mat4f( "u_mvp", proj );
 
 	Font font( "res/fonts/Roboto/Roboto-Regular.ttf", 48 );
 	Text hello( "Hello World!", &font, { 0, 0 }, 1.0f, { 1.0f, 1.0f, 1.0f } );
@@ -80,10 +76,15 @@ TestScene::TestScene()
 
 	vao_2.add_buffer( { sizeof( float ) * 8, positions_2, 2, GL_FLOAT, GL_FALSE, GL_DYNAMIC_DRAW } );
 	
-	program.( { vao_2, ibo_2 } );
+	entities.push_back( { vao_2, ibo_2 } );
 }
 
 void TestScene::render() const
 {
-	program.bind();
+	program_1.bind();
+	for( auto& entity : entities )
+	{
+		entity.bind();
+		renderer.draw( entity );
+	}
 }

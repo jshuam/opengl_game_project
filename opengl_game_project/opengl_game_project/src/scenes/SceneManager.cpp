@@ -14,3 +14,6 @@ void SceneManager::render_scene()
 {
 	active_scene->render();
 }
+
+std::vector<Scene> SceneManager::scenes;
+Scene* SceneManager::active_scene;
