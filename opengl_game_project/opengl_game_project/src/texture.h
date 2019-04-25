@@ -15,12 +15,13 @@ private:
 	std::string file_path;
 
 public:
+	Texture() = default;
 	Texture( const std::string& file_path );
-	~Texture();
 
 	void bind( unsigned int slot = 0 ) const;
 	void unbind() const;
 
 	inline int get_width() const { return width; }
 	inline int get_height() const { return height; }
+	inline auto& const get_id() const { return renderer_id; }
 };

@@ -27,11 +27,6 @@ Texture::Texture( const std::string& file_path )
 	if( local_buffer ) stbi_image_free( local_buffer );
 }
 
-Texture::~Texture()
-{
-	glDeleteTextures( 1, &renderer_id );
-}
-
 void Texture::bind( unsigned int slot ) const
 {
 	glActiveTexture( GL_TEXTURE0 + slot );

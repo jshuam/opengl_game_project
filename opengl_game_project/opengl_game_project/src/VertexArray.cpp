@@ -8,16 +8,6 @@ VertexArray::VertexArray()
 	glBindVertexArray( renderer_id );
 }
 
-VertexArray::~VertexArray()
-{
-	for( auto& vbo : vbos )
-	{
-		glDeleteBuffers( 1, vbo.get_id() );
-	}
-
-	glDeleteVertexArrays( 1, &renderer_id );
-}
-
 void VertexArray::add_buffer( VertexBuffer vb )
 {
 	bind();

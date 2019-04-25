@@ -10,10 +10,10 @@ IndexBuffer::IndexBuffer( const unsigned int* data, unsigned int count )
 	glBufferData( GL_ELEMENT_ARRAY_BUFFER, sizeof( unsigned int ) * count, data, GL_STATIC_DRAW );
 }
 
-IndexBuffer::~IndexBuffer()
-{
-	glDeleteBuffers( 1, &renderer_id );
-}
+//IndexBuffer::~IndexBuffer()
+//{
+//	glDeleteBuffers( 1, &renderer_id );
+//}
 
 void IndexBuffer::bind() const
 {
