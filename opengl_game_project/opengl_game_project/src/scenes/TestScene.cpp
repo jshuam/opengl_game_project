@@ -40,7 +40,7 @@ TestScene::TestScene()
 
 	Texture texture( "res/textures/logo.png" );
 
-	entities.push_back( { vao, ibo, texture } );
+	entities.emplace_back( vao, ibo, texture );
 
 	Shader vertex_shader( GL_VERTEX_SHADER, "res/shaders/vertex.glsl" );
 	Shader fragment_shader( GL_FRAGMENT_SHADER, "res/shaders/fragment.glsl" );
@@ -75,7 +75,7 @@ TestScene::TestScene()
 	//IndexBuffer ibo_2( indices_2, 6 );
 
 	//vao_2.add_buffer( { sizeof( float ) * 8, positions_2, 2, GL_FLOAT, GL_FALSE, GL_DYNAMIC_DRAW } );
-	
+
 	//entities.push_back( { vao_2, ibo_2 } );
 }
 

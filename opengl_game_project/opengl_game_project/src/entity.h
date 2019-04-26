@@ -12,7 +12,7 @@ private:
 	Texture texture;
 
 public:
-	Entity( const VertexArray& vao, const IndexBuffer& ibo, const Texture& texture );
+	Entity( VertexArray vao, IndexBuffer ibo, Texture texture );
 	~Entity();
 
 	void bind() const;

@@ -10,7 +10,6 @@ private:
 	static constexpr const int desired_channels = 4;
 
 	unsigned int renderer_id;
-	unsigned char* local_buffer;
 	int width, height, bytes_per_pixel;
 	std::string file_path;
 

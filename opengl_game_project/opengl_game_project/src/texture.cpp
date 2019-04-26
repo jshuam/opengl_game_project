@@ -5,14 +5,13 @@
 Texture::Texture( const std::string& file_path )
 	:
 	renderer_id( 0 ),
-	local_buffer( nullptr ),
 	width( 0 ),
 	height( 0 ),
 	bytes_per_pixel( 0 ),
 	file_path( file_path )
 {
 	stbi_set_flip_vertically_on_load( 1 );
-	local_buffer = stbi_load( file_path.c_str(), &width, &height, &bytes_per_pixel, desired_channels );
+	unsigned char* local_buffer = stbi_load( file_path.c_str(), &width, &height, &bytes_per_pixel, desired_channels );
 
 	glGenTextures( 1, &renderer_id );
 	glBindTexture( GL_TEXTURE_2D, renderer_id );

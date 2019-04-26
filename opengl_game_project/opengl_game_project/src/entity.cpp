@@ -2,7 +2,7 @@
 
 #include <GL/glew.h>
 
-Entity::Entity( const VertexArray& vao, const IndexBuffer& ibo, const Texture& texture )
+Entity::Entity( VertexArray vao, IndexBuffer ibo, Texture texture )
 	:
 	vao( vao ),
 	ibo( ibo ),
