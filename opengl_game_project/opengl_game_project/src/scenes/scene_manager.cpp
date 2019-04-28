@@ -1,6 +1,6 @@
-#include "SceneManager.h"
+#include "scene_manager.h"
 
-void SceneManager::add_scene( Scene* scene )
+void SceneManager::add_scene( scene* scene )
 {
 	scenes.emplace_back( scene );
 }

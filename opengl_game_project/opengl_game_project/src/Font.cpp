@@ -1,7 +1,7 @@
-#include "Font.h"
-#include "Renderer.h"
-#include "Program.h"
-#include "Shader.h"
+#include "font.h"
+#include "renderer.h"
+#include "program.h"
+#include "shader.h"
 
 #include <iostream>
 
@@ -74,14 +74,14 @@ Font::Font( const char* font_filepath, int font_size )
 	Shader vertex_shader( GL_VERTEX_SHADER, "res/shaders/font_vertex.glsl" );
 	Shader fragment_shader( GL_FRAGMENT_SHADER, "res/shaders/font_fragment.glsl" );
 
-	program.attach_shader( vertex_shader );
-	program.attach_shader( fragment_shader );
-	program.compile();
-	program.bind();
+	Program.attach_shader( vertex_shader );
+	Program.attach_shader( fragment_shader );
+	Program.compile();
+	Program.bind();
 
 	glm::mat4 proj = glm::ortho( 0.0f, 1280.0f, 0.0f, 720.0f, -1.0f, 1.0f );
 
-	program.set_uniform_mat4f( "u_mvp", proj );
+	Program.set_uniform_mat4f( "u_mvp", proj );
 	vao.add_buffer( vbo );
 
 }

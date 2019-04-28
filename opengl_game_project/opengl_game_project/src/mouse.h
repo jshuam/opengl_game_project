@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Display.h"
+#include "display.h"
 
 #include <GLFW/glfw3.h>
 #include <glm/vec2.hpp>
@@ -9,7 +9,7 @@
 class Mouse
 {
 public:
-	Mouse( const Display& display );
+	Mouse( const display& display );
 
 	static bool cursor_within( glm::vec4 bounds );
 

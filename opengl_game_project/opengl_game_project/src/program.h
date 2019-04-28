@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Entity.h"
-#include "Shader.h"
+#include "../entities/entity.h"
+#include "shader.h"
 
 #include <glm/glm.hpp>
 

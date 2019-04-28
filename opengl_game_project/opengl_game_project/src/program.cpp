@@ -1,5 +1,5 @@
-#include "Program.h"
-#include "Renderer.h"
+#include "program.h"
+#include "renderer.h"
 
 #include <cassert>
 #include <iostream>

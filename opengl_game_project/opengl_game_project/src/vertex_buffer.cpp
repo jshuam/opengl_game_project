@@ -1,6 +1,6 @@
-#include "VertexBuffer.h"
+#include "vertex_buffer.h"
 
-#include "Renderer.h"
+#include "renderer.h"
 
 VertexBuffer::VertexBuffer( unsigned int data_size, const void* data, int size, unsigned int type, bool normalized, unsigned int draw_flag )
 	:

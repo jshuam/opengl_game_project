@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Program.h"
-#include "VertexArray.h"
-#include "VertexBuffer.h"
-#include "IndexBuffer.h"
+#include "program.h"
+#include "vertex_array.h"
+#include "vertex_buffer.h"
+#include "index_buffer.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H

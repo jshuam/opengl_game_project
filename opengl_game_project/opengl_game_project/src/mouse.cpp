@@ -1,8 +1,8 @@
-#include "Mouse.h"
+#include "mouse.h"
 
 #include <iostream>
 
-Mouse::Mouse( const Display& display )
+Mouse::Mouse( const display& display )
 {
 	glfwSetCursorPosCallback( display.get_window(), cursor_position_callback );
 	glfwSetMouseButtonCallback( display.get_window(), mouse_button_callback );

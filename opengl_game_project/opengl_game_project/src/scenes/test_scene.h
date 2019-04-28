@@ -1,16 +1,16 @@
 #pragma once
 
-#include "Scene.h"
-#include "../Entity.h"
-#include "../Text.h"
-#include "../Program.h"
+#include "scene.h"
+#include "../entities/entity.h"
+#include "../text.h"
+#include "../program.h"
 
 #include <vector>
 
 class TestScene : public Scene
 {
 private:
-	std::vector<Entity> entities;
+	std::vector<entity> entities;
 	Program program_1;
 
 public:

@@ -1,4 +1,4 @@
-#include "Scene.h"
+#include "scene.h"
 
 void Scene::render() const
 {}

@@ -1,14 +1,12 @@
 #pragma once
 
-#include "../Program.h"
-#include "../Renderer.h"
+#include "../program.h"
 
 #include <vector>
 
 class Scene
 {
 protected:
-	Renderer renderer;
 
 protected:
 	Scene() = default;
