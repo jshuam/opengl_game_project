@@ -11,8 +11,8 @@ public:
 	IndexBuffer( const unsigned int* data, unsigned int count );
 	//~IndexBuffer();
 
-	void bind() const;
-	void unbind() const;
+	virtual void bind() const override;
+	virtual void unbind() const override;
 	void modify_buffer( unsigned int data_size, const void* data ) const;
 
 	inline unsigned int get_count() const { return count; }

@@ -16,8 +16,8 @@ public:
 	Texture() = default;
 	Texture( const std::string& file_path );
 
-	void bind( unsigned int slot = 0 ) const;
-	void unbind() const;
+	virtual void bind( unsigned int slot = 0 ) const override;
+	virtual void unbind() const override;
 
 	inline int get_width() const { return width; }
 	inline int get_height() const { return height; }

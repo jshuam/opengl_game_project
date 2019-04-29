@@ -13,5 +13,5 @@ private:
 	std::vector<GLDrawable> drawables;
 
 public:
-	void update() override;
+	virtual void update() override;
 };

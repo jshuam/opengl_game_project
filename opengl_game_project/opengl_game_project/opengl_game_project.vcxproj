@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\components\drawable.cpp" />
     <ClCompile Include="src\display.cpp" />
     <ClCompile Include="src\entities\entity.cpp" />
     <ClCompile Include="src\font.cpp" />

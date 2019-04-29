@@ -15,8 +15,8 @@ public:
 
 	void add_buffer( VertexBuffer vb );
 
-	void bind() const;
-	void unbind() const;
+	virtual void bind() const override;
+	virtual void unbind() const override;
 
 	inline const auto& get_vertex_buffers() { return vbos; }
 };
