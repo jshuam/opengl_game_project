@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../entities/entity.h"
+#include "../gl_object.h"
 #include "shader.h"
 
 #include <glm/glm.hpp>
@@ -9,10 +9,9 @@
 #include <vector>
 #include <unordered_map>
 
-class Program
+class Program : public GLObject
 {
 private:
-	unsigned int renderer_id;
 	std::vector<Shader> shaders;
 	std::unordered_map<std::string, int> uniform_loc_cache;
 

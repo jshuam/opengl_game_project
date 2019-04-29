@@ -1,11 +1,9 @@
 #include "vertex_array.h"
 
-#include "renderer.h"
-
 VertexArray::VertexArray()
 {
-	glGenVertexArrays( 1, &renderer_id );
-	glBindVertexArray( renderer_id );
+	glGenVertexArrays( 1, &gl_id );
+	glBindVertexArray( gl_id );
 }
 
 void VertexArray::add_buffer( VertexBuffer vb )
@@ -19,7 +17,7 @@ void VertexArray::add_buffer( VertexBuffer vb )
 
 void VertexArray::bind() const
 {
-	glBindVertexArray( renderer_id );
+	glBindVertexArray( gl_id );
 }
 
 void VertexArray::unbind() const

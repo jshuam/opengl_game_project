@@ -1,12 +1,11 @@
 #pragma once
 
+#include "../gl_object.h"
+
 #include <string>
 
-class Shader
+class Shader : public GLObject
 {
-private:
-	unsigned int renderer_id;
-
 public:
 	Shader( unsigned int type, const std::string& filename );
 

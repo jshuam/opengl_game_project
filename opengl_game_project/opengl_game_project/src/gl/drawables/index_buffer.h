@@ -1,9 +1,10 @@
 #pragma once
 
-class IndexBuffer
+#include "../gl_drawable.h"
+
+class IndexBuffer : public GLDrawable
 {
 private:
-	unsigned int renderer_id;
 	unsigned int count;
 
 public:
@@ -15,6 +16,5 @@ public:
 	void modify_buffer( unsigned int data_size, const void* data ) const;
 
 	inline unsigned int get_count() const { return count; }
-	inline const auto& get_id() const { return renderer_id; }
 };
 

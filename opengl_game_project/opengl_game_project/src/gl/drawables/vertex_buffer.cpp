@@ -1,22 +1,19 @@
 #include "vertex_buffer.h"
 
-#include "renderer.h"
-
 VertexBuffer::VertexBuffer( unsigned int data_size, const void* data, int size, unsigned int type, bool normalized, unsigned int draw_flag )
 	:
-	renderer_id( 0 ),
 	size( size ),
 	type( type ),
 	normalized( normalized )
 {
-	glGenBuffers( 1, &renderer_id );
-	glBindBuffer( GL_ARRAY_BUFFER, renderer_id );
+	glGenBuffers( 1, &gl_id );
+	glBindBuffer( GL_ARRAY_BUFFER, gl_id );
 	glBufferData( GL_ARRAY_BUFFER, data_size, data, draw_flag );
 }
 
 void VertexBuffer::bind() const
 {
-	glBindBuffer( GL_ARRAY_BUFFER, renderer_id );
+	glBindBuffer( GL_ARRAY_BUFFER, gl_id );
 }
 
 void VertexBuffer::unbind() const

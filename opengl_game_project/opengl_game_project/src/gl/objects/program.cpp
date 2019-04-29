@@ -1,22 +1,21 @@
 #include "program.h"
-#include "renderer.h"
 
 #include <cassert>
 #include <iostream>
 
 Program::Program()
 {
-	renderer_id = glCreateProgram();
+	gl_id = glCreateProgram();
 }
 
 Program::~Program()
 {
-	glDeleteProgram( renderer_id );
+	glDeleteProgram( gl_id );
 }
 
 void Program::bind() const
 {
-	glUseProgram( renderer_id );
+	glUseProgram( gl_id );
 }
 
 void Program::unbind() const
@@ -26,22 +25,22 @@ void Program::unbind() const
 
 void Program::attach_shader( Shader shader )
 {
-	shader.attach( renderer_id );
+	shader.attach( gl_id );
 	shaders.push_back( shader );
 }
 
 void Program::compile() const
 {
-	glLinkProgram( renderer_id );
+	glLinkProgram( gl_id );
 	check_compile_status( GL_LINK_STATUS );
 
-	glValidateProgram( renderer_id );
+	glValidateProgram( gl_id );
 	check_compile_status( GL_VALIDATE_STATUS );
 
 	/* Detaches and deletes the shaders as they are no longer needed due to being compiled into the program */
 	for( const auto& shader : shaders )
 	{
-		shader.detach( renderer_id );
+		shader.detach( gl_id );
 	}
 }
 
@@ -68,13 +67,13 @@ void Program::set_uniform_mat4f( const std::string& name, glm::mat4& matrix )
 void Program::check_compile_status( unsigned int param ) const
 {
 	int status;
-	glGetProgramiv( renderer_id, param, &status );
+	glGetProgramiv( gl_id, param, &status );
 	if( status == GL_FALSE )
 	{
 		int length;
-		glGetProgramiv( renderer_id, GL_INFO_LOG_LENGTH, &length );
+		glGetProgramiv( gl_id, GL_INFO_LOG_LENGTH, &length );
 		char* message = new char[length];
-		glGetProgramInfoLog( renderer_id, length, &length, message );
+		glGetProgramInfoLog( gl_id, length, &length, message );
 		std::cout << "[ERROR] Program compilation failed:" << std::endl;
 		std::cout << message << std::endl;
 		std::cin.get();
@@ -86,7 +85,7 @@ int Program::get_uniform_location( const std::string& name )
 {
 	if( uniform_loc_cache.find( name ) != uniform_loc_cache.end() ) return uniform_loc_cache[name];
 
-	int loc = glGetUniformLocation( renderer_id, name.c_str() );
+	int loc = glGetUniformLocation( gl_id, name.c_str() );
 	if( loc < 0 ) std::cout << "[WARNING] Uniform not in use" << std::endl;
 	uniform_loc_cache[name] = loc;
 	return loc;

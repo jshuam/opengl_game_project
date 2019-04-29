@@ -154,19 +154,19 @@
     <ClCompile Include="src\entities\entity.cpp" />
     <ClCompile Include="src\font.cpp" />
     <ClCompile Include="src\mouse.cpp" />
-    <ClCompile Include="src\program.cpp" />
+    <ClCompile Include="src\gl\objects\program.cpp" />
     <ClCompile Include="src\scenes\scene.cpp" />
     <ClCompile Include="src\scenes\scene_manager.cpp" />
     <ClCompile Include="src\scenes\test_scene.cpp" />
-    <ClCompile Include="src\shader.cpp" />
-    <ClCompile Include="src\index_buffer.cpp" />
+    <ClCompile Include="src\gl\objects\shader.cpp" />
+    <ClCompile Include="src\gl\drawables\index_buffer.cpp" />
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\text.cpp" />
-    <ClCompile Include="src\texture.cpp" />
+    <ClCompile Include="src\gl\drawables\texture.cpp" />
     <ClCompile Include="src\vendor\glm\detail\glm.cpp" />
     <ClCompile Include="src\vendor\stb_image\stb_image.cpp" />
-    <ClCompile Include="src\vertex_buffer.cpp" />
-    <ClCompile Include="src\vertex_array.cpp" />
+    <ClCompile Include="src\gl\drawables\vertex_buffer.cpp" />
+    <ClCompile Include="src\gl\drawables\vertex_array.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\font_fragment.glsl" />
@@ -312,16 +312,18 @@
     <ClInclude Include="src\display.h" />
     <ClInclude Include="src\entities\entity.h" />
     <ClInclude Include="src\font.h" />
+    <ClInclude Include="src\gl\gl_drawable.h" />
+    <ClInclude Include="src\gl\gl_object.h" />
     <ClInclude Include="src\mouse.h" />
-    <ClInclude Include="src\program.h" />
+    <ClInclude Include="src\gl\objects\program.h" />
     <ClInclude Include="src\scenes\scene.h" />
     <ClInclude Include="src\scenes\scene_manager.h" />
     <ClInclude Include="src\scenes\test_scene.h" />
-    <ClInclude Include="src\shader.h" />
-    <ClInclude Include="src\index_buffer.h" />
+    <ClInclude Include="src\gl\objects\shader.h" />
+    <ClInclude Include="src\gl\drawables\index_buffer.h" />
     <ClInclude Include="src\systems\system.h" />
     <ClInclude Include="src\text.h" />
-    <ClInclude Include="src\texture.h" />
+    <ClInclude Include="src\gl\drawables\texture.h" />
     <ClInclude Include="src\utils.h" />
     <ClInclude Include="src\vendor\glm\common.hpp" />
     <ClInclude Include="src\vendor\glm\detail\compute_common.hpp" />
@@ -565,8 +567,8 @@
     <ClInclude Include="src\vendor\glm\vec4.hpp" />
     <ClInclude Include="src\vendor\glm\vector_relational.hpp" />
     <ClInclude Include="src\vendor\stb_image\stb_image.h" />
-    <ClInclude Include="src\vertex_buffer.h" />
-    <ClInclude Include="src\vertex_array.h" />
+    <ClInclude Include="src\gl\drawables\vertex_buffer.h" />
+    <ClInclude Include="src\gl\drawables\vertex_array.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\logo.png" />

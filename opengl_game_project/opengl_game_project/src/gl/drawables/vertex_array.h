@@ -1,13 +1,13 @@
 #pragma once
 
+#include "../gl_drawable.h"
 #include "vertex_buffer.h"
 
 #include <vector>
 
-class VertexArray
+class VertexArray : public GLDrawable
 {
 private:
-	unsigned int renderer_id;
 	std::vector<VertexBuffer> vbos;
 
 public:
@@ -19,6 +19,5 @@ public:
 	void unbind() const;
 
 	inline const auto& get_vertex_buffers() { return vbos; }
-	inline const auto& get_id() const { return renderer_id; }
 };
 
