@@ -2,16 +2,15 @@
 
 #include "scene.h"
 #include "../entities/entity.h"
-#include "../text.h"
-#include "../program.h"
+#include "../gl/objects/program.h"
 
 #include <vector>
 
 class TestScene : public Scene
 {
 private:
-	std::vector<entity> entities;
-	Program program_1;
+	std::vector<Entity> entities;
+	Program program;
 
 public:
 	TestScene();

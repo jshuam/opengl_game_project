@@ -162,6 +162,7 @@
     <ClCompile Include="src\gl\objects\shader.cpp" />
     <ClCompile Include="src\gl\drawables\index_buffer.cpp" />
     <ClCompile Include="src\application.cpp" />
+    <ClCompile Include="src\systems\renderer.cpp" />
     <ClCompile Include="src\text.cpp" />
     <ClCompile Include="src\gl\drawables\texture.cpp" />
     <ClCompile Include="src\vendor\glm\detail\glm.cpp" />
@@ -322,6 +323,7 @@
     <ClInclude Include="src\scenes\test_scene.h" />
     <ClInclude Include="src\gl\objects\shader.h" />
     <ClInclude Include="src\gl\drawables\index_buffer.h" />
+    <ClInclude Include="src\systems\renderer.h" />
     <ClInclude Include="src\systems\system.h" />
     <ClInclude Include="src\text.h" />
     <ClInclude Include="src\gl\drawables\texture.h" />

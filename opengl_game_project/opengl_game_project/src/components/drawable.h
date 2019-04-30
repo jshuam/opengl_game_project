@@ -13,5 +13,9 @@ private:
 	std::vector<GLDrawable> drawables;
 
 public:
+	Drawable( VertexArray&& vao );
+
 	virtual void update() override;
+
+	template<typename>
 };

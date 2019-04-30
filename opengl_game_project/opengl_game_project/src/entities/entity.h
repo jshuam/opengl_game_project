@@ -10,6 +10,7 @@ class Entity
 public:
 	Entity() = default;
 
+	void update();
 
 private:
 	std::vector<Component> components;

@@ -1,11 +1,9 @@
 #include "drawable.h"
 
-void Drawable::update()
-{
-	vao.bind();
+Drawable::Drawable( VertexArray&& vao )
+	:
+	vao( std::move( vao ) )
+{}
 
-	for( auto& drawable : drawables )
-	{
-		drawable.bind();
-	}
-}
+void Drawable::update()
+{}
