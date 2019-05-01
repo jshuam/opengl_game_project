@@ -1,7 +1,6 @@
 #include "font.h"
-#include "renderer.h"
-#include "program.h"
-#include "shader.h"
+#include "../gl/objects/program.h"
+#include "../gl/objects/shader.h"
 
 #include <iostream>
 
@@ -74,14 +73,14 @@ Font::Font( const char* font_filepath, int font_size )
 	Shader vertex_shader( GL_VERTEX_SHADER, "res/shaders/font_vertex.glsl" );
 	Shader fragment_shader( GL_FRAGMENT_SHADER, "res/shaders/font_fragment.glsl" );
 
-	Program.attach_shader( vertex_shader );
-	Program.attach_shader( fragment_shader );
-	Program.compile();
-	Program.bind();
+	program.attach_shader( vertex_shader );
+	program.attach_shader( fragment_shader );
+	program.compile();
+	program.bind();
 
 	glm::mat4 proj = glm::ortho( 0.0f, 1280.0f, 0.0f, 720.0f, -1.0f, 1.0f );
 
-	Program.set_uniform_mat4f( "u_mvp", proj );
+	program.set_uniform_mat4f( "u_mvp", proj );
 	vao.add_buffer( vbo );
 
 }
@@ -139,7 +138,7 @@ void Font::render_text( const char* text, glm::vec2 position, float scale, glm::
 		glDrawArrays( GL_TRIANGLES, 0, 6 );
 
 		// Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-		position.x += ( c.advance >> 6 ) * scale; // Bitshift by 6 to get value in pixels (2^6 = 64)
+		position.x += ( c.advance >> 6 ) * scale; // Bit shift by 6 to get value in pixels (2^6 = 64)
 	}
 	glBindVertexArray( 0 );
 	glBindTexture( GL_TEXTURE_2D, 0 );

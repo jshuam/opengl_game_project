@@ -11,6 +11,7 @@ public:
 	Entity() = default;
 
 	void update();
+	void add_component( Component&& component );
 
 private:
 	std::vector<Component> components;

@@ -16,6 +16,5 @@ public:
 	Drawable( VertexArray&& vao );
 
 	virtual void update() override;
-
-	template<typename>
+	void add_drawable( GLDrawable&& drawable );
 };

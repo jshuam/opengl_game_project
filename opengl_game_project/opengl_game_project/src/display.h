@@ -1,7 +1,5 @@
 #pragma once
 
-#include "renderer.h"
-
 #include <GLFW/glfw3.h>
 
 
@@ -9,7 +7,6 @@ class Display
 {
 private:
 	GLFWwindow* window;
-	Renderer* renderer;
 	void* user_pointer;
 	static constexpr const int width = 1280;
 	static constexpr const int height = 720;
@@ -25,7 +22,6 @@ public:
 	bool should_close() const;
 	void clear() const;
 	void update() const;
-	void set_renderer( Renderer* Renderer );
 
 	inline GLFWwindow* get_window() const { return window; }
 	static inline int get_width() { return width; }

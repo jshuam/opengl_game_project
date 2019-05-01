@@ -1,13 +1,9 @@
 #pragma once
 
-#include "../program.h"
-
 #include <vector>
 
 class Scene
 {
-protected:
-
 protected:
 	Scene() = default;
 

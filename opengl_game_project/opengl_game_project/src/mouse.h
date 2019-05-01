@@ -9,7 +9,7 @@
 class Mouse
 {
 public:
-	Mouse( const display& display );
+	Mouse( const Display& display );
 
 	static bool cursor_within( glm::vec4 bounds );
 

@@ -7,3 +7,8 @@ void Entity::update()
 		system.update();
 	}
 }
+
+void Entity::add_component( Component&& component )
+{
+	components.emplace_back( std::move( component ) );
+}

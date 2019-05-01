@@ -53,8 +53,3 @@ void Display::update() const
 	glfwSwapBuffers( window );
 	glfwPollEvents();
 }
-
-void Display::set_renderer( Renderer* renderer )
-{
-	renderer = renderer;
-}
