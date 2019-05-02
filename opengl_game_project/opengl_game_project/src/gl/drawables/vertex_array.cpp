@@ -8,16 +8,6 @@ VertexArray::VertexArray()
 	glBindVertexArray( gl_id );
 }
 
-VertexArray::VertexArray( VertexArray&& other )
-{
-	std::cout << "VAO Move constructor called" << std::endl;
-}
-
-VertexArray::VertexArray( const VertexArray& other )
-{
-	std::cout << "VAO Copy constructor called" << std::endl;
-}
-
 void VertexArray::add_buffer( VertexBuffer vb )
 {
 	bind();

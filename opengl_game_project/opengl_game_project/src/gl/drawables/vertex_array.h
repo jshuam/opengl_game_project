@@ -12,8 +12,6 @@ private:
 
 public:
 	VertexArray();
-	VertexArray( VertexArray&& other );
-	VertexArray( const VertexArray& other );
 
 	void add_buffer( VertexBuffer vb );
 

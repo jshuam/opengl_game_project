@@ -27,8 +27,6 @@ int main( void )
 	}
 	#endif
 
-	std::cin.get();
-
 	TestScene test_scene;
 
 	SceneManager::add_scene( &test_scene );

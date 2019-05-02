@@ -6,8 +6,9 @@
 class Renderer : public System
 {
 private:
-	Drawable* drawable;
+	std::shared_ptr<Drawable> drawable;
 
 public:
+	Renderer( std::shared_ptr<Drawable> drawable );
 	virtual void update() override;
 };

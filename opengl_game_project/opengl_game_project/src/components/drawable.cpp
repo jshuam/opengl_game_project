@@ -6,9 +6,9 @@ Drawable::Drawable( VertexArray&& vao )
 {}
 
 void Drawable::update()
-{}
-
-void Drawable::add_drawable( GLDrawable&& drawable )
 {
-	drawables.emplace_back( std::move( drawable ) );
+	for( auto& drawable : drawables )
+	{
+		drawable->bind();
+	}
 }
