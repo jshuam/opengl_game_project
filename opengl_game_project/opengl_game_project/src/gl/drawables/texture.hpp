@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../gl_drawable.h"
+#include "../gl_drawable.hpp"
 
 #include <string>
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "gl_object.h"
+#include "gl_object.hpp"
 
 class GLDrawable : public GLObject
 {

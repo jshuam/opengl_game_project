@@ -1,8 +1,8 @@
 #pragma once
 
-#include "scene.h"
-#include "../entities/entity.h"
-#include "../gl/objects/program.h"
+#include "scene.hpp"
+#include "../gl/objects/program.hpp"
+#include "../systems/renderer.hpp"
 
 #include <memory>
 #include <vector>
@@ -10,8 +10,8 @@
 class TestScene : public Scene
 {
 private:
-	std::vector<std::shared_ptr<Entity>> entities;
 	Program program;
+	Renderer renderer;
 
 public:
 	TestScene();

@@ -1,14 +1,11 @@
-#include "drawable.h"
+#include "drawable.hpp"
 
 Drawable::Drawable( VertexArray&& vao )
 	:
 	vao( std::move( vao ) )
 {}
 
-void Drawable::update()
+void Drawable::add_drawable( std::unique_ptr<GLDrawable> drawable )
 {
-	for( auto& drawable : drawables )
-	{
-		drawable->bind();
-	}
+	drawables.push_back( std::move( drawable ) );
 }

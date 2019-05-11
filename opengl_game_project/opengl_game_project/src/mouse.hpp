@@ -1,6 +1,6 @@
 #pragma once
 
-#include "display.h"
+#include "display.hpp"
 
 #include <GLFW/glfw3.h>
 #include <glm/vec2.hpp>

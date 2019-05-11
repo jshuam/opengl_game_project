@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../gl_object.h"
-#include "shader.h"
+#include "../gl_object.hpp"
+#include "shader.hpp"
 
 #include <glm/glm.hpp>
 

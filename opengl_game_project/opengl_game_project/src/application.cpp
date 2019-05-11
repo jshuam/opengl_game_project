@@ -1,11 +1,11 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include "display.h"
-#include "mouse.h"
-#include "scenes/test_scene.h"
-#include "scenes/scene_manager.h"
-#include "utils.h"
+#include "display.hpp"
+#include "mouse.hpp"
+#include "scenes/test_scene.hpp"
+#include "scenes/scene_manager.hpp"
+#include "utils.hpp"
 
 int main( void )
 {

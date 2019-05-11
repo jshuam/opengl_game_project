@@ -1,4 +1,4 @@
-#include "program.h"
+#include "program.hpp"
 
 #include <cassert>
 #include <iostream>

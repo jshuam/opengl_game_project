@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../gl_drawable.h"
-#include "vertex_buffer.h"
+#include "../gl_drawable.hpp"
+#include "vertex_buffer.hpp"
 
 #include <vector>
 

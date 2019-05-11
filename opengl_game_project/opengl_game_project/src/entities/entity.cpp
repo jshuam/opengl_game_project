@@ -1,9 +1,14 @@
-#include "entity.h"
+#include "entity.hpp"
+#include <combaseapi.h>
 
-void Entity::update()
+Entity::Entity()
+	:
+	id()
 {
-	for( auto& system : systems )
-	{
-		system->update();
-	}
+	CoCreateGuid( &id );
+}
+
+const GUID& Entity::get_id()
+{
+	return id;
 }

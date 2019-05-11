@@ -3,6 +3,9 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <initguid.h>
+#include <guiddef.h>
+#include <vcruntime_string.h>
 
 static void APIENTRY glCheckErrors( GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message, const void *user_param )
 {
@@ -103,3 +106,11 @@ static void APIENTRY glCheckErrors( GLenum source, GLenum type, GLuint id, GLenu
 		printf( "[ERROR %d] %s of %s severity, raised from %s: \n%s\n", id, _type, _severity, _source, message );
 	}
 }
+
+struct GUIDComparator
+{
+	bool operator()( const GUID& left, const GUID& right ) const
+	{
+		return memcmp( &left, &right, sizeof( right ) ) < 0;
+	}
+};

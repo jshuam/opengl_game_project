@@ -1,4 +1,4 @@
-#include "vertex_buffer.h"
+#include "vertex_buffer.hpp"
 
 VertexBuffer::VertexBuffer( unsigned int data_size, const void* data, int size, unsigned int type, bool normalized, unsigned int draw_flag )
 	:

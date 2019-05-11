@@ -72,6 +72,12 @@
     <ClCompile Include="src\systems\renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\entities\entity_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\base_component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\fragment.glsl" />
@@ -1202,67 +1208,73 @@
     <ClInclude Include="src\vendor\glm\vector_relational.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\scenes\scene.h">
+    <ClInclude Include="src\components\base_component.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\display.h">
+    <ClInclude Include="src\components\drawable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\font.h">
+    <ClInclude Include="src\components\component.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\scenes\scene_manager.h">
+    <ClInclude Include="src\entities\entity.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\scenes\test_scene.h">
+    <ClInclude Include="src\entities\entity_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\mouse.h">
+    <ClInclude Include="src\gl\drawables\index_buffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\text.h">
+    <ClInclude Include="src\gl\drawables\texture.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\utils.h">
+    <ClInclude Include="src\gl\drawables\vertex_array.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\entities\entity.h">
+    <ClInclude Include="src\gl\drawables\vertex_buffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\component.h">
+    <ClInclude Include="src\gl\objects\program.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\systems\system.h">
+    <ClInclude Include="src\gl\objects\shader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\drawable.h">
+    <ClInclude Include="src\gl\gl_drawable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gl\gl_object.h">
+    <ClInclude Include="src\gl\gl_object.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gl\gl_drawable.h">
+    <ClInclude Include="src\scenes\scene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gl\drawables\index_buffer.h">
+    <ClInclude Include="src\scenes\scene_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gl\objects\program.h">
+    <ClInclude Include="src\scenes\test_scene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gl\objects\shader.h">
+    <ClInclude Include="src\systems\renderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gl\drawables\texture.h">
+    <ClInclude Include="src\systems\system.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gl\drawables\vertex_array.h">
+    <ClInclude Include="src\display.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gl\drawables\vertex_buffer.h">
+    <ClInclude Include="src\font.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\systems\renderer.h">
+    <ClInclude Include="src\mouse.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\text.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,17 +1,20 @@
-#include "test_scene.h"
-#include "../display.h"
-#include "../gl/drawables/vertex_array.h"
-#include "../gl/drawables/index_buffer.h"
-#include "../gl/drawables/texture.h"
-#include "../gl/objects/program.h"
-#include "../gl/objects/shader.h"
-#include "../components/drawable.h"
-#include "../systems/renderer.h"
+#include "test_scene.hpp"
+#include "../gl/drawables/vertex_array.hpp"
+#include "../gl/drawables/index_buffer.hpp"
+#include "../gl/objects/program.hpp"
+#include "../gl/objects/shader.hpp"
+#include "../components/drawable.hpp"
+#include "../entities/entity_manager.hpp"
+#include "../display.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/ext/matrix_clip_space.hpp>
 
 TestScene::TestScene()
+	:
+	program(),
+	renderer()
 {
 
 	float positions[] =
@@ -37,13 +40,12 @@ TestScene::TestScene()
 	vao.add_buffer( { sizeof( float ) * 8, positions, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW } );
 	vao.add_buffer( { sizeof( float ) * 8, tex_coords, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW } );
 
-	Entity entity;
-	auto drawable = std::make_shared<Drawable>( std::move( vao ) );
-	drawable->drawables.push_back( std::make_shared<IndexBuffer>( indices, 6 ) );
-	entity.components.push_back( drawable );
-	entity.systems.push_back( std::make_shared<Renderer>( drawable ) );
-	entities.push_back( std::make_shared<Entity>( entity ) );
-
+	auto entity = std::make_unique<Entity>();
+	auto drawable = std::make_unique<Drawable>( std::move( vao ) );
+	drawable->add_drawable( std::make_unique<IndexBuffer>( indices, 6 ) );
+	entity->add_component<Drawable>( std::move( drawable ) );
+	renderer.add_entity( entity->get_id() );
+	EntityManager::create_entity( std::move( entity ) );
 	/*Texture texture( "res/textures/logo.png" );
 
 	entities.emplace_back( vao, ibo, texture );*/
@@ -68,8 +70,5 @@ TestScene::TestScene()
 void TestScene::render() const
 {
 	program.bind();
-	for( auto& entity : entities )
-	{
-		entity->update();
-	}
+	renderer.update();
 }

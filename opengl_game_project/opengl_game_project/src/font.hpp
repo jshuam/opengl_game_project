@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../gl/objects/program.h"
-#include "../gl/drawables/vertex_array.h"
-#include "../gl/drawables/vertex_buffer.h"
-#include "../gl/drawables/index_buffer.h"
+#include "../gl/objects/program.hpp"
+#include "../gl/drawables/vertex_array.hpp"
+#include "../gl/drawables/vertex_buffer.hpp"
+#include "../gl/drawables/index_buffer.hpp"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H

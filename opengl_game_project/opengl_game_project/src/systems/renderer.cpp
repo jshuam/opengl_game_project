@@ -1,12 +1,11 @@
-#include "renderer.h"
+#include "renderer.hpp"
 
-Renderer::Renderer( std::shared_ptr<Drawable> drawable )
-	:
-	drawable( drawable )
-{}
-
-void Renderer::update()
+void Renderer::add_entity( const GUID& entity_id )
 {
-	drawable->update();
-	glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr );
+	entities.push_back( entity_id );
+}
+
+void Renderer::update() const
+{
+
 }
