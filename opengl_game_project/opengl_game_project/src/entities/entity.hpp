@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../components/base_component.hpp"
-#include "../components/component.hpp"
+#include "../components/IComponent.hpp"
+#include "../components/BaseComponent.hpp"
 
 #include <memory>
 #include <map>
@@ -13,8 +13,8 @@
 class Entity
 {
 private:
-	GUID id;
-	std::map<unsigned int, std::unique_ptr<BaseComponent>> components;
+	GUID m_entityId;
+	std::map<unsigned int, std::unique_ptr<IComponent>> components;
 
 public:
 	Entity();
@@ -22,9 +22,9 @@ public:
 	const GUID& get_id();
 
 	template<typename T>
-	void add_component( std::unique_ptr<Component<T>> component )
+	void add_component( std::unique_ptr<BaseComponent<T>> component )
 	{
-		components.emplace( Component<T>::component_id, std::move( component ) );
+		components.emplace( BaseComponent<T>::m_component_id, std::move( component ) );
 	}
 
 	template<typename T>

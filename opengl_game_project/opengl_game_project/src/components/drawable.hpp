@@ -1,18 +1,17 @@
 #pragma once
 
-#include "../components/component.hpp"
-#include "../gl/gl_drawable.hpp"
-#include "../gl/drawables/vertex_array.hpp"
-
 #include <memory>
 #include <vector>
 
-class Drawable : public Component<Drawable>
+#include "../gl/drawables/vertex_array.hpp"
+#include "BaseComponent.hpp"
+
+class Drawable : public BaseComponent<Drawable>
 {
 public:
-	std::vector<std::unique_ptr<GLDrawable>> drawables;
+	Drawable(VertexArray vertex_array);
+	inline std::vector<std::unique_ptr<GLDrawable>>& getDrawables() { return m_drawables; };
 
-public:
-	Drawable( VertexArray vao );
-	std::vector<std::unique_ptr<GLDrawable>>& get_drawables();
+private:
+	std::vector<std::unique_ptr<GLDrawable>> m_drawables;
 };

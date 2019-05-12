@@ -1,14 +1,15 @@
-#include "entity.hpp"
 #include <combaseapi.h>
+
+#include "entity.hpp"
 
 Entity::Entity()
 	:
-	id()
+	m_entityId()
 {
-	CoCreateGuid( &id );
+	CoCreateGuid( &m_entityId );
 }
 
 const GUID& Entity::get_id()
 {
-	return id;
+	return m_entityId;
 }

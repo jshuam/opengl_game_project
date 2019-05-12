@@ -3,14 +3,14 @@
 #include "../gl/drawables/index_buffer.hpp"
 #include "../gl/objects/program.hpp"
 #include "../gl/objects/shader.hpp"
-#include "../components/drawable.hpp"
+#include "../components/Drawable.hpp"
 #include "../entities/entity_manager.hpp"
 #include "../display.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/ext/matrix_clip_space.hpp>
-#include "../components/transform.hpp"
+#include "../components/Transform.hpp"
 
 TestScene::TestScene()
 {

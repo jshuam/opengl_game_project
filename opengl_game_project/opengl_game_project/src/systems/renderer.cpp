@@ -1,11 +1,11 @@
 #include "renderer.hpp"
-#include "..\components\drawable.hpp"
+#include "..\components\Drawable.hpp"
 #include "..\entities\entity_manager.hpp"
 #include "..\entities\entity_manager.hpp"
 #include "glm\ext\matrix_clip_space.hpp"
 #include "..\display.hpp"
-#include "glm\gtx\transform.hpp"
-#include "..\components\transform.hpp"
+#include "glm\gtx\Transform.hpp"
+#include "..\components\Transform.hpp"
 
 void Renderer::update() const
 {

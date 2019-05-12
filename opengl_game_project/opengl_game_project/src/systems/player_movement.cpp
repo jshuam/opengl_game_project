@@ -1,5 +1,5 @@
 #include "player_movement.hpp"
-#include "../components/transform.hpp"
+#include "../components/Transform.hpp"
 #include "../entities/entity_manager.hpp"
 #include "../display.hpp"
 

@@ -150,9 +150,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\components\base_component.cpp" />
-    <ClCompile Include="src\components\drawable.cpp" />
-    <ClCompile Include="src\components\transform.cpp" />
+    <ClCompile Include="src\components\IComponent.cpp" />
+    <ClCompile Include="src\components\Drawable.cpp" />
+    <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\display.cpp" />
     <ClCompile Include="src\entities\entity.cpp" />
     <ClCompile Include="src\entities\entity_manager.cpp" />
@@ -304,7 +304,7 @@
     <None Include="src\vendor\glm\gtx\std_based_type.inl" />
     <None Include="src\vendor\glm\gtx\string_cast.inl" />
     <None Include="src\vendor\glm\gtx\texture.inl" />
-    <None Include="src\vendor\glm\gtx\transform.inl" />
+    <None Include="src\vendor\glm\gtx\Transform.inl" />
     <None Include="src\vendor\glm\gtx\transform2.inl" />
     <None Include="src\vendor\glm\gtx\type_aligned.inl" />
     <None Include="src\vendor\glm\gtx\type_trait.inl" />
@@ -313,10 +313,10 @@
     <None Include="src\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\components\base_component.hpp" />
-    <ClInclude Include="src\components\component.hpp" />
-    <ClInclude Include="src\components\drawable.hpp" />
-    <ClInclude Include="src\components\transform.hpp" />
+    <ClInclude Include="src\components\IComponent.hpp" />
+    <ClInclude Include="src\components\BaseComponent.hpp" />
+    <ClInclude Include="src\components\Drawable.hpp" />
+    <ClInclude Include="src\components\Transform.hpp" />
     <ClInclude Include="src\display.hpp" />
     <ClInclude Include="src\entities\entity.hpp" />
     <ClInclude Include="src\entities\entity_manager.hpp" />
@@ -543,7 +543,7 @@
     <ClInclude Include="src\vendor\glm\gtx\std_based_type.hpp" />
     <ClInclude Include="src\vendor\glm\gtx\string_cast.hpp" />
     <ClInclude Include="src\vendor\glm\gtx\texture.hpp" />
-    <ClInclude Include="src\vendor\glm\gtx\transform.hpp" />
+    <ClInclude Include="src\vendor\glm\gtx\Transform.hpp" />
     <ClInclude Include="src\vendor\glm\gtx\transform2.hpp" />
     <ClInclude Include="src\vendor\glm\gtx\type_aligned.hpp" />
     <ClInclude Include="src\vendor\glm\gtx\type_trait.hpp" />

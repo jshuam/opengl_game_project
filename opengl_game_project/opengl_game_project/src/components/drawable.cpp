@@ -1,11 +1,6 @@
-#include "drawable.hpp"
+#include "Drawable.hpp"
 
-Drawable::Drawable( VertexArray vao )
+Drawable::Drawable(VertexArray vertex_array)
 {
-	drawables.push_back( std::make_unique<VertexArray>( std::move( vao ) ) );
-}
-
-std::vector<std::unique_ptr<GLDrawable>>& Drawable::get_drawables()
-{
-	return drawables;
+	m_drawables.push_back(std::make_unique<VertexArray>(std::move(vertex_array)));
 }
