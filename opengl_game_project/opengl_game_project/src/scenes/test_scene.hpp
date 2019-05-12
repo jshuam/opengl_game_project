@@ -6,15 +6,16 @@
 
 #include <memory>
 #include <vector>
+#include "../systems/player_movement.hpp"
+#include "../systems/system.hpp"
 
 class TestScene : public Scene
 {
 private:
-	Program program;
-	Renderer renderer;
+	std::vector<std::unique_ptr<System>> systems;
 
 public:
 	TestScene();
 	~TestScene() = default;
-	void render() const override;
+	void render() override;
 };

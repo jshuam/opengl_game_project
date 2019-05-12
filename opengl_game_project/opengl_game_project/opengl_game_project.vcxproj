@@ -152,19 +152,21 @@
   <ItemGroup>
     <ClCompile Include="src\components\base_component.cpp" />
     <ClCompile Include="src\components\drawable.cpp" />
+    <ClCompile Include="src\components\transform.cpp" />
     <ClCompile Include="src\display.cpp" />
     <ClCompile Include="src\entities\entity.cpp" />
     <ClCompile Include="src\entities\entity_manager.cpp" />
     <ClCompile Include="src\font.cpp" />
     <ClCompile Include="src\mouse.cpp" />
     <ClCompile Include="src\gl\objects\program.cpp" />
-    <ClCompile Include="src\scenes\scene.cpp" />
     <ClCompile Include="src\scenes\scene_manager.cpp" />
     <ClCompile Include="src\scenes\test_scene.cpp" />
     <ClCompile Include="src\gl\objects\shader.cpp" />
     <ClCompile Include="src\gl\drawables\index_buffer.cpp" />
     <ClCompile Include="src\application.cpp" />
+    <ClCompile Include="src\systems\player_movement.cpp" />
     <ClCompile Include="src\systems\renderer.cpp" />
+    <ClCompile Include="src\systems\system.cpp" />
     <ClCompile Include="src\text.cpp" />
     <ClCompile Include="src\gl\drawables\texture.cpp" />
     <ClCompile Include="src\vendor\glm\detail\glm.cpp" />
@@ -314,6 +316,7 @@
     <ClInclude Include="src\components\base_component.hpp" />
     <ClInclude Include="src\components\component.hpp" />
     <ClInclude Include="src\components\drawable.hpp" />
+    <ClInclude Include="src\components\transform.hpp" />
     <ClInclude Include="src\display.hpp" />
     <ClInclude Include="src\entities\entity.hpp" />
     <ClInclude Include="src\entities\entity_manager.hpp" />
@@ -327,6 +330,7 @@
     <ClInclude Include="src\scenes\test_scene.hpp" />
     <ClInclude Include="src\gl\objects\shader.hpp" />
     <ClInclude Include="src\gl\drawables\index_buffer.hpp" />
+    <ClInclude Include="src\systems\player_movement.hpp" />
     <ClInclude Include="src\systems\renderer.hpp" />
     <ClInclude Include="src\systems\system.hpp" />
     <ClInclude Include="src\text.hpp" />

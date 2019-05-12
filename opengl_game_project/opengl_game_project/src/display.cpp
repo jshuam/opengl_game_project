@@ -43,6 +43,11 @@ bool Display::should_close() const
 	return glfwWindowShouldClose( window );
 }
 
+bool Display::get_key( unsigned int key, unsigned int state )
+{
+	return glfwGetKey( window, key ) == state;
+}
+
 void Display::clear() const
 {
 	glClear( GL_COLOR_BUFFER_BIT );
@@ -53,3 +58,5 @@ void Display::update() const
 	glfwSwapBuffers( window );
 	glfwPollEvents();
 }
+
+GLFWwindow* Display::window;

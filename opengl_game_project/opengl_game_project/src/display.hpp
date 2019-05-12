@@ -6,7 +6,7 @@
 class Display
 {
 private:
-	GLFWwindow* window;
+	static GLFWwindow* window;
 	void* user_pointer;
 	static constexpr const int width = 1280;
 	static constexpr const int height = 720;
@@ -20,6 +20,7 @@ public:
 	~Display();
 
 	bool should_close() const;
+	static bool get_key( unsigned int key, unsigned int state );
 	void clear() const;
 	void update() const;
 

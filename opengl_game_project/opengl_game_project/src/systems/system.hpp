@@ -11,7 +11,7 @@ protected:
 
 public:
 	virtual ~System() = default;
-
-	virtual void add_entity( const GUID& entity_id ) = 0;
 	virtual void update() const = 0;
+
+	void add_entity( const GUID& entity_id );
 };
