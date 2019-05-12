@@ -12,7 +12,7 @@ void VertexArray::add_buffer( VertexBuffer vb )
 {
 	bind();
 	vb.bind();
-	vbos.push_back( vb );
+	vbos.push_back( std::move( vb ) );
 	vb.attrib_pointer( vbos.size() - 1 );
 	glEnableVertexAttribArray( vbos.size() - 1 );
 }

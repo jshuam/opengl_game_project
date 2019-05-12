@@ -9,7 +9,6 @@ private:
 
 public:
 	IndexBuffer( const unsigned int* data, unsigned int count );
-	//~IndexBuffer();
 
 	virtual void bind() const override;
 	virtual void unbind() const override;

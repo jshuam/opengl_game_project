@@ -42,7 +42,7 @@ TestScene::TestScene()
 
 	auto entity = std::make_unique<Entity>();
 	auto drawable = std::make_unique<Drawable>( std::move( vao ) );
-	drawable->add_drawable( std::make_unique<IndexBuffer>( indices, 6 ) );
+	drawable->drawables.push_back( std::make_unique<IndexBuffer>( indices, 6 ) );
 	entity->add_component<Drawable>( std::move( drawable ) );
 	renderer.add_entity( entity->get_id() );
 	EntityManager::create_entity( std::move( entity ) );

@@ -9,13 +9,10 @@
 
 class Drawable : public Component<Drawable>
 {
-private:
-	VertexArray vao;
+public:
 	std::vector<std::unique_ptr<GLDrawable>> drawables;
 
 public:
-	Drawable( VertexArray&& vao );
-
-	void add_drawable( std::unique_ptr<GLDrawable> drawable );
+	Drawable( VertexArray vao );
 	std::vector<std::unique_ptr<GLDrawable>>& get_drawables();
 };
