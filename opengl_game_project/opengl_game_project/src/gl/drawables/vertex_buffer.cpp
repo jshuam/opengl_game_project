@@ -6,14 +6,14 @@ VertexBuffer::VertexBuffer( unsigned int data_size, const void* data, int size, 
 	type( type ),
 	normalized( normalized )
 {
-	glGenBuffers( 1, &gl_id );
-	glBindBuffer( GL_ARRAY_BUFFER, gl_id );
+	glGenBuffers( 1, &m_glObjectId );
+	glBindBuffer( GL_ARRAY_BUFFER, m_glObjectId );
 	glBufferData( GL_ARRAY_BUFFER, data_size, data, draw_flag );
 }
 
 void VertexBuffer::bind() const
 {
-	glBindBuffer( GL_ARRAY_BUFFER, gl_id );
+	glBindBuffer( GL_ARRAY_BUFFER, m_glObjectId );
 }
 
 void VertexBuffer::unbind() const

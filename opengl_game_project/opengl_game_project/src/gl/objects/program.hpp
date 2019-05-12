@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../gl_object.hpp"
+#include "../GLObject.hpp"
 #include "shader.hpp"
 
 #include <glm/glm.hpp>

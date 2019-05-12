@@ -1,35 +1,27 @@
 #pragma once
 
-#include "../components/IComponent.hpp"
 #include "../components/BaseComponent.hpp"
-
-#include <memory>
-#include <map>
-#include <initguid.h>
-#include <guiddef.h>
-#include <functional>
-#include "../utils.hpp"
+#include "../components/IComponent.hpp"
 
 class Entity
 {
-private:
-	GUID m_entityId;
-	std::map<unsigned int, std::unique_ptr<IComponent>> components;
-
 public:
 	Entity();
-
-	const GUID& get_id();
+	const GUID& getEntityId();
 
 	template<typename T>
-	void add_component( std::unique_ptr<BaseComponent<T>> component )
+	void addComponent(std::unique_ptr<BaseComponent<T>> component)
 	{
-		components.emplace( BaseComponent<T>::m_component_id, std::move( component ) );
+		m_components.emplace(BaseComponent<T>::m_componentId, std::move(component));
 	}
 
 	template<typename T>
-	T& get_component()
+	T& getComponent()
 	{
-		return static_cast<T&>( *components[T::component_id] );
+		return static_cast<T&>(*m_components[T::component_id]);
 	}
+
+private:
+	GUID m_entityId;
+	std::map<unsigned int, std::unique_ptr<IComponent>> m_components;
 };

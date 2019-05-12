@@ -5,17 +5,17 @@
 
 Program::Program()
 {
-	gl_id = glCreateProgram();
+	m_glObjectId = glCreateProgram();
 }
 
 Program::~Program()
 {
-	glDeleteProgram( gl_id );
+	glDeleteProgram( m_glObjectId );
 }
 
 void Program::bind() const
 {
-	glUseProgram( gl_id );
+	glUseProgram( m_glObjectId );
 }
 
 void Program::unbind() const
@@ -25,22 +25,22 @@ void Program::unbind() const
 
 void Program::attach_shader( Shader shader )
 {
-	shader.attach( gl_id );
+	shader.attach( m_glObjectId );
 	shaders.push_back( shader );
 }
 
 void Program::compile() const
 {
-	glLinkProgram( gl_id );
+	glLinkProgram( m_glObjectId );
 	check_compile_status( GL_LINK_STATUS );
 
-	glValidateProgram( gl_id );
+	glValidateProgram( m_glObjectId );
 	check_compile_status( GL_VALIDATE_STATUS );
 
 	/* Detaches and deletes the shaders as they are no longer needed due to being compiled into the program */
 	for( const auto& shader : shaders )
 	{
-		shader.detach( gl_id );
+		shader.detach( m_glObjectId );
 	}
 }
 
@@ -67,13 +67,13 @@ void Program::set_uniform_mat4f( const std::string& name, glm::mat4& matrix )
 void Program::check_compile_status( unsigned int param ) const
 {
 	int status;
-	glGetProgramiv( gl_id, param, &status );
+	glGetProgramiv( m_glObjectId, param, &status );
 	if( status == GL_FALSE )
 	{
 		int length;
-		glGetProgramiv( gl_id, GL_INFO_LOG_LENGTH, &length );
+		glGetProgramiv( m_glObjectId, GL_INFO_LOG_LENGTH, &length );
 		char* message = new char[length];
-		glGetProgramInfoLog( gl_id, length, &length, message );
+		glGetProgramInfoLog( m_glObjectId, length, &length, message );
 		std::cout << "[ERROR] Program compilation failed:" << std::endl;
 		std::cout << message << std::endl;
 		std::cin.get();
@@ -85,7 +85,7 @@ int Program::get_uniform_location( const std::string& name )
 {
 	if( uniform_loc_cache.find( name ) != uniform_loc_cache.end() ) return uniform_loc_cache[name];
 
-	int loc = glGetUniformLocation( gl_id, name.c_str() );
+	int loc = glGetUniformLocation( m_glObjectId, name.c_str() );
 	if( loc < 0 ) std::cout << "[WARNING] Uniform not in use" << std::endl;
 	uniform_loc_cache[name] = loc;
 	return loc;

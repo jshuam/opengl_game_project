@@ -1,10 +1,10 @@
 #include "test_scene.hpp"
 #include "../gl/drawables/vertex_array.hpp"
-#include "../gl/drawables/index_buffer.hpp"
+#include "../gl/drawables/IndexBuffer.hpp"
 #include "../gl/objects/program.hpp"
 #include "../gl/objects/shader.hpp"
 #include "../components/Drawable.hpp"
-#include "../entities/entity_manager.hpp"
+#include "../entities/EntityManager.hpp"
 #include "../display.hpp"
 
 #include <glm/glm.hpp>
@@ -60,16 +60,16 @@ TestScene::TestScene()
 	drawable_2->drawables.push_back( std::make_unique<IndexBuffer>( indices, 6 ) );
 	entity->add_component<Drawable>( std::move( drawable ) );
 	entity->add_component<Transform>( std::move( transform ) );
-	entity_2->add_component<Drawable>( std::move( drawable_2 ) );
-	entity_2->add_component<Transform>( std::move( transform_2 ) );
+	entity_2->addComponent<Drawable>( std::move( drawable_2 ) );
+	entity_2->addComponent<Transform>( std::move( transform_2 ) );
 	auto renderer = std::make_unique<Renderer>();
 	auto player_movement = std::make_unique<PlayerMovement>();
-	renderer->add_entity( entity->get_id() );
-	renderer->add_entity( entity_2->get_id() );
-	player_movement->add_entity( entity->get_id() );
-	player_movement->add_entity( entity_2->get_id() );
-	EntityManager::create_entity( std::move( entity ) );
-	EntityManager::create_entity( std::move( entity_2 ) );
+	renderer->add_entity( entity->getEntityId() );
+	renderer->add_entity( entity_2->getEntityId() );
+	player_movement->add_entity( entity->getEntityId() );
+	player_movement->add_entity( entity_2->getEntityId() );
+	EntityManager::createEntity( std::move( entity ) );
+	EntityManager::createEntity( std::move( entity_2 ) );
 	/*Texture texture( "res/textures/logo.png" );
 
 	entities.emplace_back( vao, ibo, texture );*/

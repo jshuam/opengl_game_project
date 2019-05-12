@@ -1,7 +1,7 @@
 #include "renderer.hpp"
 #include "..\components\Drawable.hpp"
-#include "..\entities\entity_manager.hpp"
-#include "..\entities\entity_manager.hpp"
+#include "..\entities\EntityManager.hpp"
+#include "..\entities\EntityManager.hpp"
 #include "glm\ext\matrix_clip_space.hpp"
 #include "..\display.hpp"
 #include "glm\gtx\Transform.hpp"
@@ -11,8 +11,8 @@ void Renderer::update() const
 {
 	for( const auto& entity : entities )
 	{
-		auto& drawable_component = EntityManager::get_component<Drawable>( entity );
-		auto& transform_component = EntityManager::get_component<Transform>( entity );
+		auto& drawable_component = EntityManager::getComponent<Drawable>( entity );
+		auto& transform_component = EntityManager::getComponent<Transform>( entity );
 
 		for( auto& drawable : drawable_component.get_drawables() )
 		{

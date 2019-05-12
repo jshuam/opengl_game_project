@@ -1,37 +1,37 @@
-#include "texture.hpp"
-
 #include <stb_image/stb_image.h>
 
-Texture::Texture( const std::string& file_path )
+#include "Texture.hpp"
+
+Texture::Texture(const std::string& m_filePath)
 	:
-	width( 0 ),
-	height( 0 ),
-	bytes_per_pixel( 0 ),
-	file_path( file_path )
+	m_width(0),
+	m_height(0),
+	m_bytesPerPixel(0),
+	m_filePath(m_filePath)
 {
-	stbi_set_flip_vertically_on_load( 1 );
-	unsigned char* local_buffer = stbi_load( file_path.c_str(), &width, &height, &bytes_per_pixel, desired_channels );
+	stbi_set_flip_vertically_on_load(1);
+	unsigned char* localBuffer = stbi_load(m_filePath.c_str(), &m_width, &m_height, &m_bytesPerPixel, DESIRED_CHANNELS);
 
-	glGenTextures( 1, &gl_id );
-	glBindTexture( GL_TEXTURE_2D, gl_id );
+	glGenTextures(1, &m_glObjectId);
+	glBindTexture(GL_TEXTURE_2D, m_glObjectId);
 
-	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
-	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, local_buffer );
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, localBuffer);
 
-	if( local_buffer ) stbi_image_free( local_buffer );
+	if(localBuffer) stbi_image_free(localBuffer);
 }
 
 void Texture::bind() const
 {
-	glActiveTexture( GL_TEXTURE0 + slot );
-	glBindTexture( GL_TEXTURE_2D, gl_id );
+	glActiveTexture(GL_TEXTURE0 + m_slot);
+	glBindTexture(GL_TEXTURE_2D, m_glObjectId);
 }
 
 void Texture::unbind() const
 {
-	glBindTexture( GL_TEXTURE_2D, 0 );
+	glBindTexture(GL_TEXTURE_2D, 0);
 }

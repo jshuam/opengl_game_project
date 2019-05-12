@@ -1,13 +1,13 @@
 #include "player_movement.hpp"
 #include "../components/Transform.hpp"
-#include "../entities/entity_manager.hpp"
+#include "../entities/EntityManager.hpp"
 #include "../display.hpp"
 
 void PlayerMovement::update() const
 {
 	for( auto& entity : entities )
 	{
-		auto& transform_component = EntityManager::get_component<Transform>( entity );
+		auto& transform_component = EntityManager::getComponent<Transform>( entity );
 
 		if( Display::get_key( GLFW_KEY_W, GLFW_PRESS ) )
 		{

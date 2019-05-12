@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../gl_drawable.hpp"
+#include "../GLDrawable.hpp"
 #include "vertex_buffer.hpp"
 
 #include <vector>

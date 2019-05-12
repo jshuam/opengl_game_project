@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../gl_drawable.hpp"
+#include "../GLDrawable.hpp"
 
 class VertexBuffer : public GLDrawable
 {

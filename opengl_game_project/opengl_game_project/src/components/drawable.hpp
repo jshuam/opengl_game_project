@@ -9,7 +9,7 @@
 class Drawable : public BaseComponent<Drawable>
 {
 public:
-	Drawable(VertexArray vertex_array);
+	Drawable(VertexArray vertexArray);
 	inline std::vector<std::unique_ptr<GLDrawable>>& getDrawables() { return m_drawables; };
 
 private:

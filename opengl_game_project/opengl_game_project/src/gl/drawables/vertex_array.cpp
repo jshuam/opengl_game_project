@@ -4,8 +4,8 @@
 
 VertexArray::VertexArray()
 {
-	glGenVertexArrays( 1, &gl_id );
-	glBindVertexArray( gl_id );
+	glGenVertexArrays( 1, &m_glObjectId );
+	glBindVertexArray( m_glObjectId );
 }
 
 void VertexArray::add_buffer( VertexBuffer vb )
@@ -19,7 +19,7 @@ void VertexArray::add_buffer( VertexBuffer vb )
 
 void VertexArray::bind() const
 {
-	glBindVertexArray( gl_id );
+	glBindVertexArray( m_glObjectId );
 }
 
 void VertexArray::unbind() const

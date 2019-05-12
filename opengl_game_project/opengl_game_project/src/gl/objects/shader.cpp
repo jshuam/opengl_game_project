@@ -6,18 +6,18 @@
 Shader::Shader( unsigned int type, const std::string& filename )
 {
 	const std::string& shader_src = load_source( filename );
-	gl_id = compile_source( type, shader_src );
+	m_glObjectId = compile_source( type, shader_src );
 }
 
 void Shader::attach( unsigned int program ) const
 {
-	glAttachShader( program, gl_id );
+	glAttachShader( program, m_glObjectId );
 }
 
 void Shader::detach( unsigned int program ) const
 {
-	glDetachShader( program, gl_id );
-	glDeleteShader( gl_id );
+	glDetachShader( program, m_glObjectId );
+	glDeleteShader( m_glObjectId );
 }
 
 const std::string Shader::load_source( const std::string& filename )

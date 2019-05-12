@@ -7,11 +7,11 @@ class BaseComponent : public IComponent
 {
 public:
 	virtual ~BaseComponent() = default;
-	inline const unsigned int getComponentId() { return m_component_id; }
+	inline const unsigned int getComponentId() { return m_componentId; }
 
 private:
-	static const unsigned int m_component_id;
+	static const unsigned int m_componentId;
 };
 
 template<typename T>
-const unsigned int BaseComponent<T>::m_component_id = IComponent::createComponentId();
+const unsigned int BaseComponent<T>::m_componentId = IComponent::createComponentId();
