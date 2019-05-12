@@ -20,8 +20,8 @@ public:
 	static void create_entity( std::unique_ptr<Entity> entity );
 
 	template<typename T>
-	static std::unique_ptr<Component<T>>& get_component( const GUID& entity_id, unsigned int component_id )
+	static T& get_component( const GUID& entity_id )
 	{
-		return entities[entity_id]->get_component( component_id );
+		return entities[entity_id]->get_component<T>();
 	}
 };

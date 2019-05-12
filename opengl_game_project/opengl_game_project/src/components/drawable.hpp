@@ -17,4 +17,5 @@ public:
 	Drawable( VertexArray&& vao );
 
 	void add_drawable( std::unique_ptr<GLDrawable> drawable );
+	std::vector<std::unique_ptr<GLDrawable>>& get_drawables();
 };
