@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../gl/objects/program.hpp"
-#include "../gl/drawables/vertex_array.hpp"
-#include "../gl/drawables/vertex_buffer.hpp"
+#include "../gl/objects/Program.hpp"
+#include "../gl/drawables/VertexArray.hpp"
+#include "../gl/drawables/VertexBuffer.hpp"
 #include "../gl/drawables/IndexBuffer.hpp"
 
 #include <ft2build.h>

@@ -1,7 +1,7 @@
 #pragma 
 
 #include "system.hpp"
-#include "..\gl\objects\program.hpp"
+#include "..\gl\objects\Program.hpp"
 
 class Renderer : public System
 {

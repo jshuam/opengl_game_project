@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 
-#include "../gl/drawables/vertex_array.hpp"
+#include "../gl/drawables/VertexArray.hpp"
 #include "BaseComponent.hpp"
 
 class Drawable : public BaseComponent<Drawable>

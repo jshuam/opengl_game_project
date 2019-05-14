@@ -25,7 +25,7 @@ void Renderer::update() const
 		glm::mat4 view = glm::translate( glm::mat4( 1.0f ), glm::vec3( 0, 0, 0 ) );
 		glm::mat4 model = glm::translate( glm::mat4( 1.0f ), transform_component.get_position() );
 		glm::mat4 mvp = proj * view * model;
-		program->set_uniform_mat4f( "u_mvp", mvp );
+		program->setUniformMat4f( "u_mvp", mvp );
 
 		glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr );
 	}

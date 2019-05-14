@@ -1,7 +1,7 @@
 #pragma once
 
 #include "scene.hpp"
-#include "../gl/objects/program.hpp"
+#include "../gl/objects/Program.hpp"
 #include "../systems/renderer.hpp"
 
 #include <memory>

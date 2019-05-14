@@ -1,8 +1,8 @@
 #include "test_scene.hpp"
-#include "../gl/drawables/vertex_array.hpp"
+#include "../gl/drawables/VertexArray.hpp"
 #include "../gl/drawables/IndexBuffer.hpp"
-#include "../gl/objects/program.hpp"
-#include "../gl/objects/shader.hpp"
+#include "../gl/objects/Program.hpp"
+#include "../gl/objects/Shader.hpp"
 #include "../components/Drawable.hpp"
 #include "../entities/EntityManager.hpp"
 #include "../display.hpp"
@@ -44,11 +44,11 @@ TestScene::TestScene()
 	VertexArray vao;
 	VertexArray vao_2;
 
-	vao.add_buffer( { sizeof( float ) * 8, positions, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW } );
-	vao.add_buffer( { sizeof( float ) * 8, tex_coords, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW } );
+	vao.addBuffer( { sizeof( float ) * 8, positions, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW } );
+	vao.addBuffer( { sizeof( float ) * 8, tex_coords, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW } );
 
-	vao_2.add_buffer( { sizeof( float ) * 8, positions_2, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW } );
-	vao_2.add_buffer( { sizeof( float ) * 8, tex_coords, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW } );
+	vao_2.addBuffer( { sizeof( float ) * 8, positions_2, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW } );
+	vao_2.addBuffer( { sizeof( float ) * 8, tex_coords, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW } );
 
 	auto entity = std::make_unique<Entity>();
 	auto entity_2 = std::make_unique<Entity>();
@@ -78,14 +78,14 @@ TestScene::TestScene()
 	Shader fragment_shader( GL_FRAGMENT_SHADER, "res/shaders/fragment.glsl" );
 
 	auto program = std::make_unique<Program>();
-	program->attach_shader( vertex_shader );
-	program->attach_shader( fragment_shader );
+	program->attachShader( vertex_shader );
+	program->attachShader( fragment_shader );
 	program->compile();
 
 	program->bind();
 
-	program->set_uniform_1i( "u_tex", 0 );
-	program->set_uniform_4f( "u_color", 1.0, 0.75, 0.5, 1.0 );
+	program->setUniform1i( "u_tex", 0 );
+	program->setUniform4f( "u_color", 1.0, 0.75, 0.5, 1.0 );
 	renderer->add_program( std::move( program ) );
 
 	systems.push_back( std::move( player_movement ) );

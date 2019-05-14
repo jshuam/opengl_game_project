@@ -158,10 +158,10 @@
     <ClCompile Include="src\entities\EntityManager.cpp" />
     <ClCompile Include="src\font.cpp" />
     <ClCompile Include="src\mouse.cpp" />
-    <ClCompile Include="src\gl\objects\program.cpp" />
+    <ClCompile Include="src\gl\objects\Program.cpp" />
     <ClCompile Include="src\scenes\scene_manager.cpp" />
     <ClCompile Include="src\scenes\test_scene.cpp" />
-    <ClCompile Include="src\gl\objects\shader.cpp" />
+    <ClCompile Include="src\gl\objects\Shader.cpp" />
     <ClCompile Include="src\gl\drawables\IndexBuffer.cpp" />
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\systems\player_movement.cpp" />
@@ -171,8 +171,8 @@
     <ClCompile Include="src\gl\drawables\Texture.cpp" />
     <ClCompile Include="src\vendor\glm\detail\glm.cpp" />
     <ClCompile Include="src\vendor\stb_image\stb_image.cpp" />
-    <ClCompile Include="src\gl\drawables\vertex_buffer.cpp" />
-    <ClCompile Include="src\gl\drawables\vertex_array.cpp" />
+    <ClCompile Include="src\gl\drawables\VertexBuffer.cpp" />
+    <ClCompile Include="src\gl\drawables\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\font_fragment.glsl" />
@@ -324,11 +324,11 @@
     <ClInclude Include="src\gl\GLDrawable.hpp" />
     <ClInclude Include="src\gl\GLObject.hpp" />
     <ClInclude Include="src\mouse.hpp" />
-    <ClInclude Include="src\gl\objects\program.hpp" />
+    <ClInclude Include="src\gl\objects\Program.hpp" />
     <ClInclude Include="src\scenes\scene.hpp" />
     <ClInclude Include="src\scenes\scene_manager.hpp" />
     <ClInclude Include="src\scenes\test_scene.hpp" />
-    <ClInclude Include="src\gl\objects\shader.hpp" />
+    <ClInclude Include="src\gl\objects\Shader.hpp" />
     <ClInclude Include="src\gl\drawables\IndexBuffer.hpp" />
     <ClInclude Include="src\systems\player_movement.hpp" />
     <ClInclude Include="src\systems\renderer.hpp" />
@@ -578,8 +578,8 @@
     <ClInclude Include="src\vendor\glm\vec4.hpp" />
     <ClInclude Include="src\vendor\glm\vector_relational.hpp" />
     <ClInclude Include="src\vendor\stb_image\stb_image.h" />
-    <ClInclude Include="src\gl\drawables\vertex_buffer.hpp" />
-    <ClInclude Include="src\gl\drawables\vertex_array.hpp" />
+    <ClInclude Include="src\gl\drawables\VertexBuffer.hpp" />
+    <ClInclude Include="src\gl\drawables\VertexArray.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\logo.png" />

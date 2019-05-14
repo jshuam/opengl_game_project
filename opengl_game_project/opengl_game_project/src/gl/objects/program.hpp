@@ -1,19 +1,16 @@
 #pragma once
 
-#include "../GLObject.hpp"
-#include "shader.hpp"
-
 #include <glm/glm.hpp>
 
 #include <string>
-#include <vector>
 #include <unordered_map>
+#include <vector>
+
+#include "../GLObject.hpp"
+#include "Shader.hpp"
 
 class Program : public GLObject
 {
-private:
-	std::vector<Shader> shaders;
-	std::unordered_map<std::string, int> uniform_loc_cache;
 
 public:
 	Program();
@@ -22,15 +19,19 @@ public:
 	void bind() const;
 	void unbind() const;
 
-	void attach_shader( Shader shader );
+	void attachShader(Shader shader);
 	void compile() const;
 
-	void set_uniform_1i( const std::string& name, int v0 );
-	void set_uniform_3f( const std::string& name, float v0, float v1, float v2 );
-	void set_uniform_4f( const std::string& name, float v0, float v1, float v2, float v3 );
-	void set_uniform_mat4f( const std::string& name, glm::mat4& matrix );
+	void setUniform1i(const std::string& name, int v0);
+	void setUniform3f(const std::string& name, float v0, float v1, float v2);
+	void setUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
+	void setUniformMat4f(const std::string& name, glm::mat4& matrix);
 
 private:
-	void check_compile_status( unsigned int param ) const;
-	int get_uniform_location( const std::string& name );
+	void checkCompileStatus(unsigned int param) const;
+	int getUniformLocation(const std::string& name);
+
+private:
+	std::vector<Shader> m_shaders;
+	std::unordered_map<std::string, int> m_uniformLocCache;
 };
