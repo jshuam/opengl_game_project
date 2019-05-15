@@ -1,32 +1,32 @@
-#include "mouse.hpp"
-
 #include <iostream>
 
-Mouse::Mouse( const Display& display )
+#include "Mouse.hpp"
+
+glm::vec2 Mouse::m_position;
+
+Mouse::Mouse(const Display& display)
 {
-	glfwSetCursorPosCallback( display.get_window(), cursor_position_callback );
-	glfwSetMouseButtonCallback( display.get_window(), mouse_button_callback );
+	glfwSetCursorPosCallback(display.getWindow(), cursorPositionCallback);
+	glfwSetMouseButtonCallback(display.getWindow(), mouseButtonCallback);
 }
 
-void Mouse::cursor_position_callback( GLFWwindow* window, double x_pos, double y_pos )
+void Mouse::cursorPositionCallback(GLFWwindow* window, double xPos, double yPos)
 {
-	position.x = x_pos;
-	position.y = y_pos;
+	m_position.x = xPos;
+	m_position.y = yPos;
 }
 
-void Mouse::mouse_button_callback( GLFWwindow* window, int button, int action, int mods )
+void Mouse::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 {
-	if( button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE )
+	if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
 	{
-		double x_pos, y_pos;
-		glfwGetCursorPos( window, &x_pos, &y_pos );
-		std::cout << "Mouse Clicked At: " << x_pos << " X " << y_pos << " Y" << std::endl;
+		double xPos, yPos;
+		glfwGetCursorPos(window, &xPos, &yPos);
+		std::cout << "Mouse Clicked At: " << xPos << " X " << yPos << " Y" << std::endl;
 	}
 }
 
-bool Mouse::cursor_within( glm::vec4 bounds )
+bool Mouse::cursorWithin(glm::vec4 bounds)
 {
-	return position.x >= bounds.x && position.x <= bounds.z && position.y >= bounds.y && position.y <= bounds.w;
+	return m_position.x >= bounds.x && m_position.x <= bounds.z && m_position.y >= bounds.y && m_position.y <= bounds.w;
 }
-
-glm::vec2 Mouse::position;

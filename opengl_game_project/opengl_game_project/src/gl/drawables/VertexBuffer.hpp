@@ -18,4 +18,3 @@ private:
 	unsigned int m_type;
 	bool m_normalized;
 };
-

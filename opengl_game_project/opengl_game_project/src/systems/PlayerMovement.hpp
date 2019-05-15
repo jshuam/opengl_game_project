@@ -1,5 +1,5 @@
 #pragma once
-#include "system.hpp"
+#include "System.hpp"
 
 class PlayerMovement : public System
 {

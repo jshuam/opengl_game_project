@@ -1,6 +1,6 @@
-#include "system.hpp"
+#include "System.hpp"
 
-void System::add_entity( const GUID& entity_id )
+void System::addEntity(const GUID& entityId)
 {
-	entities.push_back( entity_id );
+	m_entities.push_back(entityId);
 }

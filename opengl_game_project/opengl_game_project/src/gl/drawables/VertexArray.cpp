@@ -1,6 +1,6 @@
-#include "VertexArray.hpp"
-
 #include <iostream>
+
+#include "VertexArray.hpp"
 
 VertexArray::VertexArray()
 {

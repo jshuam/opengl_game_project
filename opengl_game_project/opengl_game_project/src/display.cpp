@@ -1,36 +1,36 @@
-#include "display.hpp"
-
 #include <iostream>
+
+#include "Display.hpp"
 
 Display::Display()
 {
 	/* Initialize the library */
-	if( !glfwInit() )
+	if(!glfwInit())
 	{
 		std::cout << "Could not initialize GLFW" << std::endl;
 		std::cin.get();
-		exit( -1 );
+		exit(-1);
 	}
 
-	glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, opengl_major_version );
-	glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, opengl_minor_version );
-	glfwWindowHint( GLFW_OPENGL_PROFILE, opengl_profile );
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, OPENGL_MAJOR_VERSION);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, OPENGL_MINOR_VERSION);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, OPENGL_PROFILE);
 
 	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow( width, height, title, NULL, NULL );
-	if( !window )
+	m_window = glfwCreateWindow(m_width, m_height, m_title, NULL, NULL);
+	if(!m_window)
 	{
 		glfwTerminate();
 		std::cout << "Could not create GLFW window" << std::endl;
 		std::cin.get();
-		exit( -1 );
+		exit(-1);
 	}
 
 	/* Make the window's context current */
-	glfwMakeContextCurrent( window );
-	glfwSwapInterval( 1 );
+	glfwMakeContextCurrent(m_window);
+	glfwSwapInterval(1);
 
-	glfwSetWindowUserPointer( window, user_pointer );
+	glfwSetWindowUserPointer(m_window, m_userPointer);
 }
 
 Display::~Display()
@@ -38,25 +38,25 @@ Display::~Display()
 	glfwTerminate();
 }
 
-bool Display::should_close() const
+bool Display::shouldClose() const
 {
-	return glfwWindowShouldClose( window );
+	return glfwWindowShouldClose(m_window);
 }
 
-bool Display::get_key( unsigned int key, unsigned int state )
+bool Display::getKey(unsigned int key, unsigned int state)
 {
-	return glfwGetKey( window, key ) == state;
+	return glfwGetKey(m_window, key) == state;
 }
 
 void Display::clear() const
 {
-	glClear( GL_COLOR_BUFFER_BIT );
+	glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void Display::update() const
 {
-	glfwSwapBuffers( window );
+	glfwSwapBuffers(m_window);
 	glfwPollEvents();
 }
 
-GLFWwindow* Display::window;
+GLFWwindow* Display::m_window;

@@ -1,42 +1,42 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include "display.hpp"
-#include "mouse.hpp"
-#include "scenes/test_scene.hpp"
-#include "scenes/scene_manager.hpp"
-#include "utils.hpp"
+#include "Display.hpp"
+#include "Mouse.hpp"
+#include "scenes/SceneManager.hpp"
+#include "scenes/TestScene.hpp"
+#include "Utils.hpp"
 
-int main( void )
+int main(void)
 {
 	Display display;
-	Mouse mouse( display );
+	Mouse mouse(display);
 	GLenum err = glewInit();
-	if( GLEW_OK != err )
+	if(GLEW_OK != err)
 	{
-		fprintf( stderr, "Error: %s\n", glewGetErrorString( err ) );
+		fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
 		std::cin.get();
 	}
 
 	/* Setup callback functions */
 	#if DEBUG
-	if( glDebugMessageCallback != NULL )
+	if(glDebugMessageCallback != NULL)
 	{
-		glEnable( GL_DEBUG_OUTPUT );
-		glDebugMessageCallback( glCheckErrors, nullptr );
+		glEnable(GL_DEBUG_OUTPUT);
+		glDebugMessageCallback(glCheckErrors, nullptr);
 	}
 	#endif
 
-	TestScene test_scene;
+	TestScene testScene;
 
-	SceneManager::add_scene( &test_scene );
-	SceneManager::set_active_scene( 0 );
+	SceneManager::addScene(&testScene);
+	SceneManager::setActiveScene(0);
 
-	while( !display.should_close() )
+	while(!display.shouldClose())
 	{
 		display.clear();
 
-		SceneManager::render_scene();
+		SceneManager::renderScene();
 
 		display.update();
 	}

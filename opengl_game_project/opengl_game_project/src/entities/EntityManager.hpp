@@ -4,7 +4,7 @@
 #include <map>
 #include <memory>
 
-#include "../utils.hpp"
+#include "../Utils.hpp"
 #include "Entity.hpp"
 
 class EntityManager

@@ -7,7 +7,7 @@ class BaseComponent : public IComponent
 {
 public:
 	virtual ~BaseComponent() = default;
-	inline const unsigned int getComponentId() { return m_componentId; }
+	static inline const unsigned int getComponentId() { return m_componentId; }
 
 private:
 	static const unsigned int m_componentId;

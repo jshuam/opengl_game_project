@@ -16,4 +16,3 @@ private:
 	const std::string loadSource(const std::string& filename);
 	unsigned int compileSource(unsigned int type, const std::string& shaderSrc);
 };
-

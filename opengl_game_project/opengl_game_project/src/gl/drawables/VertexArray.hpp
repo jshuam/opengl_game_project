@@ -1,9 +1,9 @@
 #pragma once
 
+#include <vector>
+
 #include "../GLDrawable.hpp"
 #include "VertexBuffer.hpp"
-
-#include <vector>
 
 class VertexArray : public GLDrawable
 {
@@ -15,9 +15,8 @@ public:
 	virtual void bind() const override;
 	virtual void unbind() const override;
 
-	inline const auto& get_vertex_buffers() { return vbos; }
+	inline const auto& getVertexBuffers() { return vbos; }
 
 private:
 	std::vector<VertexBuffer> vbos;
 };
-

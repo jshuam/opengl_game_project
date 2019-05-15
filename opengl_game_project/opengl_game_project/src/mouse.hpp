@@ -1,21 +1,21 @@
 #pragma once
 
-#include "display.hpp"
-
 #include <GLFW/glfw3.h>
 #include <glm/vec2.hpp>
 #include <glm/vec4.hpp>
 
+#include "Display.hpp"
+
 class Mouse
 {
 public:
-	Mouse( const Display& display );
-
-	static bool cursor_within( glm::vec4 bounds );
+	Mouse(const Display& display);
+	static bool cursorWithin(glm::vec4 bounds);
 
 private:
-	static void cursor_position_callback( GLFWwindow* window, double x_pos, double y_pos );
-	static void mouse_button_callback( GLFWwindow* window, int button, int action, int mods );
+	static void cursorPositionCallback(GLFWwindow* window, double xPos, double yPos);
+	static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 
-	static glm::vec2 position;
+private:
+	static glm::vec2 m_position;
 };

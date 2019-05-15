@@ -11,8 +11,8 @@ public:
 	virtual void unbind() const override;
 	void modifyBuffer(unsigned int dataSize, const void* data) const;
 
-	inline unsigned int getCount() const { return count; }
+	inline unsigned int getCount() const { return m_count; }
 
 private:
-	unsigned int count;
+	unsigned int m_count;
 };

@@ -1,17 +1,17 @@
 #pragma once
 
-#include <vector>
 #include <initguid.h>
 #include <guiddef.h>
+#include <vector>
 
 class System
 {
-protected:
-	std::vector<GUID> entities;
-
 public:
 	virtual ~System() = default;
 	virtual void update() const = 0;
 
-	void add_entity( const GUID& entity_id );
+	void addEntity(const GUID& entity_id);
+
+protected:
+	std::vector<GUID> m_entities;
 };
