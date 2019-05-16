@@ -1,16 +1,16 @@
-//#include "text.h"
-//
-//text::text( const char* text, font* font, glm::vec2 position, float scale, glm::vec3 color )
-//	:
-//	text( text ),
-//	font( font ),
-//	position( position ),
-//	scale( scale ),
-//	color( color ),
-//	size( font->get_text_size( text, scale ) )
-//{}
-//
-//void text::render() const
-//{
-//	font->render_text( text, position, scale, color );
-//}
+#include "Text.hpp"
+
+Text::Text(const char* text, Font* font, glm::vec2 position, float scale, glm::vec3 color)
+	:
+	m_text(text),
+	m_font(font),
+	m_position(position),
+	m_scale(scale),
+	m_color(color),
+	m_size(font->getTextSize(text, scale))
+{}
+
+void Text::render() const
+{
+	m_font->renderText(m_text, m_position, m_scale, m_color);
+}

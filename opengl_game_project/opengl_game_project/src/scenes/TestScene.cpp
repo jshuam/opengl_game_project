@@ -7,12 +7,16 @@
 #include "../components/Transform.hpp"
 #include "../entities/EntityManager.hpp"
 #include "../Display.hpp"
+#include "../Text.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/ext/matrix_clip_space.hpp>
 
 TestScene::TestScene()
+	:
+	m_font("Roboto/Roboto-Regular.ttf", 48),
+	m_text("Hello World!", &m_font)
 {
 
 	float positions[] =
@@ -70,9 +74,6 @@ TestScene::TestScene()
 	player_movement->addEntity(entity_2->getEntityId());
 	EntityManager::createEntity(std::move(entity));
 	EntityManager::createEntity(std::move(entity_2));
-	/*Texture texture( "res/textures/logo.png" );
-
-	entities.emplace_back( vao, ibo, texture );*/
 
 	Shader vertex_shader(GL_VERTEX_SHADER, "res/shaders/vertex.glsl");
 	Shader fragment_shader(GL_FRAGMENT_SHADER, "res/shaders/fragment.glsl");
@@ -98,4 +99,5 @@ void TestScene::render()
 	{
 		system->update();
 	}
+	m_text.render();
 }

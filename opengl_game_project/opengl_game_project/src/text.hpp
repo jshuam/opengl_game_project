@@ -1,30 +1,32 @@
-//#pragma once
-//
-//#include "font.h"
-//
-//#include <glm/vec2.hpp>
-//#include <glm/vec4.hpp>
-//
-//class text
-//{
-//private:
-//	const char* text;
-//	font* font;
-//	glm::vec2 position;
-//	float scale;
-//	glm::vec3 color;
-//	glm::vec2 size;
-//
-//public:
-//	text( const char* text, font* font, glm::vec2 position = { 0, 0 }, float scale = 0.0f, glm::vec3 color = { 0, 0, 0 } );
-//	void render() const;
-//
-//	inline void set_position( glm::vec2 position ) { this->position = position; }
-//	inline void set_scale( float scale ) { this->scale = scale; }
-//	inline void set_color( glm::vec3 color ) { this->color = color; }
-//
-//	inline glm::vec4 get_bounds() const { return glm::vec4( position.x, position.y, position.x + size.x, position.y + size.y ); }
-//
-//	inline const int get_width() const { return size.x; }
-//	inline const int get_height() const { return size.y; }
-//};
+#pragma once
+
+#include "glm/ext/vector_float2.hpp"
+#include "glm/ext/vector_float3.hpp"
+#include "glm/ext/vector_float4.hpp"
+
+#include "Font.hpp"
+
+class Text
+{
+public:
+	Text() = default;
+	Text(const char* text, Font* font, glm::vec2 position = {0, 0}, float scale = 0.0f, glm::vec3 color = {0, 0, 0});
+	void render() const;
+
+	inline void setPosition(glm::vec2 position) { m_position = position; }
+	inline void setScale(float scale) { m_scale = scale; }
+	inline void setColor(glm::vec3 color) { m_color = color; }
+
+	inline glm::vec4 getBounds() const { return glm::vec4(m_position.x, m_position.y, m_position.x + m_size.x, m_position.y + m_size.y); }
+
+	inline const int getWidth() const { return m_size.x; }
+	inline const int getHeight() const { return m_size.y; }
+
+private:
+	const char* m_text;
+	Font* m_font;
+	glm::vec2 m_position;
+	float m_scale;
+	glm::vec3 m_color;
+	glm::vec2 m_size;
+};
