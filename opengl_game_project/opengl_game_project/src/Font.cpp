@@ -82,7 +82,8 @@ Font::Font(std::string fontFilepath, int fontSize)
 
 	m_program.setUniformMat4f("u_mvp", proj);
 	m_vao.addBuffer(m_vbo);
-
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 glm::vec2 Font::getTextSize(const char* text, float scale) const

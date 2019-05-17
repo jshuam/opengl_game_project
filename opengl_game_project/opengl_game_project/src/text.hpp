@@ -10,7 +10,7 @@ class Text
 {
 public:
 	Text() = default;
-	Text(const char* text, Font* font, glm::vec2 position = {0, 0}, float scale = 0.0f, glm::vec3 color = {0, 0, 0});
+	Text(const char* text, Font* font, glm::vec2 position = {0, 0}, float scale = 1.0f, glm::vec3 color = {1, 1, 1});
 	void render() const;
 
 	inline void setPosition(glm::vec2 position) { m_position = position; }
