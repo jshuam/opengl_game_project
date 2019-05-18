@@ -1,6 +1,13 @@
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/ext/matrix_clip_space.hpp>
+
+#include <random>
+
 #include "TestScene.hpp"
 #include "../gl/drawables/VertexArray.hpp"
 #include "../gl/drawables/IndexBuffer.hpp"
+#include "../gl/drawables/Texture.hpp"
 #include "../gl/objects/Program.hpp"
 #include "../gl/objects/Shader.hpp"
 #include "../components/Drawable.hpp"
@@ -8,10 +15,6 @@
 #include "../entities/EntityManager.hpp"
 #include "../Display.hpp"
 #include "../Text.hpp"
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/ext/matrix_clip_space.hpp>
 
 TestScene::TestScene()
 	:
@@ -22,17 +25,9 @@ TestScene::TestScene()
 	float positions[] =
 	{
 		0.0f, 0.0f,
-		200.0f, 0.0f,
-		200.0f, 200.0f,
-		0.0f, 200.0f
-	};
-
-	float positions_2[] =
-	{
-		300.0f, 300.0f,
-		200.0f, 300.0f,
-		200.0f, 200.0f,
-		300.0f, 200.0f
+		30.0f, 0.0f,
+		30.0f, 30.0f,
+		0.0f, 30.0f
 	};
 
 	float tex_coords[] =
@@ -44,36 +39,37 @@ TestScene::TestScene()
 	};
 
 	unsigned int indices[] = {0, 1, 2, 2, 3, 0};
-
-	VertexArray vao;
-	VertexArray vao_2;
-
-	vao.addBuffer({sizeof(float) * 8, positions, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW});
-	vao.addBuffer({sizeof(float) * 8, tex_coords, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW});
-
-	vao_2.addBuffer({sizeof(float) * 8, positions_2, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW});
-	vao_2.addBuffer({sizeof(float) * 8, tex_coords, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW});
-
-	auto entity = std::make_unique<Entity>();
-	auto entity_2 = std::make_unique<Entity>();
-	auto drawable = std::make_unique<Drawable>(std::move(vao));
-	auto drawable_2 = std::make_unique<Drawable>(std::move(vao_2));
-	auto transform = std::make_unique<Transform>();
-	auto transform_2 = std::make_unique<Transform>();
-	drawable->getDrawables().push_back(std::make_unique<IndexBuffer>(indices, 6));
-	drawable_2->getDrawables().push_back(std::make_unique<IndexBuffer>(indices, 6));
-	entity->addComponent<Drawable>(std::move(drawable));
-	entity->addComponent<Transform>(std::move(transform));
-	entity_2->addComponent<Drawable>(std::move(drawable_2));
-	entity_2->addComponent<Transform>(std::move(transform_2));
 	auto renderer = std::make_unique<Renderer>();
 	auto player_movement = std::make_unique<PlayerMovement>();
-	renderer->addEntity(entity->getEntityId());
-	renderer->addEntity(entity_2->getEntityId());
-	player_movement->addEntity(entity->getEntityId());
-	player_movement->addEntity(entity_2->getEntityId());
-	EntityManager::createEntity(std::move(entity));
-	EntityManager::createEntity(std::move(entity_2));
+
+	std::random_device rd;
+	std::mt19937 gen(rd());
+
+	std::uniform_real_distribution<float> color_dist(0, 1);
+
+	std::uniform_int_distribution<int> w_dist(0, Display::getWidth());
+	std::uniform_int_distribution<int> h_dist(0, Display::getHeight());
+
+	for(unsigned int i = 0; i < 5000; i++)
+	{
+		VertexArray vertexArray;
+		vertexArray.addBuffer({sizeof(float) * 8, positions, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW});
+		vertexArray.addBuffer({sizeof(float) * 8, tex_coords, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW});
+
+		auto entity(std::make_unique<Entity>());
+
+		auto drawable(std::make_unique<Drawable>(std::move(vertexArray), std::move(glm::vec4(color_dist(gen), color_dist(gen), color_dist(gen), color_dist(gen)))));
+		drawable->getDrawables().push_back(std::make_unique<IndexBuffer>(indices, 6));
+
+		auto transform(std::make_unique<Transform>(std::move(glm::vec3(w_dist(gen), h_dist(gen), 0.0))));
+
+		entity->addComponent<Drawable>(std::move(drawable));
+		entity->addComponent<Transform>(std::move(transform));
+
+		renderer->addEntity(entity->getEntityId());
+
+		EntityManager::createEntity(std::move(entity));
+	}
 
 	Shader vertex_shader(GL_VERTEX_SHADER, "res/shaders/vertex.glsl");
 	Shader fragment_shader(GL_FRAGMENT_SHADER, "res/shaders/fragment.glsl");
@@ -83,10 +79,6 @@ TestScene::TestScene()
 	program->attachShader(fragment_shader);
 	program->compile();
 
-	program->bind();
-
-	program->setUniform1i("u_tex", 0);
-	program->setUniform4f("u_color", 1.0, 0.75, 0.5, 1.0);
 	renderer->addProgram(std::move(program));
 
 	m_systems.push_back(std::move(player_movement));

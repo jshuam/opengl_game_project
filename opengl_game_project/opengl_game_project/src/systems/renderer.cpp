@@ -1,15 +1,19 @@
+#include "glm\ext\matrix_clip_space.hpp"
+#include "glm\gtx\Transform.hpp"
+
 #include "..\components\Drawable.hpp"
 #include "..\components\Transform.hpp"
 #include "..\Display.hpp"
 #include "..\entities\EntityManager.hpp"
-
-#include "glm\ext\matrix_clip_space.hpp"
-#include "glm\gtx\Transform.hpp"
-
+#include "..\gl\drawables\texture.hpp"
 #include "Renderer.hpp"
 
 void Renderer::update() const
 {
+
+	Texture texture("res/textures/logo.png");
+	texture.bind();
+	m_program->setUniform1i("u_tex", 0);
 	for(const auto& entity : m_entities)
 	{
 		auto& drawableComponent = EntityManager::getComponent<Drawable>(entity);
@@ -27,6 +31,7 @@ void Renderer::update() const
 		glm::mat4 model = glm::translate(glm::mat4(1.0f), transformComponent.getPosition());
 		glm::mat4 mvp = proj * view * model;
 		m_program->setUniformMat4f("u_mvp", mvp);
+		m_program->setUniformVec4f("u_color", drawableComponent.getColor());
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 	}

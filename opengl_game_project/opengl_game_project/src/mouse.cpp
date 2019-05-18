@@ -12,8 +12,8 @@ Mouse::Mouse(const Display& display)
 
 void Mouse::cursorPositionCallback(GLFWwindow* window, double xPos, double yPos)
 {
-	m_position.x = xPos;
-	m_position.y = yPos;
+	m_position.x = (float) xPos;
+	m_position.y = (float) yPos;
 }
 
 void Mouse::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)

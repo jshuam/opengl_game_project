@@ -19,8 +19,8 @@ public:
 
 	inline glm::vec4 getBounds() const { return glm::vec4(m_position.x, m_position.y, m_position.x + m_size.x, m_position.y + m_size.y); }
 
-	inline const int getWidth() const { return m_size.x; }
-	inline const int getHeight() const { return m_size.y; }
+	inline const float getWidth() const { return m_size.x; }
+	inline const float getHeight() const { return m_size.y; }
 
 private:
 	const char* m_text;

@@ -32,8 +32,8 @@ const std::string Shader::loadSource(const std::string& filename)
 	}
 
 	shaderFile.seekg(0, std::ios::end);
-	size_t size = shaderFile.tellg();
-	std::string shaderSrc(size, ' ');
+	std::streamoff size = shaderFile.tellg();
+	std::string shaderSrc((unsigned int) size, ' ');
 	shaderFile.seekg(0);
 	shaderFile.read(&shaderSrc[0], size);
 

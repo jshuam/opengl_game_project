@@ -7,7 +7,7 @@ class GLObject
 public:
 	virtual ~GLObject() = default;
 
-	inline auto& const getGlObjectId() const { return m_glObjectId; }
+	inline const auto& getGlObjectId() const { return m_glObjectId; }
 
 protected:
 	unsigned int m_glObjectId;

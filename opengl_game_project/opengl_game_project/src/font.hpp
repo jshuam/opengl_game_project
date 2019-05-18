@@ -25,7 +25,7 @@ private:
 	struct Character
 	{
 		unsigned int m_texture;
-		unsigned int m_advance;
+		long m_advance;
 		glm::vec2 m_size;
 		glm::vec2 m_bearing;
 	};
