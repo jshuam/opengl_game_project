@@ -15,7 +15,7 @@ public:
 	virtual void bind() const override;
 	virtual void unbind() const override;
 
-	inline const auto& getVertexBuffers() { return vbos; }
+	inline auto& getVertexBuffers() { return vbos; }
 
 private:
 	std::vector<VertexBuffer> vbos;

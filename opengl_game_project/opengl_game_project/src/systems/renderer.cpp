@@ -3,17 +3,23 @@
 
 #include "..\components\Drawable.hpp"
 #include "..\components\Transform.hpp"
-#include "..\Display.hpp"
 #include "..\entities\EntityManager.hpp"
 #include "..\gl\drawables\texture.hpp"
+#include "..\utility\Display.hpp"
 #include "Renderer.hpp"
 
 void Renderer::update() const
 {
+	m_program->bind();
 
 	Texture texture("res/textures/logo.png");
 	texture.bind();
+
 	m_program->setUniform1i("u_tex", 0);
+
+	glm::mat4 proj = glm::ortho(0.0f, (float) Display::getWidth(), 0.0f, (float) Display::getHeight());
+	glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
+
 	for(const auto& entity : m_entities)
 	{
 		auto& drawableComponent = EntityManager::getComponent<Drawable>(entity);
@@ -23,11 +29,6 @@ void Renderer::update() const
 		{
 			drawable->bind();
 		}
-
-		m_program->bind();
-
-		glm::mat4 proj = glm::ortho(0.0f, (float) Display::getWidth(), 0.0f, (float) Display::getHeight());
-		glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
 		glm::mat4 model = glm::translate(glm::mat4(1.0f), transformComponent.getPosition());
 		glm::mat4 mvp = proj * view * model;
 		m_program->setUniformMat4f("u_mvp", mvp);

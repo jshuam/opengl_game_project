@@ -17,11 +17,6 @@
 class Font
 {
 public:
-	Font(std::string fontFilepath, int fontSize);
-	glm::vec2 getTextSize(const char* text, float scale) const;
-	void renderText(const char* text, glm::vec2 position, float scale, glm::vec3 color);
-
-private:
 	struct Character
 	{
 		unsigned int m_texture;
@@ -30,13 +25,16 @@ private:
 		glm::vec2 m_bearing;
 	};
 
-	std::map<char, Character> m_characters;
+public:
+	Font(std::string fontFilepath, int fontSize);
+	glm::vec2 getTextSize(const char* text, float scale) const;
+
+	static inline const auto& getCharacter(const char c) { return m_characters.at(c); }
+
+
+private:
+	static std::map<char, Character> m_characters;
 
 	FT_Library m_ft;
 	FT_Face m_face;
-
-	Program m_program;
-
-	VertexArray m_vao;
-	VertexBuffer m_vbo;
 };

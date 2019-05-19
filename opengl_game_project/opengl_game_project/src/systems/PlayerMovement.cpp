@@ -1,7 +1,7 @@
 #include "PlayerMovement.hpp"
 #include "../components/Transform.hpp"
 #include "../entities/EntityManager.hpp"
-#include "../Display.hpp"
+#include "../utility/Display.hpp"
 
 void PlayerMovement::update() const
 {
