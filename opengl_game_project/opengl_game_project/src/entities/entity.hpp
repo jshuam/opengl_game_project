@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "../components/BaseComponent.hpp"
-#include "../components/IComponent.hpp"
+#include "../interfaces/IComponent.hpp"
 
 class Entity
 {

@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 
-#include "../systems/System.hpp"
+#include "../interfaces/ISystem.hpp"
 #include "Scene.hpp"
 
 class TestScene : public Scene
@@ -14,5 +14,5 @@ public:
 	void render() override;
 
 private:
-	std::vector<std::unique_ptr<System>> m_systems;
+	std::vector<std::unique_ptr<ISystem>> m_systems;
 };

@@ -4,10 +4,10 @@
 #include <guiddef.h>
 #include <vector>
 
-class System
+class ISystem
 {
 public:
-	virtual ~System() = default;
+	virtual ~ISystem() = default;
 	virtual void update() const = 0;
 
 	void addEntity(const GUID& entity_id);

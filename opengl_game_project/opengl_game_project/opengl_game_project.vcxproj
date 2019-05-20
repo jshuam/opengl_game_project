@@ -150,7 +150,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\components\IComponent.cpp" />
+    <ClCompile Include="src\core\BatchRenderer.cpp" />
+    <ClCompile Include="src\interfaces\IComponent.cpp" />
     <ClCompile Include="src\components\Drawable.cpp" />
     <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\entities\Entity.cpp" />
@@ -163,8 +164,8 @@
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\systems\FontRenderer.cpp" />
     <ClCompile Include="src\systems\PlayerMovement.cpp" />
-    <ClCompile Include="src\systems\Renderer.cpp" />
-    <ClCompile Include="src\systems\System.cpp" />
+    <ClCompile Include="src\interfaces\IRenderer.cpp" />
+    <ClCompile Include="src\interfaces\ISystem.cpp" />
     <ClCompile Include="src\components\Text.cpp" />
     <ClCompile Include="src\gl\drawables\Texture.cpp" />
     <ClCompile Include="src\utility\Display.cpp" />
@@ -315,7 +316,8 @@
     <None Include="src\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\components\IComponent.hpp" />
+    <ClInclude Include="src\core\BatchRenderer.hpp" />
+    <ClInclude Include="src\interfaces\IComponent.hpp" />
     <ClInclude Include="src\components\BaseComponent.hpp" />
     <ClInclude Include="src\components\Drawable.hpp" />
     <ClInclude Include="src\components\Transform.hpp" />
@@ -330,8 +332,8 @@
     <ClInclude Include="src\gl\objects\Shader.hpp" />
     <ClInclude Include="src\gl\drawables\IndexBuffer.hpp" />
     <ClInclude Include="src\systems\PlayerMovement.hpp" />
-    <ClInclude Include="src\systems\Renderer.hpp" />
-    <ClInclude Include="src\systems\System.hpp" />
+    <ClInclude Include="src\interfaces\IRenderer.hpp" />
+    <ClInclude Include="src\interfaces\ISystem.hpp" />
     <ClInclude Include="src\components\Text.hpp" />
     <ClInclude Include="src\gl\drawables\Texture.hpp" />
     <ClInclude Include="src\utility\Display.hpp" />

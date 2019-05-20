@@ -8,6 +8,7 @@
 #include "../components/Drawable.hpp"
 #include "../components/Text.hpp"
 #include "../components/Transform.hpp"
+#include "../core/BatchRenderer.hpp"
 #include "../entities/EntityManager.hpp"
 #include "../gl/drawables/VertexArray.hpp"
 #include "../gl/drawables/IndexBuffer.hpp"
@@ -15,7 +16,6 @@
 #include "../gl/objects/Program.hpp"
 #include "../gl/objects/Shader.hpp"
 #include "../systems/FontRenderer.hpp"
-#include "../systems/Renderer.hpp"
 #include "../systems/PlayerMovement.hpp"
 #include "../utility/Display.hpp"
 
@@ -39,7 +39,7 @@ TestScene::TestScene()
 	};
 
 	unsigned int indices[] = {0, 1, 2, 2, 3, 0};
-	auto renderer = std::make_unique<Renderer>();
+	auto renderer = std::make_unique<IRenderer>();
 	auto playerMovement = std::make_unique<PlayerMovement>();
 
 	std::random_device rd;

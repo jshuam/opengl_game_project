@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IComponent.hpp"
+#include "../interfaces/IComponent.hpp"
 
 template<typename T>
 class BaseComponent : public IComponent
