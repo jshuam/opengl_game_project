@@ -2,8 +2,9 @@
 
 #include "Texture.hpp"
 
-Texture::Texture(const std::string& m_filePath)
+Texture::Texture(const std::string& m_filePath, unsigned int slot)
 	:
+	m_slot(slot),
 	m_width(0),
 	m_height(0),
 	m_bytesPerPixel(0),

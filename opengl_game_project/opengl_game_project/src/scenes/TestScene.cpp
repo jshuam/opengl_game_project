@@ -50,7 +50,7 @@ TestScene::TestScene()
 	std::uniform_int_distribution<int> w_dist(0, Display::getWidth());
 	std::uniform_int_distribution<int> h_dist(0, Display::getHeight());
 
-	for(unsigned int i = 0; i < 5000; i++)
+	for(unsigned int i = 0; i < 100; i++)
 	{
 		VertexArray vertexArray;
 		vertexArray.addBuffer({sizeof(float) * 8, positions, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW});
@@ -60,6 +60,7 @@ TestScene::TestScene()
 
 		auto drawable(std::make_unique<Drawable>(std::move(vertexArray), std::move(glm::vec4(color_dist(gen), color_dist(gen), color_dist(gen), color_dist(gen)))));
 		drawable->getDrawables().push_back(std::make_unique<IndexBuffer>(indices, 6));
+		drawable->getDrawables().push_back(std::make_unique<Texture>("res/textures/logo.png", 1));
 
 		auto transform(std::make_unique<Transform>(std::move(glm::vec3(w_dist(gen), h_dist(gen), 0.0))));
 
@@ -78,6 +79,8 @@ TestScene::TestScene()
 	program->attachShader(vertexShader);
 	program->attachShader(fragmentShader);
 	program->compile();
+	program->bind();
+	program->setUniform1i("u_tex", 1);
 
 	renderer->addProgram(std::move(program));
 

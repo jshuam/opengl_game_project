@@ -12,11 +12,6 @@ void Renderer::update() const
 {
 	m_program->bind();
 
-	Texture texture("res/textures/logo.png");
-	texture.bind();
-
-	m_program->setUniform1i("u_tex", 0);
-
 	glm::mat4 proj = glm::ortho(0.0f, (float) Display::getWidth(), 0.0f, (float) Display::getHeight());
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
 
