@@ -39,7 +39,7 @@ TestScene::TestScene()
 	};
 
 	unsigned int indices[] = {0, 1, 2, 2, 3, 0};
-	auto renderer = std::make_unique<IRenderer>();
+	auto batchRenderer = std::make_unique<BatchRenderer>();
 	auto playerMovement = std::make_unique<PlayerMovement>();
 
 	std::random_device rd;
@@ -50,7 +50,10 @@ TestScene::TestScene()
 	std::uniform_int_distribution<int> w_dist(0, Display::getWidth());
 	std::uniform_int_distribution<int> h_dist(0, Display::getHeight());
 
-	for(unsigned int i = 0; i < 100; i++)
+	Texture texture("res/textures/logo.png", 1);
+	std::vector<GUID> entities;
+
+	for(unsigned int i = 0; i < 5000; i++)
 	{
 		VertexArray vertexArray;
 		vertexArray.addBuffer({sizeof(float) * 8, positions, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW});
@@ -60,17 +63,17 @@ TestScene::TestScene()
 
 		auto drawable(std::make_unique<Drawable>(std::move(vertexArray), std::move(glm::vec4(color_dist(gen), color_dist(gen), color_dist(gen), color_dist(gen)))));
 		drawable->getDrawables().push_back(std::make_unique<IndexBuffer>(indices, 6));
-		drawable->getDrawables().push_back(std::make_unique<Texture>("res/textures/logo.png", 1));
 
 		auto transform(std::make_unique<Transform>(std::move(glm::vec3(w_dist(gen), h_dist(gen), 0.0))));
 
 		entity->addComponent<Drawable>(std::move(drawable));
 		entity->addComponent<Transform>(std::move(transform));
 
-		renderer->addEntity(entity->getEntityId());
+		entities.push_back(entity->getEntityId());
 
 		EntityManager::createEntity(std::move(entity));
 	}
+	batchRenderer->addBatch(std::move(texture), std::move(entities));
 
 	Shader vertexShader(GL_VERTEX_SHADER, "res/shaders/vertex.glsl");
 	Shader fragmentShader(GL_FRAGMENT_SHADER, "res/shaders/fragment.glsl");
@@ -82,7 +85,7 @@ TestScene::TestScene()
 	program->bind();
 	program->setUniform1i("u_tex", 1);
 
-	renderer->addProgram(std::move(program));
+	batchRenderer->addProgram(std::move(program));
 
 	Shader fontVertexShader(GL_VERTEX_SHADER, "res/shaders/font_vertex.glsl");
 	Shader fontFragmentShader(GL_FRAGMENT_SHADER, "res/shaders/font_fragment.glsl");
@@ -118,7 +121,8 @@ TestScene::TestScene()
 
 	m_systems.push_back(std::move(playerMovement));
 	m_systems.push_back(std::move(fontRenderer));
-	m_systems.push_back(std::move(renderer));
+
+	m_renderers.push_back(std::move(batchRenderer));
 }
 
 void TestScene::render()
@@ -126,5 +130,10 @@ void TestScene::render()
 	for(auto& system : m_systems)
 	{
 		system->update();
+	}
+
+	for(auto& renderer : m_renderers)
+	{
+		renderer->render();
 	}
 }

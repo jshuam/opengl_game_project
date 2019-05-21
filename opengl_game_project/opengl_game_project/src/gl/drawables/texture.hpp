@@ -16,6 +16,8 @@ public:
 	inline int getWidth() const { return m_width; }
 	inline int getHeight() const { return m_height; }
 
+	bool operator==(const Texture& other) const;
+
 private:
 	static constexpr const int DESIRED_CHANNELS = 4;
 

@@ -1,5 +1,6 @@
 #pragma once
-#include "System.hpp"
+
+#include "../interfaces/ISystem.hpp"
 
 class PlayerMovement : public ISystem
 {

@@ -36,3 +36,8 @@ void Texture::unbind() const
 {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
+
+bool Texture::operator==(const Texture& other) const
+{
+	return m_glObjectId == other.m_glObjectId;
+}

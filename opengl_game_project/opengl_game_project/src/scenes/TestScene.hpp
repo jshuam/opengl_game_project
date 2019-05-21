@@ -12,7 +12,4 @@ public:
 	TestScene();
 	~TestScene() = default;
 	void render() override;
-
-private:
-	std::vector<std::unique_ptr<ISystem>> m_systems;
 };
