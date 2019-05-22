@@ -26,7 +26,7 @@ void BatchRenderer::render() const
 
 			for(auto& drawable : drawableComponent.getDrawables())
 			{
-				drawable->bind();
+				drawable.second->bind();
 			}
 
 			glm::mat4 model = glm::translate(glm::mat4(1.0f), transformComponent.getPosition());

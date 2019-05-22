@@ -8,13 +8,13 @@ VertexArray::VertexArray()
 	glBindVertexArray(m_glObjectId);
 }
 
-void VertexArray::addBuffer(VertexBuffer vertexBuffer)
+void VertexArray::addBuffer(unsigned int type, VertexBuffer vertexBuffer)
 {
 	bind();
 	vertexBuffer.bind();
-	vbos.push_back(std::move(vertexBuffer));
-	vertexBuffer.attribPointer(vbos.size() - 1);
-	glEnableVertexAttribArray(vbos.size() - 1);
+	m_buffers.emplace(type, std::move(vertexBuffer));
+	vertexBuffer.attribPointer(m_buffers.size() - 1);
+	glEnableVertexAttribArray(m_buffers.size() - 1);
 }
 
 void VertexArray::bind() const

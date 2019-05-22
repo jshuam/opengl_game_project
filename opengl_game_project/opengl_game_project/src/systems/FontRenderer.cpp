@@ -30,7 +30,7 @@ void FontRenderer::update() const
 
 		for(auto& drawable : drawableComponent.getDrawables())
 		{
-			drawable->bind();
+			drawable.second->bind();
 		}
 
 		glm::mat4 model = glm::translate(glm::mat4(1.0f), transformComponent.getPosition());
@@ -63,8 +63,8 @@ void FontRenderer::update() const
 
 			glBindTexture(GL_TEXTURE_2D, c.m_texture);
 
-			auto& vertexArray = static_cast<VertexArray&>(*drawableComponent.getDrawables()[0]);
-			auto& vertexBuffer = vertexArray.getVertexBuffers()[0];
+			auto& vertexArray = static_cast<const VertexArray&>(drawableComponent.getDrawable(VERTEX_ARRAY));
+			auto& vertexBuffer = vertexArray.getBuffer(VBO_POSITION);
 			vertexBuffer.modifyBuffer(sizeof(float) * 6 * 4, vertices);
 
 			glDrawArrays(GL_TRIANGLES, 0, 6);
