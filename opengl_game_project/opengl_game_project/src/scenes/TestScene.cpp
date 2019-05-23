@@ -56,13 +56,13 @@ TestScene::TestScene()
 	for(unsigned int i = 0; i < 5000; i++)
 	{
 		VertexArray vertexArray;
-		vertexArray.addBuffer({sizeof(float) * 8, positions, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW});
-		vertexArray.addBuffer({sizeof(float) * 8, tex_coords, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW});
+		vertexArray.addBuffer(VBO_POSITION, {sizeof(float) * 8, positions, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW});
+		vertexArray.addBuffer(VBO_TEX_COORD, {sizeof(float) * 8, tex_coords, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW});
 
 		auto entity(std::make_unique<Entity>());
 
 		auto drawable(std::make_unique<Drawable>(std::move(vertexArray), std::move(glm::vec4(color_dist(gen), color_dist(gen), color_dist(gen), color_dist(gen)))));
-		drawable->getDrawables().push_back(std::make_unique<IndexBuffer>(indices, 6));
+		drawable->addDrawable(INDEX_BUFFER, std::make_unique<IndexBuffer>(indices, 6));
 
 		auto transform(std::make_unique<Transform>(std::move(glm::vec3(w_dist(gen), h_dist(gen), 0.0))));
 
@@ -104,7 +104,7 @@ TestScene::TestScene()
 	fontRenderer->addProgram(std::move(fontProgram));
 
 	VertexArray vertexArray;
-	vertexArray.addBuffer({sizeof(float) * 6 * 4, nullptr, 4, GL_FLOAT, GL_FALSE, GL_DYNAMIC_DRAW});
+	vertexArray.addBuffer(VBO_POSITION, {sizeof(float) * 6 * 4, nullptr, 4, GL_FLOAT, GL_FALSE, GL_DYNAMIC_DRAW});
 
 	auto entity(std::make_unique<Entity>());
 	auto drawable(std::make_unique<Drawable>(std::move(vertexArray)));
