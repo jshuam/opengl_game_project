@@ -4,7 +4,8 @@
 #include "..\components\Drawable.hpp"
 #include "..\components\Transform.hpp"
 #include "..\entities\EntityManager.hpp"
-#include "..\gl\drawables\texture.hpp"
+#include "..\gl\drawables\IndexBuffer.hpp"
+#include "..\gl\drawables\Texture.hpp"
 #include "..\utility\Display.hpp"
 #include "BatchRenderer.hpp"
 
@@ -34,7 +35,8 @@ void BatchRenderer::render() const
 			m_program->setUniformMat4f("u_mvp", mvp);
 			m_program->setUniformVec4f("u_color", drawableComponent.getColor());
 
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+			auto& indexBuffer = static_cast<const IndexBuffer&>(drawableComponent.getDrawable(INDEX_BUFFER));
+			glDrawElements(GL_TRIANGLES, indexBuffer.getCount(), GL_UNSIGNED_INT, nullptr);
 		}
 	}
 }
