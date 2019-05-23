@@ -51,6 +51,7 @@ bool Display::getKey(unsigned int key, unsigned int state)
 void Display::clear() const
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+	glClearColor(0.25, 0.5, 0.25, 1);
 }
 
 void Display::update() const
