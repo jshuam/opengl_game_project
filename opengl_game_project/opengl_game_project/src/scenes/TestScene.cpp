@@ -64,7 +64,7 @@ TestScene::TestScene()
 		auto drawable(std::make_unique<Drawable>(std::move(vertexArray), std::move(glm::vec4(color_dist(gen), color_dist(gen), color_dist(gen), color_dist(gen)))));
 		drawable->addDrawable(INDEX_BUFFER, std::make_unique<IndexBuffer>(indices, 6));
 
-		auto transform(std::make_unique<Transform>(std::move(glm::vec3(w_dist(gen), h_dist(gen), 0.0))));
+		auto transform(std::make_unique<Transform>(std::move(glm::vec3(w_dist(gen), h_dist(gen), 0.0)), h_dist(gen)));
 
 		entity->addComponent<Drawable>(std::move(drawable));
 		entity->addComponent<Transform>(std::move(transform));
