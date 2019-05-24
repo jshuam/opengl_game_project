@@ -31,7 +31,8 @@ void BatchRenderer::render() const
 			}
 
 			glm::mat4 model = glm::translate(glm::mat4(1.0f), transformComponent.getPosition());
-			model = glm::scale(model, glm::vec3(transformComponent.getScale(), transformComponent.getScale(), transformComponent.getScale()));
+			float scale = transformComponent.getScale();
+			model = glm::scale(model, glm::vec3(scale, scale, scale));
 			glm::mat4 mvp = proj * view * model;
 			m_program->setUniformMat4f("u_mvp", mvp);
 			m_program->setUniformVec4f("u_color", drawableComponent.getColor());
