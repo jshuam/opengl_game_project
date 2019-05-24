@@ -1,4 +1,4 @@
-#include "Text.hpp"
+#include "TextComponent.hpp"
 
 Text::Text(const char* text, std::unique_ptr<Font> font)
 	:

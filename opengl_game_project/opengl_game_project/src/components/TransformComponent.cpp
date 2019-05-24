@@ -1,4 +1,4 @@
-#include "Transform.hpp"
+#include "TransformComponent.hpp"
 
 Transform::Transform(glm::vec3 position, float scale)
 	:

@@ -5,9 +5,9 @@
 #include <random>
 
 #include "TestScene.hpp"
-#include "../components/Drawable.hpp"
-#include "../components/Text.hpp"
-#include "../components/Transform.hpp"
+#include "../components/DrawableComponent.hpp"
+#include "../components/TextComponent.hpp"
+#include "../components/TransformComponent.hpp"
 #include "../core/BatchRenderer.hpp"
 #include "../entities/EntityManager.hpp"
 #include "../gl/drawables/VertexArray.hpp"
@@ -125,7 +125,7 @@ TestScene::TestScene()
 	m_renderers.push_back(std::move(batchRenderer));
 }
 
-void TestScene::render()
+void TestScene::process()
 {
 	for(auto& system : m_systems)
 	{

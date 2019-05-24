@@ -152,8 +152,8 @@
   <ItemGroup>
     <ClCompile Include="src\core\BatchRenderer.cpp" />
     <ClCompile Include="src\interfaces\IComponent.cpp" />
-    <ClCompile Include="src\components\Drawable.cpp" />
-    <ClCompile Include="src\components\Transform.cpp" />
+    <ClCompile Include="src\components\DrawableComponent.cpp" />
+    <ClCompile Include="src\components\TransformComponent.cpp" />
     <ClCompile Include="src\entities\Entity.cpp" />
     <ClCompile Include="src\entities\EntityManager.cpp" />
     <ClCompile Include="src\gl\objects\Program.cpp" />
@@ -166,7 +166,7 @@
     <ClCompile Include="src\systems\PlayerMovement.cpp" />
     <ClCompile Include="src\interfaces\IRenderer.cpp" />
     <ClCompile Include="src\interfaces\ISystem.cpp" />
-    <ClCompile Include="src\components\Text.cpp" />
+    <ClCompile Include="src\components\TextComponent.cpp" />
     <ClCompile Include="src\gl\drawables\Texture.cpp" />
     <ClCompile Include="src\utility\Display.cpp" />
     <ClCompile Include="src\utility\Font.cpp" />
@@ -307,7 +307,7 @@
     <None Include="src\vendor\glm\gtx\std_based_type.inl" />
     <None Include="src\vendor\glm\gtx\string_cast.inl" />
     <None Include="src\vendor\glm\gtx\Texture.inl" />
-    <None Include="src\vendor\glm\gtx\Transform.inl" />
+    <None Include="src\vendor\glm\gtx\transform.inl" />
     <None Include="src\vendor\glm\gtx\transform2.inl" />
     <None Include="src\vendor\glm\gtx\type_aligned.inl" />
     <None Include="src\vendor\glm\gtx\type_trait.inl" />
@@ -319,8 +319,8 @@
     <ClInclude Include="src\core\BatchRenderer.hpp" />
     <ClInclude Include="src\interfaces\IComponent.hpp" />
     <ClInclude Include="src\components\BaseComponent.hpp" />
-    <ClInclude Include="src\components\Drawable.hpp" />
-    <ClInclude Include="src\components\Transform.hpp" />
+    <ClInclude Include="src\components\DrawableComponent.hpp" />
+    <ClInclude Include="src\components\TransformComponent.hpp" />
     <ClInclude Include="src\entities\Entity.hpp" />
     <ClInclude Include="src\entities\EntityManager.hpp" />
     <ClInclude Include="src\gl\GLDrawable.hpp" />
@@ -334,7 +334,7 @@
     <ClInclude Include="src\systems\PlayerMovement.hpp" />
     <ClInclude Include="src\interfaces\IRenderer.hpp" />
     <ClInclude Include="src\interfaces\ISystem.hpp" />
-    <ClInclude Include="src\components\Text.hpp" />
+    <ClInclude Include="src\components\TextComponent.hpp" />
     <ClInclude Include="src\gl\drawables\Texture.hpp" />
     <ClInclude Include="src\utility\Display.hpp" />
     <ClInclude Include="src\utility\Font.hpp" />
@@ -547,7 +547,7 @@
     <ClInclude Include="src\vendor\glm\gtx\std_based_type.hpp" />
     <ClInclude Include="src\vendor\glm\gtx\string_cast.hpp" />
     <ClInclude Include="src\vendor\glm\gtx\Texture.hpp" />
-    <ClInclude Include="src\vendor\glm\gtx\Transform.hpp" />
+    <ClInclude Include="src\vendor\glm\gtx\transform.hpp" />
     <ClInclude Include="src\vendor\glm\gtx\transform2.hpp" />
     <ClInclude Include="src\vendor\glm\gtx\type_aligned.hpp" />
     <ClInclude Include="src\vendor\glm\gtx\type_trait.hpp" />

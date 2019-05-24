@@ -1,4 +1,4 @@
-#include "Drawable.hpp"
+#include "DrawableComponent.hpp"
 
 Drawable::Drawable(VertexArray vertexArray, glm::vec4 color)
 	:

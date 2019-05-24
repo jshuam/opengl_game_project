@@ -1,9 +1,9 @@
 #include "glm/ext/matrix_clip_space.hpp"
 #include "glm/gtx/transform.hpp"
 
-#include "../components/Drawable.hpp"
-#include "../components/Text.hpp"
-#include "../components/Transform.hpp"
+#include "../components/DrawableComponent.hpp"
+#include "../components/TextComponent.hpp"
+#include "../components/TransformComponent.hpp"
 #include "../entities/EntityManager.hpp"
 #include "../utility/Display.hpp"
 #include "../utility/Font.hpp"

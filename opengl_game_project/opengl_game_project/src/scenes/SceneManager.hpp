@@ -9,7 +9,7 @@ class SceneManager
 public:
 	static void addScene(Scene* scene);
 	static void setActiveScene(unsigned int scene_id);
-	static void renderScene();
+	static void processScene();
 
 private:
 	static std::vector<Scene*> m_scenes;

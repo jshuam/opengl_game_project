@@ -36,7 +36,7 @@ int main(void)
 	{
 		display.clear();
 
-		SceneManager::renderScene();
+		SceneManager::processScene();
 
 		display.update();
 	}

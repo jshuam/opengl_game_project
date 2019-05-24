@@ -13,7 +13,7 @@ void SceneManager::setActiveScene(unsigned int scene_id)
 	m_activeScene = m_scenes[scene_id];
 }
 
-void SceneManager::renderScene()
+void SceneManager::processScene()
 {
-	m_activeScene->render();
+	m_activeScene->process();
 }

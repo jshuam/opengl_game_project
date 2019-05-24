@@ -11,5 +11,5 @@ class TestScene : public Scene
 public:
 	TestScene();
 	~TestScene() = default;
-	void render() override;
+	void process() override;
 };
