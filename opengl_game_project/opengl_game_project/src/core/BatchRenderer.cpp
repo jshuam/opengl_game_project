@@ -16,7 +16,6 @@ void BatchRenderer::render()
 	glm::mat4 proj = glm::ortho(0.0f, (float) Display::getWidth(), 0.0f, (float) Display::getHeight());
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
 
-	Display::calculateDeltaTime();
 	passedTime += Display::getDeltaTime();
 
 	for(const auto& batch : m_batches)
@@ -38,26 +37,23 @@ void BatchRenderer::render()
 			model = glm::scale(model, glm::vec3(scale, scale, scale));
 			glm::mat4 mvp = proj * view * model;
 			m_program->setUniformMat4f("u_mvp", mvp);
-			m_program->setUniformVec4f("u_color", drawableComponent.getColor());
 
 			auto& indexBuffer = static_cast<const IndexBuffer&>(drawableComponent.getDrawable(INDEX_BUFFER));
 
-			float spriteWidth = 1.0f / 8.0f;
-			float spriteHeight = 1.0f / 16.0f;
+			float spriteWidth = 1.0f / 13.0f;
+			float spriteHeight = 1.0f;
 
-			if(passedTime > 0.25)
+			if(passedTime > 0.1)
 			{
-				transformComponent.getPosition().x = 0;
-				transformComponent.getPosition().y = 0;
 				passedTime = 0;
 				index++;
-				if(index > 3) index = 0;
+				if(index > 12) index = 0;
 				float tex_coords[4][2] =
 				{
-					{(spriteWidths[index] - 1.0f) * spriteWidth, 15.0f * spriteHeight},
-					{spriteWidths[index] * spriteWidth, 15.0f * spriteHeight},
-					{spriteWidths[index] * spriteWidth, 16.0f * spriteHeight},
-					{(spriteWidths[index] - 1.0f) * spriteWidth, 16.0f * spriteHeight}
+					{(spriteWidths[index] - 1.0f) * spriteWidth, 0.0f * spriteHeight},
+					{spriteWidths[index] * spriteWidth, 0.0f * spriteHeight},
+					{spriteWidths[index] * spriteWidth, 1.0f * spriteHeight},
+					{(spriteWidths[index] - 1.0f) * spriteWidth, 1.0f * spriteHeight}
 				};
 
 				auto& vertexArray = static_cast<const VertexArray&>(drawableComponent.getDrawable(VERTEX_ARRAY));

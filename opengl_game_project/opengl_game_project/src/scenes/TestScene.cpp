@@ -34,7 +34,7 @@ TestScene::TestScene()
 	std::uniform_int_distribution<int> w_dist(0, Display::getWidth());
 	std::uniform_int_distribution<int> h_dist(0, Display::getHeight());
 
-	Texture texture("res/sprites/test-sprite-sheet.png", 1);
+	Texture texture("res/sprites/skeleton-walk.png", 1);
 	std::vector<GUID> entities;
 
 	int textureWidth = texture.getWidth();
@@ -43,20 +43,20 @@ TestScene::TestScene()
 	float positions[] =
 	{
 		0.0f, 0.0f,
-		50.0f, 0.0f,
-		50.0f, 37.0f,
-		0.0f, 37.0f
+		22.0f, 0.0f,
+		22.0f, 33.0f,
+		0.0f, 33.0f
 	};
 
-	float spriteWidth = 1.0f / 8.0f;
-	float spriteHeight = 1.0f / 16.0f;
+	float spriteWidth = 1.0f / 13.0f;
+	float spriteHeight = 1.0f;
 
 	float tex_coords[4][2] =
 	{
-		{0.0f * spriteWidth, 15.0f * spriteHeight},
-		{1.0f * spriteWidth, 15.0f * spriteHeight},
-		{1.0f * spriteWidth, 16.0f * spriteHeight},
-		{0.0f * spriteWidth, 16.0f * spriteHeight}
+		{1.0f * spriteWidth, 0.0f * spriteHeight},
+		{2.0f * spriteWidth, 0.0f * spriteHeight},
+		{2.0f * spriteWidth, 1.0f * spriteHeight},
+		{1.0f * spriteWidth, 1.0f * spriteHeight}
 	};
 
 	for(unsigned int i = 0; i < 1; i++)
@@ -70,7 +70,7 @@ TestScene::TestScene()
 		auto drawable(std::make_unique<Drawable>(std::move(vertexArray), std::move(glm::vec4(color_dist(gen), color_dist(gen), color_dist(gen), color_dist(gen)))));
 		drawable->addDrawable(INDEX_BUFFER, std::make_unique<IndexBuffer>(indices, 6));
 
-		auto transform(std::make_unique<Transform>(std::move(glm::vec3(0, 0, 0)), 2));
+		auto transform(std::make_unique<Transform>(std::move(glm::vec3(0, 0, 0)), 8));
 
 		entity->addComponent<Drawable>(std::move(drawable));
 		entity->addComponent<Transform>(std::move(transform));

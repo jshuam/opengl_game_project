@@ -1304,6 +1304,9 @@
     <Image Include="res\textures\logo.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\sprites\skeleton-walk.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\fonts\Roboto\LICENSE.txt" />

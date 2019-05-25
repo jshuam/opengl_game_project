@@ -34,6 +34,7 @@ int main(void)
 
 	while(!display.shouldClose())
 	{
+		Display::calculateDeltaTime();
 		display.clear();
 
 		SceneManager::processScene();
