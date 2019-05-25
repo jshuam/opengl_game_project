@@ -22,6 +22,11 @@ void BatchRenderer::render()
 	{
 		batch.first.bind();
 
+		float textureWidth = batch.first.getWidth();
+		float textureHeight = batch.first.getHeight();
+		float spriteWidth = textureWidth / 7.0f;
+		float spriteHeight = textureHeight / 11.0f;
+
 		for(const auto& entity : batch.second)
 		{
 			auto& drawableComponent = EntityManager::getComponent<Drawable>(entity);
@@ -40,20 +45,18 @@ void BatchRenderer::render()
 
 			auto& indexBuffer = static_cast<const IndexBuffer&>(drawableComponent.getDrawable(INDEX_BUFFER));
 
-			float spriteWidth = 1.0f / 13.0f;
-			float spriteHeight = 1.0f;
-
-			if(passedTime > 0.1)
+			if(passedTime > 0.2)
 			{
 				passedTime = 0;
 				index++;
-				if(index > 12) index = 0;
+				if(index > 5) index = 0;
+				float indexWidth = spriteWidths[index] - 1.0f;
 				float tex_coords[4][2] =
 				{
-					{(spriteWidths[index] - 1.0f) * spriteWidth, 0.0f * spriteHeight},
-					{spriteWidths[index] * spriteWidth, 0.0f * spriteHeight},
-					{spriteWidths[index] * spriteWidth, 1.0f * spriteHeight},
-					{(spriteWidths[index] - 1.0f) * spriteWidth, 1.0f * spriteHeight}
+					{indexWidth * (spriteWidth / textureWidth), 9.0f * (spriteHeight / textureHeight)},
+					{spriteWidths[index] * (spriteWidth / textureWidth), 9.0f * (spriteHeight / textureHeight)},
+					{spriteWidths[index] * (spriteWidth / textureWidth), 10.0f * (spriteHeight / textureHeight)},
+					{indexWidth * (spriteWidth / textureWidth), 10.0f * (spriteHeight / textureHeight)}
 				};
 
 				auto& vertexArray = static_cast<const VertexArray&>(drawableComponent.getDrawable(VERTEX_ARRAY));

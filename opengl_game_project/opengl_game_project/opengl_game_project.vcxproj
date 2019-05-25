@@ -586,6 +586,7 @@
     <ClInclude Include="src\gl\drawables\VertexArray.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\sprites\adventurer.png" />
     <Image Include="res\sprites\skeleton-walk.png" />
     <Image Include="res\textures\logo.png" />
   </ItemGroup>

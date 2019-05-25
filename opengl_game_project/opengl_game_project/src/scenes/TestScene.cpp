@@ -34,29 +34,28 @@ TestScene::TestScene()
 	std::uniform_int_distribution<int> w_dist(0, Display::getWidth());
 	std::uniform_int_distribution<int> h_dist(0, Display::getHeight());
 
-	Texture texture("res/sprites/skeleton-walk.png", 1);
+	Texture texture("res/sprites/adventurer.png", 1);
 	std::vector<GUID> entities;
 
-	int textureWidth = texture.getWidth();
-	int textureHeight = texture.getHeight();
+	float textureWidth = texture.getWidth();
+	float textureHeight = texture.getHeight();
+	float spriteWidth = textureWidth / 7.0f;
+	float spriteHeight = textureHeight / 11.0f;
 
 	float positions[] =
 	{
 		0.0f, 0.0f,
-		22.0f, 0.0f,
-		22.0f, 33.0f,
-		0.0f, 33.0f
+		spriteWidth, 0.0f,
+		spriteWidth, spriteHeight,
+		0.0f, spriteHeight
 	};
-
-	float spriteWidth = 1.0f / 13.0f;
-	float spriteHeight = 1.0f;
 
 	float tex_coords[4][2] =
 	{
-		{1.0f * spriteWidth, 0.0f * spriteHeight},
-		{2.0f * spriteWidth, 0.0f * spriteHeight},
-		{2.0f * spriteWidth, 1.0f * spriteHeight},
-		{1.0f * spriteWidth, 1.0f * spriteHeight}
+		{0.0f, 0.0f},
+		{spriteWidth / textureWidth, 0.0f},
+		{spriteWidth / textureWidth, spriteHeight / textureHeight},
+		{0.0f, spriteHeight / textureHeight}
 	};
 
 	for(unsigned int i = 0; i < 1; i++)
