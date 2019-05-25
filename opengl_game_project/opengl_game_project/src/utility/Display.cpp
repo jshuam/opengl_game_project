@@ -2,6 +2,11 @@
 
 #include "Display.hpp"
 
+GLFWwindow* Display::m_window;
+float Display::oldDeltaTime = glfwGetTime();
+float Display::newDeltaTime = 0;
+float Display::deltaTime = 0;
+
 Display::Display()
 {
 	/* Initialize the library */
@@ -60,4 +65,14 @@ void Display::update() const
 	glfwPollEvents();
 }
 
-GLFWwindow* Display::m_window;
+void Display::calculateDeltaTime()
+{
+	newDeltaTime = glfwGetTime();
+	deltaTime = newDeltaTime - oldDeltaTime;
+	oldDeltaTime = newDeltaTime;
+}
+
+float Display::getDeltaTime()
+{
+	return deltaTime;
+}

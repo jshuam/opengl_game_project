@@ -17,6 +17,9 @@ public:
 	static inline int getWidth() { return m_width; }
 	static inline int getHeight() { return m_height; }
 
+	static void calculateDeltaTime();
+	static float getDeltaTime();
+
 private:
 	static constexpr const unsigned int OPENGL_MAJOR_VERSION = 4;
 	static constexpr const unsigned int OPENGL_MINOR_VERSION = 4;
@@ -25,6 +28,9 @@ private:
 	static constexpr const int m_width = 1280;
 	static constexpr const int m_height = 720;
 	static constexpr const char* m_title = "OpenGL Game Project";
+	static float oldDeltaTime;
+	static float newDeltaTime;
+	static float deltaTime;
 	static GLFWwindow* m_window;
 	void* m_userPointer;
 };

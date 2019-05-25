@@ -91,7 +91,7 @@ int Program::getUniformLocation(const std::string& name)
 	if(m_uniformLocCache.find(name) != m_uniformLocCache.end()) return m_uniformLocCache[name];
 
 	int loc = glGetUniformLocation(m_glObjectId, name.c_str());
-	if(loc < 0) std::cout << "[WARNING] Uniform not in use" << std::endl;
+	if(loc < 0) std::cout << "[WARNING] Uniform variable (" << name << ") not in use" << std::endl;
 	m_uniformLocCache[name] = loc;
 	return loc;
 }

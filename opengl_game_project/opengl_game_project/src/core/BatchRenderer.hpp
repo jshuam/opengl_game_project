@@ -23,9 +23,13 @@ class BatchRenderer : public IRenderer
 public:
 	BatchRenderer() = default;
 
-	virtual void render() const override;
+	virtual void render() override;
 	void addBatch(Texture batchKey, std::vector<GUID> batch);
 
 private:
 	std::unordered_map<Texture, std::vector<GUID>> m_batches;
+
+	float passedTime = 0;
+	int index = 0;
+	static constexpr float spriteWidths[4] = {1.0f, 2.0f, 3.0f, 4.0f};
 };

@@ -9,12 +9,15 @@
 #include "..\utility\Display.hpp"
 #include "BatchRenderer.hpp"
 
-void BatchRenderer::render() const
+void BatchRenderer::render()
 {
 	m_program->bind();
 
 	glm::mat4 proj = glm::ortho(0.0f, (float) Display::getWidth(), 0.0f, (float) Display::getHeight());
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
+
+	Display::calculateDeltaTime();
+	passedTime += Display::getDeltaTime();
 
 	for(const auto& batch : m_batches)
 	{
@@ -38,6 +41,30 @@ void BatchRenderer::render() const
 			m_program->setUniformVec4f("u_color", drawableComponent.getColor());
 
 			auto& indexBuffer = static_cast<const IndexBuffer&>(drawableComponent.getDrawable(INDEX_BUFFER));
+
+			float spriteWidth = 1.0f / 8.0f;
+			float spriteHeight = 1.0f / 16.0f;
+
+			if(passedTime > 0.25)
+			{
+				transformComponent.getPosition().x = 0;
+				transformComponent.getPosition().y = 0;
+				passedTime = 0;
+				index++;
+				if(index > 3) index = 0;
+				float tex_coords[4][2] =
+				{
+					{(spriteWidths[index] - 1.0f) * spriteWidth, 15.0f * spriteHeight},
+					{spriteWidths[index] * spriteWidth, 15.0f * spriteHeight},
+					{spriteWidths[index] * spriteWidth, 16.0f * spriteHeight},
+					{(spriteWidths[index] - 1.0f) * spriteWidth, 16.0f * spriteHeight}
+				};
+
+				auto& vertexArray = static_cast<const VertexArray&>(drawableComponent.getDrawable(VERTEX_ARRAY));
+				auto& vertexBuffer = vertexArray.getBuffer(VBO_TEX_COORD);
+				vertexBuffer.modifyBuffer(sizeof(float) * 4 * 2, tex_coords);
+			}
+
 			glDrawElements(GL_TRIANGLES, indexBuffer.getCount(), GL_UNSIGNED_INT, nullptr);
 		}
 	}
