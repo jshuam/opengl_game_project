@@ -18,7 +18,8 @@ void SpriteAnimationSystem::update() const
 
 		auto& firstAnimation = dAnimations[0];
 
-		float spriteWidth = 
+		float spriteWidth = 50.0f / 7.0f;
+		float spriteHeight = 37.0f / 11.0f;
 
 		float newTexCoords[4][2] =
 		{
@@ -27,5 +28,7 @@ void SpriteAnimationSystem::update() const
 			{firstAnimation.x + spriteWidth, firstAnimation.y + spriteHeight},
 			{firstAnimation.x, firstAnimation.y + spriteHeight}
 		};
+
+		texCoords.modifyBuffer(sizeof(float) * 4 * 2, newTexCoords);
 	}
 }

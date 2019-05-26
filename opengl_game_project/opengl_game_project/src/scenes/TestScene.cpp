@@ -18,6 +18,9 @@
 #include "../systems/FontRenderer.hpp"
 #include "../systems/PlayerMovement.hpp"
 #include "../utility/Display.hpp"
+#include "../components/SpriteAnimationComponent.hpp"
+#include "../components/SpriteComponent.hpp"
+#include "../systems/SpriteAnimationSystem.hpp"
 
 TestScene::TestScene()
 {
@@ -25,6 +28,7 @@ TestScene::TestScene()
 	unsigned int indices[] = {0, 1, 2, 2, 3, 0};
 	auto batchRenderer = std::make_unique<BatchRenderer>();
 	auto playerMovement = std::make_unique<PlayerMovement>();
+	auto spriteAnimationSystem = std::make_unique<SpriteAnimationSystem>();
 
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -74,9 +78,16 @@ TestScene::TestScene()
 		entity->addComponent<DrawableComponent>(std::move(drawable));
 		entity->addComponent<TransformComponent>(std::move(transform));
 
+		std::vector<glm::vec2> anims = {{1.0f, 9.0f}};
+
+		auto spriteAnimationComponent(std::make_unique<SpriteAnimationComponent>());
+		spriteAnimationComponent->addAnimation(ANIM_MOVEMENT_FORWARD, anims, 0.2);
+		auto spriteComponent(std::make_unique<SpriteComponent>(texture, std::move(spriteAnimationComponent)));
+
 		entities.push_back(entity->getEntityId());
 
 		playerMovement->addEntity(entity->getEntityId());
+		spriteAnimationSystem->addEntity(entity->getEntityId());
 
 		EntityManager::createEntity(std::move(entity));
 	}
@@ -125,6 +136,7 @@ TestScene::TestScene()
 	fontRenderer->addEntity(entity->getEntityId());
 	EntityManager::createEntity(std::move(entity));
 
+	m_systems.push_back(std::move(spriteAnimationSystem));
 	m_systems.push_back(std::move(playerMovement));
 	m_systems.push_back(std::move(fontRenderer));
 
