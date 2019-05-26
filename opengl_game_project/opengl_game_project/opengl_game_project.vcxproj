@@ -150,6 +150,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\components\SpriteAnimationComponent.cpp" />
+    <ClCompile Include="src\components\SpriteComponent.cpp" />
     <ClCompile Include="src\core\BatchRenderer.cpp" />
     <ClCompile Include="src\interfaces\IComponent.cpp" />
     <ClCompile Include="src\components\DrawableComponent.cpp" />
@@ -168,6 +170,7 @@
     <ClCompile Include="src\interfaces\ISystem.cpp" />
     <ClCompile Include="src\components\TextComponent.cpp" />
     <ClCompile Include="src\gl\drawables\Texture.cpp" />
+    <ClCompile Include="src\systems\SpriteAnimationSystem.cpp" />
     <ClCompile Include="src\utility\Display.cpp" />
     <ClCompile Include="src\utility\Font.cpp" />
     <ClCompile Include="src\utility\Mouse.cpp" />
@@ -316,6 +319,8 @@
     <None Include="src\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\components\SpriteAnimationComponent.hpp" />
+    <ClInclude Include="src\components\SpriteComponent.hpp" />
     <ClInclude Include="src\core\BatchRenderer.hpp" />
     <ClInclude Include="src\interfaces\IComponent.hpp" />
     <ClInclude Include="src\components\BaseComponent.hpp" />
@@ -336,6 +341,7 @@
     <ClInclude Include="src\interfaces\ISystem.hpp" />
     <ClInclude Include="src\components\TextComponent.hpp" />
     <ClInclude Include="src\gl\drawables\Texture.hpp" />
+    <ClInclude Include="src\systems\SpriteAnimationSystem.hpp" />
     <ClInclude Include="src\utility\Display.hpp" />
     <ClInclude Include="src\utility\Font.hpp" />
     <ClInclude Include="src\utility\Mouse.hpp" />

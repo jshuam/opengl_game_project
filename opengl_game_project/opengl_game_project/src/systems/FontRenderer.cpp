@@ -24,9 +24,9 @@ void FontRenderer::update() const
 
 	for(const auto& entity : m_entities)
 	{
-		auto& drawableComponent = EntityManager::getComponent<Drawable>(entity);
-		auto& textComponent = EntityManager::getComponent<Text>(entity);
-		auto& transformComponent = EntityManager::getComponent<Transform>(entity);
+		auto& drawableComponent = EntityManager::getComponent<DrawableComponent>(entity);
+		auto& textComponent = EntityManager::getComponent<TextComponent>(entity);
+		auto& transformComponent = EntityManager::getComponent<TransformComponent>(entity);
 
 		for(auto& drawable : drawableComponent.getDrawables())
 		{

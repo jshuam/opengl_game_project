@@ -8,10 +8,10 @@
 #include "../gl/drawables/VertexArray.hpp"
 #include "BaseComponent.hpp"
 
-class Drawable : public BaseComponent<Drawable>
+class DrawableComponent : public BaseComponent<DrawableComponent>
 {
 public:
-	Drawable(VertexArray vertexArray, glm::vec4 color = {1.0, 1.0, 1.0, 1.0});
+	DrawableComponent(VertexArray vertexArray, glm::vec4 color = {1.0, 1.0, 1.0, 1.0});
 	void addDrawable(unsigned int type, std::unique_ptr<GLDrawable> drawable);
 
 	inline const glm::vec4& getColor() const { return m_color; };

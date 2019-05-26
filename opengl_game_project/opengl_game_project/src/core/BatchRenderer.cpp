@@ -29,8 +29,8 @@ void BatchRenderer::render()
 
 		for(const auto& entity : batch.second)
 		{
-			auto& drawableComponent = EntityManager::getComponent<Drawable>(entity);
-			auto& transformComponent = EntityManager::getComponent<Transform>(entity);
+			auto& drawableComponent = EntityManager::getComponent<DrawableComponent>(entity);
+			auto& transformComponent = EntityManager::getComponent<TransformComponent>(entity);
 
 			for(auto& drawable : drawableComponent.getDrawables())
 			{

@@ -66,13 +66,13 @@ TestScene::TestScene()
 
 		auto entity(std::make_unique<Entity>());
 
-		auto drawable(std::make_unique<Drawable>(std::move(vertexArray), std::move(glm::vec4(color_dist(gen), color_dist(gen), color_dist(gen), color_dist(gen)))));
+		auto drawable(std::make_unique<DrawableComponent>(std::move(vertexArray), std::move(glm::vec4(color_dist(gen), color_dist(gen), color_dist(gen), color_dist(gen)))));
 		drawable->addDrawable(INDEX_BUFFER, std::make_unique<IndexBuffer>(indices, 6));
 
-		auto transform(std::make_unique<Transform>(std::move(glm::vec3(0, 0, 0)), 8));
+		auto transform(std::make_unique<TransformComponent>(std::move(glm::vec3(0, 0, 0)), 8));
 
-		entity->addComponent<Drawable>(std::move(drawable));
-		entity->addComponent<Transform>(std::move(transform));
+		entity->addComponent<DrawableComponent>(std::move(drawable));
+		entity->addComponent<TransformComponent>(std::move(transform));
 
 		entities.push_back(entity->getEntityId());
 
@@ -114,13 +114,13 @@ TestScene::TestScene()
 	vertexArray.addBuffer(VBO_POSITION, {sizeof(float) * 6 * 4, nullptr, 4, GL_FLOAT, GL_FALSE, GL_DYNAMIC_DRAW});
 
 	auto entity(std::make_unique<Entity>());
-	auto drawable(std::make_unique<Drawable>(std::move(vertexArray)));
-	auto transform(std::make_unique<Transform>(std::move(glm::vec3(0.0, 0.0, 0.0))));
-	auto text(std::make_unique<Text>("Hello World!", std::move(fontRoboto)));
+	auto drawable(std::make_unique<DrawableComponent>(std::move(vertexArray)));
+	auto transform(std::make_unique<TransformComponent>(std::move(glm::vec3(0.0, 0.0, 0.0))));
+	auto text(std::make_unique<TextComponent>("Hello World!", std::move(fontRoboto)));
 
-	entity->addComponent<Drawable>(std::move(drawable));
-	entity->addComponent<Transform>(std::move(transform));
-	entity->addComponent<Text>(std::move(text));
+	entity->addComponent<DrawableComponent>(std::move(drawable));
+	entity->addComponent<TransformComponent>(std::move(transform));
+	entity->addComponent<TextComponent>(std::move(text));
 
 	fontRenderer->addEntity(entity->getEntityId());
 	EntityManager::createEntity(std::move(entity));

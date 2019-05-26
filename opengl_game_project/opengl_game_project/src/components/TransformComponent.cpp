@@ -1,6 +1,6 @@
 #include "TransformComponent.hpp"
 
-Transform::Transform(glm::vec3 position, float scale)
+TransformComponent::TransformComponent(glm::vec3 position, float scale)
 	:
 	m_position(position),
 	m_scale(scale)

@@ -7,11 +7,11 @@
 #include "../utility/Font.hpp"
 #include "BaseComponent.hpp"
 
-class Text : public BaseComponent<Text>
+class TextComponent : public BaseComponent<TextComponent>
 {
 public:
-	Text() = default;
-	Text(const char* text, std::unique_ptr<Font> font);
+	TextComponent() = default;
+	TextComponent(const char* text, std::unique_ptr<Font> font);
 
 	inline const char* getText() const { return &m_text[0]; }
 

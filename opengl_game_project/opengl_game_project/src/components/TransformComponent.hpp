@@ -4,10 +4,10 @@
 
 #include "BaseComponent.hpp"
 
-class Transform : public BaseComponent<Transform>
+class TransformComponent : public BaseComponent<TransformComponent>
 {
 public:
-	Transform(glm::vec3 position = {0, 0, 0}, float scale = 1.0f);
+	TransformComponent(glm::vec3 position = {0, 0, 0}, float scale = 1.0f);
 	inline glm::vec3& getPosition() { return m_position; };
 	inline float& getScale() { return m_scale; };
 
