@@ -14,3 +14,8 @@ void SpriteAnimationComponent::addAnimation(unsigned int animType, std::vector<g
 		m_animationDelays.emplace(animType, animDelay);
 	}
 }
+
+const std::vector<glm::vec2>& SpriteAnimationComponent::getAnimations(unsigned int animType) const
+{
+	return m_animations.find(animType)->second;
+}

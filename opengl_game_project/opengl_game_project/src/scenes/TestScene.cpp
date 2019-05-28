@@ -82,7 +82,8 @@ TestScene::TestScene()
 
 		auto spriteAnimationComponent(std::make_unique<SpriteAnimationComponent>());
 		spriteAnimationComponent->addAnimation(ANIM_MOVEMENT_FORWARD, anims, 0.2);
-		auto spriteComponent(std::make_unique<SpriteComponent>(texture, std::move(spriteAnimationComponent)));
+		auto spriteComponent(std::make_unique<SpriteComponent>(texture, std::move(spriteAnimationComponent), ANIM_MOVEMENT_FORWARD));
+		entity->addComponent<SpriteComponent>(std::move(spriteComponent));
 
 		entities.push_back(entity->getEntityId());
 

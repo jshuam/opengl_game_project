@@ -7,11 +7,10 @@
 class SpriteComponent : public BaseComponent<SpriteComponent>
 {
 public:
-	SpriteComponent(Texture spriteSheet, std::unique_ptr<SpriteAnimationComponent> animations);
+	SpriteComponent(Texture spriteSheet, std::unique_ptr<SpriteAnimationComponent> animations, unsigned int activeAnim);
 
 	inline void setActiveAnimation(unsigned int animType) { m_activeAnimation = animType; }
-	inline unsigned int getActiveAnimation() const { return m_activeAnimation; }
-	inline const SpriteAnimationComponent& getAnimations() const { return *m_animations; }
+	inline const auto& getAnimations() const { return m_animations->getAnimations(m_activeAnimation); }
 
 private:
 	Texture m_spriteSheet;

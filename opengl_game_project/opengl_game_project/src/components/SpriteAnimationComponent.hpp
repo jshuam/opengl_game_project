@@ -19,7 +19,7 @@ public:
 
 	void addAnimation(unsigned int animType, std::vector<glm::vec2> animations, float animDelay);
 	inline float& getPassedTime() { return m_passedTime; }
-	inline const auto& getAnimations(unsigned int animType) const { return m_animations.find(animType)->second; }
+	const std::vector<glm::vec2>& getAnimations(unsigned int animType) const;
 
 private:
 	std::unordered_map<unsigned int, std::vector<glm::vec2>> m_animations;

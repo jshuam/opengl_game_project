@@ -45,7 +45,7 @@ void BatchRenderer::render()
 
 			auto& indexBuffer = static_cast<const IndexBuffer&>(drawableComponent.getDrawable(INDEX_BUFFER));
 
-			if(passedTime > 0.2)
+			/*if(passedTime > 0.2)
 			{
 				passedTime = 0;
 				index++;
@@ -62,7 +62,7 @@ void BatchRenderer::render()
 				auto& vertexArray = static_cast<const VertexArray&>(drawableComponent.getDrawable(VERTEX_ARRAY));
 				auto& vertexBuffer = vertexArray.getBuffer(VBO_TEX_COORD);
 				vertexBuffer.modifyBuffer(sizeof(float) * 4 * 2, tex_coords);
-			}
+			}*/
 
 			glDrawElements(GL_TRIANGLES, indexBuffer.getCount(), GL_UNSIGNED_INT, nullptr);
 		}

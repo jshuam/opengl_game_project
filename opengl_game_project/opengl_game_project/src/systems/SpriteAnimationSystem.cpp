@@ -11,22 +11,21 @@ void SpriteAnimationSystem::update() const
 		auto& spriteComponent = EntityManager::getComponent<SpriteComponent>(entity);
 
 		auto& animations = spriteComponent.getAnimations();
-		auto& dAnimations = animations.getAnimations(ANIM_MOVEMENT_FORWARD);
 
 		auto& vertexArray = static_cast<const VertexArray&>(drawableComponent.getDrawable(VERTEX_ARRAY));
 		auto& texCoords = vertexArray.getBuffer(VBO_TEX_COORD);
 
-		auto& firstAnimation = dAnimations[0];
+		auto& firstAnimation = animations[0];
 
-		float spriteWidth = 50.0f / 7.0f;
-		float spriteHeight = 37.0f / 11.0f;
+		float spriteWidth = 7.0f / 50.0f;
+		float spriteHeight = 11.0f / 37.0f;
 
 		float newTexCoords[4][2] =
 		{
-			{firstAnimation.x, firstAnimation.y},
-			{firstAnimation.x + spriteWidth, firstAnimation.y},
-			{firstAnimation.x + spriteWidth, firstAnimation.y + spriteHeight},
-			{firstAnimation.x, firstAnimation.y + spriteHeight}
+			{firstAnimation.x - 1.0f * spriteWidth, firstAnimation.y * spriteHeight},
+			{firstAnimation.x * spriteWidth, firstAnimation.y * spriteHeight},
+			{firstAnimation.x * spriteWidth, firstAnimation.y + 1.0f * spriteHeight},
+			{firstAnimation.x - 1.0f * spriteWidth, firstAnimation.y + 1.0f * spriteHeight}
 		};
 
 		texCoords.modifyBuffer(sizeof(float) * 4 * 2, newTexCoords);
