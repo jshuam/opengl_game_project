@@ -45,25 +45,6 @@ void BatchRenderer::render()
 
 			auto& indexBuffer = static_cast<const IndexBuffer&>(drawableComponent.getDrawable(INDEX_BUFFER));
 
-			/*if(passedTime > 0.2)
-			{
-				passedTime = 0;
-				index++;
-				if(index > 5) index = 0;
-				float indexWidth = spriteWidths[index] - 1.0f;
-				float tex_coords[4][2] =
-				{
-					{indexWidth * (spriteWidth / textureWidth), 9.0f * (spriteHeight / textureHeight)},
-					{spriteWidths[index] * (spriteWidth / textureWidth), 9.0f * (spriteHeight / textureHeight)},
-					{spriteWidths[index] * (spriteWidth / textureWidth), 10.0f * (spriteHeight / textureHeight)},
-					{indexWidth * (spriteWidth / textureWidth), 10.0f * (spriteHeight / textureHeight)}
-				};
-
-				auto& vertexArray = static_cast<const VertexArray&>(drawableComponent.getDrawable(VERTEX_ARRAY));
-				auto& vertexBuffer = vertexArray.getBuffer(VBO_TEX_COORD);
-				vertexBuffer.modifyBuffer(sizeof(float) * 4 * 2, tex_coords);
-			}*/
-
 			glDrawElements(GL_TRIANGLES, indexBuffer.getCount(), GL_UNSIGNED_INT, nullptr);
 		}
 	}

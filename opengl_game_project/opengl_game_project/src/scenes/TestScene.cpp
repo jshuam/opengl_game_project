@@ -56,10 +56,10 @@ TestScene::TestScene()
 
 	float tex_coords[4][2] =
 	{
-		{0.0f, 0.0f},
-		{spriteWidth / textureWidth, 0.0f},
-		{spriteWidth / textureWidth, spriteHeight / textureHeight},
-		{0.0f, spriteHeight / textureHeight}
+		{0.0f, 10.0f * spriteHeight / textureHeight},
+		{spriteWidth / textureWidth, 10.0f * spriteHeight / textureHeight},
+		{spriteWidth / textureWidth, 11.0f * spriteHeight / textureHeight},
+		{0.0f, 11.0f * spriteHeight / textureHeight}
 	};
 
 	for(unsigned int i = 0; i < 1; i++)
@@ -78,11 +78,14 @@ TestScene::TestScene()
 		entity->addComponent<DrawableComponent>(std::move(drawable));
 		entity->addComponent<TransformComponent>(std::move(transform));
 
-		std::vector<glm::vec2> anims = {{1.0f, 9.0f}};
+		std::vector<glm::vec2> animsIdle = {{0.0f, 10.0f}};
+		std::vector<glm::vec2> animsMovement = {{0.0f, 0.0f}};
 
 		auto spriteAnimationComponent(std::make_unique<SpriteAnimationComponent>());
-		spriteAnimationComponent->addAnimation(ANIM_MOVEMENT_FORWARD, anims, 0.2);
-		auto spriteComponent(std::make_unique<SpriteComponent>(texture, std::move(spriteAnimationComponent), ANIM_MOVEMENT_FORWARD));
+		spriteAnimationComponent->addAnimation(ANIM_MOVEMENT_IDLE, animsIdle, 0.2);
+		spriteAnimationComponent->addAnimation(ANIM_MOVEMENT_FORWARD, animsMovement, 0.2);
+		spriteAnimationComponent->addAnimation(ANIM_MOVEMENT_BACKWARD, animsMovement, 0.2);
+		auto spriteComponent(std::make_unique<SpriteComponent>(texture, std::move(spriteAnimationComponent), ANIM_MOVEMENT_IDLE));
 		entity->addComponent<SpriteComponent>(std::move(spriteComponent));
 
 		entities.push_back(entity->getEntityId());

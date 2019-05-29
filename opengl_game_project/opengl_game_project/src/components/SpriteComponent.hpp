@@ -11,6 +11,7 @@ public:
 
 	inline void setActiveAnimation(unsigned int animType) { m_activeAnimation = animType; }
 	inline const auto& getAnimations() const { return m_animations->getAnimations(m_activeAnimation); }
+	inline const unsigned int getActiveAnimation() const { return m_activeAnimation; }
 
 private:
 	Texture m_spriteSheet;

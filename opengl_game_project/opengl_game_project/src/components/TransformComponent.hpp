@@ -7,11 +7,11 @@
 class TransformComponent : public BaseComponent<TransformComponent>
 {
 public:
-	TransformComponent(glm::vec3 position = {0, 0, 0}, float scale = 1.0f);
+	TransformComponent(glm::vec3 position = {0, 0, 0}, glm::vec3 scale = {0.0f, 0.0f, 0.0f});
 	inline glm::vec3& getPosition() { return m_position; };
-	inline float& getScale() { return m_scale; };
+	inline glm::vec3& getScale() { return m_scale; };
 
 private:
 	glm::vec3 m_position;
-	float m_scale;
+	glm::vec3 m_scale;
 };

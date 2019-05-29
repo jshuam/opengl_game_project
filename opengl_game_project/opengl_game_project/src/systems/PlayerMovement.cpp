@@ -11,13 +11,17 @@ void PlayerMovement::update() const
 		auto& spriteComponent = EntityManager::getComponent<SpriteComponent>(entity);
 		auto& transformComponent = EntityManager::getComponent<TransformComponent>(entity);
 
+		spriteComponent.setActiveAnimation(ANIM_MOVEMENT_IDLE);
+
 		if(Display::getKey(GLFW_KEY_W, GLFW_PRESS))
 		{
 			transformComponent.getPosition().y += 300.0f * Display::getDeltaTime();
+			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_FORWARD);
 		}
 		if(Display::getKey(GLFW_KEY_S, GLFW_PRESS))
 		{
 			transformComponent.getPosition().y -= 300.0f * Display::getDeltaTime();
+			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_BACKWARD);
 		}
 		if(Display::getKey(GLFW_KEY_D, GLFW_PRESS))
 		{

@@ -1,9 +1,10 @@
 #pragma once
 
-#define ANIM_MOVEMENT_FORWARD 0x01
-#define ANIM_MOVEMENT_BACKWARD 0x02
-#define ANIM_MOVEMENT_UP 0x03
-#define ANIM_MOVEMENT_DOWN 0x04
+#define ANIM_MOVEMENT_IDLE 0x01
+#define ANIM_MOVEMENT_FORWARD 0x02
+#define ANIM_MOVEMENT_BACKWARD 0x03
+#define ANIM_MOVEMENT_UP 0x04
+#define ANIM_MOVEMENT_DOWN 0x05
 
 #include "glm/ext/vector_float2.hpp"
 
