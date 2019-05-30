@@ -13,17 +13,17 @@ void PlayerMovement::update() const
 
 		spriteComponent.setActiveAnimation(ANIM_MOVEMENT_IDLE);
 
-		if(Display::getKey(GLFW_KEY_W, GLFW_PRESS))
+		if(Display::getKey() == GLFW_KEY_W && Display::getAction() == GLFW_PRESS)
 		{
 			transformComponent.getPosition().y += 300.0f * Display::getDeltaTime();
-			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_FORWARD);
+			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_HORIZONTAL);
 		}
-		if(Display::getKey(GLFW_KEY_S, GLFW_PRESS))
+		if(Display::getKey() == GLFW_KEY_S && Display::getAction() == GLFW_PRESS)
 		{
 			transformComponent.getPosition().y -= 300.0f * Display::getDeltaTime();
-			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_BACKWARD);
+			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_HORIZONTAL);
 		}
-		if(Display::getKey(GLFW_KEY_D, GLFW_PRESS))
+		if(Display::getKey() == GLFW_KEY_D && Display::getAction() == GLFW_PRESS)
 		{
 			if(transformComponent.getScale().x < 0)
 			{
@@ -35,21 +35,66 @@ void PlayerMovement::update() const
 			{
 				transformComponent.getPosition().x += 300.0f * Display::getDeltaTime();
 			}
-			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_FORWARD);
-		}
-		if(Display::getKey(GLFW_KEY_A, GLFW_PRESS))
-		{
-			if(transformComponent.getScale().x >= 0)
+			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_HORIZONTAL);
+			if(Display::getMods() | GLFW_MOD_CONTROL)
 			{
-				transformComponent.getScale().x = -transformComponent.getScale().x;
-				transformComponent.getPosition().x += 50.0f;
-				transformComponent.getPosition().x += 300.0f;
+				if(transformComponent.getScale().x < 0)
+				{
+					transformComponent.getScale().x = -transformComponent.getScale().x;
+					transformComponent.getPosition().x -= 50.0f;
+					transformComponent.getPosition().x -= 300.0f;
+				}
+				else
+				{
+					transformComponent.getPosition().x += 300.0f * Display::getDeltaTime();
+				}
+				spriteComponent.setActiveAnimation(ANIM_MOVEMENT_ROLL);
 			}
 			else
 			{
-				transformComponent.getPosition().x -= 300.0f * Display::getDeltaTime();
+				if(transformComponent.getScale().x < 0)
+				{
+					transformComponent.getScale().x = -transformComponent.getScale().x;
+					transformComponent.getPosition().x -= 50.0f;
+					transformComponent.getPosition().x -= 300.0f;
+				}
+				else
+				{
+					transformComponent.getPosition().x += 300.0f * Display::getDeltaTime();
+				}
+				spriteComponent.setActiveAnimation(ANIM_MOVEMENT_HORIZONTAL);
 			}
-			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_BACKWARD);
+		}
+		if(Display::getKey() == GLFW_KEY_A && Display::getAction() == GLFW_PRESS)
+		{
+			if(Display::getMods() | GLFW_MOD_CONTROL)
+			{
+				if(transformComponent.getScale().x >= 0)
+				{
+					transformComponent.getScale().x = -transformComponent.getScale().x;
+					transformComponent.getPosition().x += 50.0f;
+					transformComponent.getPosition().x += 300.0f;
+				}
+				else
+				{
+					transformComponent.getPosition().x -= 300.0f * Display::getDeltaTime();
+				}
+				spriteComponent.setActiveAnimation(ANIM_MOVEMENT_ROLL);
+			}
+			else
+			{
+				if(transformComponent.getScale().x >= 0)
+				{
+					transformComponent.getScale().x = -transformComponent.getScale().x;
+					transformComponent.getPosition().x += 50.0f;
+					transformComponent.getPosition().x += 300.0f;
+				}
+				else
+				{
+					transformComponent.getPosition().x -= 300.0f * Display::getDeltaTime();
+				}
+				spriteComponent.setActiveAnimation(ANIM_MOVEMENT_HORIZONTAL);
+			}
 		}
 	}
 }

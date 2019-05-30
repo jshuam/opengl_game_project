@@ -6,6 +6,9 @@ GLFWwindow* Display::m_window;
 float Display::oldDeltaTime = glfwGetTime();
 float Display::newDeltaTime = 0;
 float Display::deltaTime = 0;
+int Display::m_currentKey = 0;
+int Display::m_currentKeyAction = 0;
+int Display::m_currentKeyModifiers = 0;
 
 Display::Display()
 {
@@ -36,6 +39,7 @@ Display::Display()
 	glfwSwapInterval(1);
 
 	glfwSetWindowUserPointer(m_window, m_userPointer);
+	glfwSetKeyCallback(m_window, key_callback);
 }
 
 Display::~Display()
@@ -48,11 +52,6 @@ bool Display::shouldClose() const
 	return glfwWindowShouldClose(m_window);
 }
 
-bool Display::getKey(unsigned int key, unsigned int state)
-{
-	return glfwGetKey(m_window, key) == state;
-}
-
 void Display::clear() const
 {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -63,6 +62,13 @@ void Display::update() const
 {
 	glfwSwapBuffers(m_window);
 	glfwPollEvents();
+}
+
+void Display::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	m_currentKey = key;
+	m_currentKeyAction = action;
+	m_currentKeyModifiers = mods;
 }
 
 void Display::calculateDeltaTime()

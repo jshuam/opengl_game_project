@@ -10,7 +10,7 @@ public:
 	SpriteComponent(Texture spriteSheet, std::unique_ptr<SpriteAnimationComponent> animations, unsigned int activeAnim);
 
 	inline void setActiveAnimation(unsigned int animType) { m_activeAnimation = animType; }
-	inline const auto& getAnimations() const { return m_animations->getAnimations(m_activeAnimation); }
+	inline const glm::vec2& getAnimations() const { return m_animations->getAnimations(m_activeAnimation); }
 	inline const unsigned int getActiveAnimation() const { return m_activeAnimation; }
 
 private:

@@ -1,3 +1,4 @@
+#include "../utility/Display.hpp"
 #include "SpriteAnimationComponent.hpp"
 
 void SpriteAnimationComponent::addAnimation(unsigned int animType, std::vector<glm::vec2> animations, float animDelay)
@@ -15,7 +16,27 @@ void SpriteAnimationComponent::addAnimation(unsigned int animType, std::vector<g
 	}
 }
 
-const std::vector<glm::vec2>& SpriteAnimationComponent::getAnimations(unsigned int animType) const
+const glm::vec2& SpriteAnimationComponent::getAnimations(unsigned int animType)
 {
-	return m_animations.find(animType)->second;
+	float animDelay = m_animationDelays.find(animType)->second;
+	if(m_passedTime > animDelay)
+	{
+		m_passedTime = 0.0f;
+		m_currentAnim++;
+	}
+	m_passedTime += Display::getDeltaTime();
+
+	const auto& animations = m_animations.find(animType)->second;
+
+	try
+	{
+		const glm::vec2& animation = animations.at(m_currentAnim);
+		return animation;
+	}
+	catch (std::out_of_range exception)
+	{
+		m_currentAnim = 0;
+		const glm::vec2& animation = animations.at(m_currentAnim);
+		return animation;
+	}
 }

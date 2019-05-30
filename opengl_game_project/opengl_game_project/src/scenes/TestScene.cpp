@@ -73,18 +73,19 @@ TestScene::TestScene()
 		auto drawable(std::make_unique<DrawableComponent>(std::move(vertexArray), std::move(glm::vec4(color_dist(gen), color_dist(gen), color_dist(gen), color_dist(gen)))));
 		drawable->addDrawable(INDEX_BUFFER, std::make_unique<IndexBuffer>(indices, 6));
 
-		auto transform(std::make_unique<TransformComponent>(std::move(glm::vec3(0.0f, 0.0f, 0.0f)), std::move(glm::vec3(8.0f, 8.0f, 8.0f))));
+		auto transform(std::make_unique<TransformComponent>(std::move(glm::vec3(-115.0f, -5.0f, 0.0f)), std::move(glm::vec3(8.0f, 8.0f, 8.0f))));
 
 		entity->addComponent<DrawableComponent>(std::move(drawable));
 		entity->addComponent<TransformComponent>(std::move(transform));
 
-		std::vector<glm::vec2> animsIdle = {{0.0f, 10.0f}};
-		std::vector<glm::vec2> animsMovement = {{0.0f, 0.0f}};
+		std::vector<glm::vec2> animsIdle = {{0.0f, 10.0f}, {1.0f, 10.0f}, {2.0f, 10.0f}, {3.0f, 10.0f}};
+		std::vector<glm::vec2> animsMovement = {{1.0f, 9.0f}, {2.0f, 9.0f}, {3.0f, 9.0f}, {4.0f, 9.0f}, {5.0f, 9.0f}, {6.0f, 9.0f}};
+		std::vector<glm::vec2> animsRoll = {{5.0f, 8.0f}, {6.0f, 8.0f}, {0.0f, 7.0f}};
 
 		auto spriteAnimationComponent(std::make_unique<SpriteAnimationComponent>());
 		spriteAnimationComponent->addAnimation(ANIM_MOVEMENT_IDLE, animsIdle, 0.2);
-		spriteAnimationComponent->addAnimation(ANIM_MOVEMENT_FORWARD, animsMovement, 0.2);
-		spriteAnimationComponent->addAnimation(ANIM_MOVEMENT_BACKWARD, animsMovement, 0.2);
+		spriteAnimationComponent->addAnimation(ANIM_MOVEMENT_HORIZONTAL, animsMovement, 0.1);
+		spriteAnimationComponent->addAnimation(ANIM_MOVEMENT_ROLL, animsRoll, 0.1);
 		auto spriteComponent(std::make_unique<SpriteComponent>(texture, std::move(spriteAnimationComponent), ANIM_MOVEMENT_IDLE));
 		entity->addComponent<SpriteComponent>(std::move(spriteComponent));
 

@@ -9,9 +9,14 @@ public:
 	~Display();
 
 	bool shouldClose() const;
-	static bool getKey(unsigned int key, unsigned int state);
 	void clear() const;
 	void update() const;
+
+	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+
+	static inline int getKey() { return m_currentKey; }
+	static inline int getAction() { return m_currentKeyAction; }
+	static inline int getMods() { return m_currentKeyModifiers; }
 
 	inline GLFWwindow* getWindow() const { return m_window; }
 	static inline int getWidth() { return m_width; }
@@ -33,4 +38,7 @@ private:
 	static float deltaTime;
 	static GLFWwindow* m_window;
 	void* m_userPointer;
+	static int m_currentKey;
+	static int m_currentKeyAction;
+	static int m_currentKeyModifiers;
 };
