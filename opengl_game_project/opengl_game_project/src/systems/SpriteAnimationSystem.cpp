@@ -10,7 +10,6 @@ void SpriteAnimationSystem::update() const
 	{
 		auto& drawableComponent = EntityManager::getComponent<DrawableComponent>(entity);
 		auto& spriteComponent = EntityManager::getComponent<SpriteComponent>(entity);
-		auto& transformComponent = EntityManager::getComponent<TransformComponent>(entity);
 
 		auto& animations = spriteComponent.getAnimations();
 
@@ -31,10 +30,5 @@ void SpriteAnimationSystem::update() const
 		};
 
 		texCoords.modifyBuffer(sizeof(float) * 4 * 2, newTexCoords);
-
-		if(spriteComponent.getActiveAnimation() == ANIM_MOVEMENT_BACKWARD)
-		{
-			transformComponent.getScale().x = -transformComponent.getScale().x;
-		}
 	}
 }

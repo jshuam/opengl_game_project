@@ -25,12 +25,30 @@ void PlayerMovement::update() const
 		}
 		if(Display::getKey(GLFW_KEY_D, GLFW_PRESS))
 		{
-			transformComponent.getPosition().x += 300.0f * Display::getDeltaTime();
+			if(transformComponent.getScale().x < 0)
+			{
+				transformComponent.getScale().x = -transformComponent.getScale().x;
+				transformComponent.getPosition().x -= 50.0f;
+				transformComponent.getPosition().x -= 300.0f;
+			}
+			else
+			{
+				transformComponent.getPosition().x += 300.0f * Display::getDeltaTime();
+			}
 			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_FORWARD);
 		}
 		if(Display::getKey(GLFW_KEY_A, GLFW_PRESS))
 		{
-			transformComponent.getPosition().x -= 300.0f * Display::getDeltaTime();
+			if(transformComponent.getScale().x >= 0)
+			{
+				transformComponent.getScale().x = -transformComponent.getScale().x;
+				transformComponent.getPosition().x += 50.0f;
+				transformComponent.getPosition().x += 300.0f;
+			}
+			else
+			{
+				transformComponent.getPosition().x -= 300.0f * Display::getDeltaTime();
+			}
 			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_BACKWARD);
 		}
 	}

@@ -7,7 +7,7 @@
 class TransformComponent : public BaseComponent<TransformComponent>
 {
 public:
-	TransformComponent(glm::vec3 position = {0, 0, 0}, glm::vec3 scale = {0.0f, 0.0f, 0.0f});
+	TransformComponent(glm::vec3 position = {0, 0, 0}, glm::vec3 scale = {1.0f, 1.0f, 1.0f});
 	inline glm::vec3& getPosition() { return m_position; };
 	inline glm::vec3& getScale() { return m_scale; };
 

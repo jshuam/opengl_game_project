@@ -40,16 +40,16 @@ void FontRenderer::update() const
 		glActiveTexture(GL_TEXTURE0);
 
 		glm::vec3 position = transformComponent.getPosition();
-		float scale = transformComponent.getScale();
+		glm::vec3& scale = transformComponent.getScale();
 		for(const char* i = textComponent.getText(); *i != '\0'; i++)
 		{
 			auto& c = Font::getCharacter(*i);
 
-			float x_pos = position.x * scale;
-			float y_pos = position.y - (c.m_size.y - c.m_bearing.y) * scale;
+			float x_pos = position.x * scale.x;
+			float y_pos = position.y - (c.m_size.y - c.m_bearing.y) * scale.y;
 
-			float width = c.m_size.x * scale;
-			float height = c.m_size.y * scale;
+			float width = c.m_size.x * scale.x;
+			float height = c.m_size.y * scale.y;
 
 			float vertices[6][4] =
 			{
@@ -69,7 +69,7 @@ void FontRenderer::update() const
 
 			glDrawArrays(GL_TRIANGLES, 0, 6);
 
-			position.x += (c.m_advance >> 6) * scale;
+			position.x += (c.m_advance >> 6) * scale.x;
 		}
 	}
 }
