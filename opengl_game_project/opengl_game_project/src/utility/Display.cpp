@@ -69,6 +69,9 @@ void Display::key_callback(GLFWwindow* window, int key, int scancode, int action
 	m_currentKey = key;
 	m_currentKeyAction = action;
 	m_currentKeyModifiers = mods;
+	std::cout << "Key: " << m_currentKey << std::endl;
+	std::cout << "Action: " << m_currentKeyAction << std::endl;
+	std::cout << "Modifier: " << m_currentKeyModifiers << std::endl;
 }
 
 void Display::calculateDeltaTime()
