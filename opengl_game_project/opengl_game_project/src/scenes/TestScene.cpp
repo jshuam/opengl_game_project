@@ -24,8 +24,6 @@
 
 TestScene::TestScene()
 {
-
-	unsigned int indices[] = {0, 1, 2, 2, 3, 0};
 	auto batchRenderer = std::make_unique<BatchRenderer>();
 	auto playerMovement = std::make_unique<PlayerMovement>();
 	auto spriteAnimationSystem = std::make_unique<SpriteAnimationSystem>();
@@ -38,42 +36,30 @@ TestScene::TestScene()
 	std::uniform_int_distribution<int> w_dist(0, Display::getWidth());
 	std::uniform_int_distribution<int> h_dist(0, Display::getHeight());
 
-	Texture texture("res/sprites/adventurer.png", 1);
 	std::vector<GUID> entities;
 
-	float textureWidth = texture.getWidth();
-	float textureHeight = texture.getHeight();
-	float spriteWidth = textureWidth / 7.0f;
-	float spriteHeight = textureHeight / 11.0f;
 
-	float positions[] =
-	{
-		0.0f, 0.0f,
-		spriteWidth, 0.0f,
-		spriteWidth, spriteHeight,
-		0.0f, spriteHeight
-	};
-
-	float tex_coords[4][2] =
-	{
-		{0.0f, 10.0f * spriteHeight / textureHeight},
-		{spriteWidth / textureWidth, 10.0f * spriteHeight / textureHeight},
-		{spriteWidth / textureWidth, 11.0f * spriteHeight / textureHeight},
-		{0.0f, 11.0f * spriteHeight / textureHeight}
-	};
-
+	Texture spriteSheet("res/sprites/adventurer.png", 1);
+	int numSpritesWidth = 7;
+	int numSpritesHeight = 11;
+	float spriteWidth = spriteSheet.getWidth() / numSpritesWidth;
+	float spriteHeight = spriteSheet.getHeight() / numSpritesHeight;
+	float glSpriteWidth = spriteWidth / spriteSheet.getWidth();
+	float glSpriteHeight = spriteHeight / spriteSheet.getHeight();
+	float positions[] = {0.0f, 0.0f, spriteWidth, 0.0f, spriteWidth, spriteHeight, 0.0f, spriteHeight};
+	unsigned int indices[] = {0, 1, 2, 2, 3, 0};
 	for(unsigned int i = 0; i < 1; i++)
 	{
 		VertexArray vertexArray;
 		vertexArray.addBuffer(VBO_POSITION, {sizeof(float) * 8, positions, 2, GL_FLOAT, GL_FALSE, GL_STATIC_DRAW});
-		vertexArray.addBuffer(VBO_TEX_COORD, {sizeof(float) * 4 * 2, tex_coords, 2, GL_FLOAT, GL_FALSE, GL_DYNAMIC_DRAW});
+		vertexArray.addBuffer(VBO_TEX_COORD, {sizeof(float) * 4 * 2, nullptr, 2, GL_FLOAT, GL_FALSE, GL_DYNAMIC_DRAW});
 
 		auto entity(std::make_unique<Entity>());
 
 		auto drawable(std::make_unique<DrawableComponent>(std::move(vertexArray), std::move(glm::vec4(color_dist(gen), color_dist(gen), color_dist(gen), color_dist(gen)))));
 		drawable->addDrawable(INDEX_BUFFER, std::make_unique<IndexBuffer>(indices, 6));
 
-		auto transform(std::make_unique<TransformComponent>(std::move(glm::vec3(-115.0f, -5.0f, 0.0f)), std::move(glm::vec3(8.0f, 8.0f, 8.0f))));
+		auto transform(std::make_unique<TransformComponent>(std::move(glm::vec3(0.0f, 0.0f, 0.0f)), std::move(glm::vec3(7.0f, 7.0f, 7.0f))));
 
 		entity->addComponent<DrawableComponent>(std::move(drawable));
 		entity->addComponent<TransformComponent>(std::move(transform));
@@ -82,11 +68,11 @@ TestScene::TestScene()
 		std::vector<glm::vec2> animsMovement = {{1.0f, 9.0f}, {2.0f, 9.0f}, {3.0f, 9.0f}, {4.0f, 9.0f}, {5.0f, 9.0f}, {6.0f, 9.0f}};
 		std::vector<glm::vec2> animsRoll = {{5.0f, 8.0f}, {6.0f, 8.0f}, {0.0f, 7.0f}};
 
-		auto spriteAnimationComponent(std::make_unique<SpriteAnimationComponent>());
+		std::unique_ptr<SpriteAnimationComponent> spriteAnimationComponent(std::make_unique<SpriteAnimationComponent>());
 		spriteAnimationComponent->addAnimation(ANIM_MOVEMENT_IDLE, animsIdle, 0.2);
 		spriteAnimationComponent->addAnimation(ANIM_MOVEMENT_HORIZONTAL, animsMovement, 0.1);
 		spriteAnimationComponent->addAnimation(ANIM_MOVEMENT_ROLL, animsRoll, 0.1);
-		auto spriteComponent(std::make_unique<SpriteComponent>(texture, std::move(spriteAnimationComponent), ANIM_MOVEMENT_IDLE));
+		std::unique_ptr<SpriteComponent> spriteComponent(std::make_unique<SpriteComponent>(std::move(spriteAnimationComponent), ANIM_MOVEMENT_IDLE, glSpriteWidth, glSpriteHeight));
 		entity->addComponent<SpriteComponent>(std::move(spriteComponent));
 
 		entities.push_back(entity->getEntityId());
@@ -96,7 +82,7 @@ TestScene::TestScene()
 
 		EntityManager::createEntity(std::move(entity));
 	}
-	batchRenderer->addBatch(std::move(texture), std::move(entities));
+	batchRenderer->addBatch(std::move(spriteSheet), std::move(entities));
 
 	Shader vertexShader(GL_VERTEX_SHADER, "res/shaders/vertex.glsl");
 	Shader fragmentShader(GL_FRAGMENT_SHADER, "res/shaders/fragment.glsl");

@@ -22,7 +22,6 @@ private:
 	static constexpr const int DESIRED_CHANNELS = 4;
 
 	unsigned int m_slot;
-	int m_bytesPerPixel;
-	float m_width, m_height;
+	int  m_width, m_height, m_bytesPerPixel;
 	std::string m_filePath;
 };

@@ -1,8 +1,9 @@
 #include "SpriteComponent.hpp"
 
-SpriteComponent::SpriteComponent(Texture spriteSheet, std::unique_ptr<SpriteAnimationComponent> animations, unsigned int activeAnim)
+SpriteComponent::SpriteComponent(std::unique_ptr<SpriteAnimationComponent> animations, unsigned int activeAnim, float width, float height)
 	:
-	m_spriteSheet(std::move(spriteSheet)),
 	m_animations(std::move(animations)),
-	m_activeAnimation(activeAnim)
+	m_activeAnimation(activeAnim),
+	m_width(width),
+	m_height(height)
 {}

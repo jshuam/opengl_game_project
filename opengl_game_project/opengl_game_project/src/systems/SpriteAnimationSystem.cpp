@@ -11,13 +11,13 @@ void SpriteAnimationSystem::update() const
 		auto& drawableComponent = EntityManager::getComponent<DrawableComponent>(entity);
 		auto& spriteComponent = EntityManager::getComponent<SpriteComponent>(entity);
 
-		const glm::vec2& animation = spriteComponent.getAnimations();
+		const glm::vec2& animation = spriteComponent.getAnimation();
 
 		auto& vertexArray = static_cast<const VertexArray&>(drawableComponent.getDrawable(VERTEX_ARRAY));
 		auto& texCoords = vertexArray.getBuffer(VBO_TEX_COORD);
 
-		float spriteWidth = 50.0f / 350.0f;
-		float spriteHeight = 37.0f / 407.0f;
+		float spriteWidth = spriteComponent.getWidth();
+		float spriteHeight = spriteComponent.getHeight();
 
 		float newTexCoords[4][2] =
 		{

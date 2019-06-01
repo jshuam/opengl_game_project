@@ -22,11 +22,6 @@ void BatchRenderer::render()
 	{
 		batch.first.bind();
 
-		float textureWidth = batch.first.getWidth();
-		float textureHeight = batch.first.getHeight();
-		float spriteWidth = textureWidth / 7.0f;
-		float spriteHeight = textureHeight / 11.0f;
-
 		for(const auto& entity : batch.second)
 		{
 			auto& drawableComponent = EntityManager::getComponent<DrawableComponent>(entity);

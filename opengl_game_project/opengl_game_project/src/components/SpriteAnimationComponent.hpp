@@ -18,8 +18,7 @@ public:
 	SpriteAnimationComponent() = default;
 
 	void addAnimation(unsigned int animType, std::vector<glm::vec2> animations, float animDelay);
-	inline float& getPassedTime() { return m_passedTime; }
-	const glm::vec2& getAnimations(unsigned int animType);
+	const glm::vec2& getAnimation(unsigned int animType);
 
 private:
 	std::unordered_map<unsigned int, std::vector<glm::vec2>> m_animations;

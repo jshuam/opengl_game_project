@@ -30,8 +30,7 @@ void PlayerMovement::update() const
 				if(transformComponent.getScale().x < 0)
 				{
 					transformComponent.getScale().x = -transformComponent.getScale().x;
-					transformComponent.getPosition().x -= 50.0f;
-					transformComponent.getPosition().x -= 300.0f;
+					transformComponent.getPosition().x -= 300.0f * Display::getDeltaTime();
 				}
 				else
 				{
@@ -44,8 +43,7 @@ void PlayerMovement::update() const
 				if(transformComponent.getScale().x < 0)
 				{
 					transformComponent.getScale().x = -transformComponent.getScale().x;
-					transformComponent.getPosition().x -= 50.0f;
-					transformComponent.getPosition().x -= 300.0f;
+					transformComponent.getPosition().x -= 300.0f * Display::getDeltaTime();
 				}
 				else
 				{
@@ -61,8 +59,7 @@ void PlayerMovement::update() const
 				if(transformComponent.getScale().x >= 0)
 				{
 					transformComponent.getScale().x = -transformComponent.getScale().x;
-					transformComponent.getPosition().x += 50.0f;
-					transformComponent.getPosition().x += 300.0f;
+					transformComponent.getPosition().x += 300.0f * Display::getDeltaTime();
 				}
 				else
 				{
@@ -75,8 +72,7 @@ void PlayerMovement::update() const
 				if(transformComponent.getScale().x >= 0)
 				{
 					transformComponent.getScale().x = -transformComponent.getScale().x;
-					transformComponent.getPosition().x += 50.0f;
-					transformComponent.getPosition().x += 300.0f;
+					transformComponent.getPosition().x += 300.0f * Display::getDeltaTime();
 				}
 				else
 				{
