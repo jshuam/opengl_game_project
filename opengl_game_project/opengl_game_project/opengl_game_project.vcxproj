@@ -344,6 +344,7 @@
     <ClInclude Include="src\systems\SpriteAnimationSystem.hpp" />
     <ClInclude Include="src\utility\Display.hpp" />
     <ClInclude Include="src\utility\Font.hpp" />
+    <ClInclude Include="src\utility\Keyboard.hpp" />
     <ClInclude Include="src\utility\Mouse.hpp" />
     <ClInclude Include="src\utility\Utils.hpp" />
     <ClInclude Include="src\vendor\glm\common.hpp" />

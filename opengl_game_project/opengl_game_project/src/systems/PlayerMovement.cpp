@@ -2,6 +2,7 @@
 #include "../components/TransformComponent.hpp"
 #include "../entities/EntityManager.hpp"
 #include "../utility/Display.hpp"
+#include "../utility/Keyboard.hpp"
 #include "PlayerMovement.hpp"
 
 void PlayerMovement::update() const
@@ -13,73 +14,27 @@ void PlayerMovement::update() const
 
 		spriteComponent.setActiveAnimation(ANIM_MOVEMENT_IDLE);
 
-		if(Display::getKey() == GLFW_KEY_W && (Display::getAction() == GLFW_PRESS || Display::getAction() == GLFW_REPEAT))
+		if(Keyboard::getKeyPress(GLFW_KEY_W))
 		{
 			transformComponent.getPosition().y += 300.0f * Display::getDeltaTime();
 			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_HORIZONTAL);
 		}
-		if(Display::getKey() == GLFW_KEY_S && (Display::getAction() == GLFW_PRESS || Display::getAction() == GLFW_REPEAT))
+		if(Keyboard::getKeyPress(GLFW_KEY_S))
 		{
 			transformComponent.getPosition().y -= 300.0f * Display::getDeltaTime();
 			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_HORIZONTAL);
 		}
-		if(Display::getKey() == GLFW_KEY_D && (Display::getAction() == GLFW_PRESS || Display::getAction() == GLFW_REPEAT))
+		if(Keyboard::getKeyPress(GLFW_KEY_D))
 		{
-			if(Display::getMods() & GLFW_MOD_CONTROL)
-			{
-				if(transformComponent.getScale().x < 0)
-				{
-					transformComponent.getScale().x = -transformComponent.getScale().x;
-					transformComponent.getPosition().x -= 300.0f * Display::getDeltaTime();
-				}
-				else
-				{
-					transformComponent.getPosition().x += 300.0f * Display::getDeltaTime();
-				}
-				spriteComponent.setActiveAnimation(ANIM_MOVEMENT_ROLL);
-			}
-			else
-			{
-				if(transformComponent.getScale().x < 0)
-				{
-					transformComponent.getScale().x = -transformComponent.getScale().x;
-					transformComponent.getPosition().x -= 300.0f * Display::getDeltaTime();
-				}
-				else
-				{
-					transformComponent.getPosition().x += 300.0f * Display::getDeltaTime();
-				}
-				spriteComponent.setActiveAnimation(ANIM_MOVEMENT_HORIZONTAL);
-			}
+			transformComponent.getPosition().x += 300.0f * Display::getDeltaTime();
+			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_HORIZONTAL);
 		}
-		if(Display::getKey() == GLFW_KEY_A && (Display::getAction() == GLFW_PRESS || Display::getAction() == GLFW_REPEAT))
+		if(Keyboard::getKeyPress(GLFW_KEY_A))
 		{
-			if(Display::getMods() & GLFW_MOD_CONTROL)
-			{
-				if(transformComponent.getScale().x >= 0)
-				{
-					transformComponent.getScale().x = -transformComponent.getScale().x;
-					transformComponent.getPosition().x += 300.0f * Display::getDeltaTime();
-				}
-				else
-				{
-					transformComponent.getPosition().x -= 300.0f * Display::getDeltaTime();
-				}
-				spriteComponent.setActiveAnimation(ANIM_MOVEMENT_ROLL);
-			}
-			else
-			{
-				if(transformComponent.getScale().x >= 0)
-				{
-					transformComponent.getScale().x = -transformComponent.getScale().x;
-					transformComponent.getPosition().x += 300.0f * Display::getDeltaTime();
-				}
-				else
-				{
-					transformComponent.getPosition().x -= 300.0f * Display::getDeltaTime();
-				}
-				spriteComponent.setActiveAnimation(ANIM_MOVEMENT_HORIZONTAL);
-			}
+			transformComponent.getPosition().x -= 300.0f * Display::getDeltaTime();
+			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_HORIZONTAL);
 		}
+		if(Keyboard::getKeyPress(GLFW_KEY_LEFT_CONTROL))
+			spriteComponent.setActiveAnimation(ANIM_MOVEMENT_ROLL);
 	}
 }

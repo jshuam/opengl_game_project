@@ -6,9 +6,6 @@ GLFWwindow* Display::m_window;
 float Display::oldDeltaTime = glfwGetTime();
 float Display::newDeltaTime = 0;
 float Display::deltaTime = 0;
-int Display::m_currentKey = 0;
-int Display::m_currentKeyAction = 0;
-int Display::m_currentKeyModifiers = 0;
 
 Display::Display()
 {
@@ -37,9 +34,6 @@ Display::Display()
 	/* Make the window's context current */
 	glfwMakeContextCurrent(m_window);
 	glfwSwapInterval(1);
-
-	glfwSetWindowUserPointer(m_window, m_userPointer);
-	glfwSetKeyCallback(m_window, key_callback);
 }
 
 Display::~Display()
@@ -62,16 +56,6 @@ void Display::update() const
 {
 	glfwSwapBuffers(m_window);
 	glfwPollEvents();
-}
-
-void Display::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-	m_currentKey = key;
-	m_currentKeyAction = action;
-	m_currentKeyModifiers = mods;
-	std::cout << "Key: " << m_currentKey << std::endl;
-	std::cout << "Action: " << m_currentKeyAction << std::endl;
-	std::cout << "Modifier: " << m_currentKeyModifiers << std::endl;
 }
 
 void Display::calculateDeltaTime()
