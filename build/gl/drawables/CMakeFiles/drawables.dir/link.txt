@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdrawables.a  CMakeFiles/drawables.dir/IndexBuffer.cpp.o CMakeFiles/drawables.dir/Texture.cpp.o CMakeFiles/drawables.dir/VertexArray.cpp.o CMakeFiles/drawables.dir/VertexBuffer.cpp.o
+/usr/bin/ranlib libdrawables.a

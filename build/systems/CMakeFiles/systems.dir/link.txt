@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsystems.a  CMakeFiles/systems.dir/FontRenderer.cpp.o CMakeFiles/systems.dir/PlayerMovement.cpp.o CMakeFiles/systems.dir/SpriteAnimationSystem.cpp.o
+/usr/bin/ranlib libsystems.a

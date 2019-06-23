@@ -1,0 +1,2 @@
+/usr/bin/ar qc libobjects.a  CMakeFiles/objects.dir/Program.cpp.o CMakeFiles/objects.dir/Shader.cpp.o
+/usr/bin/ranlib libobjects.a

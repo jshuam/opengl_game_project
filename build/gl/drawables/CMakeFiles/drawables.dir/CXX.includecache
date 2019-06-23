@@ -1,0 +1,58 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/josh/Dev/OpenGL Game Project/src/gl/GLDrawable.hpp
+GLObject.hpp
+/home/josh/Dev/OpenGL Game Project/src/gl/GLObject.hpp
+
+/home/josh/Dev/OpenGL Game Project/src/gl/GLObject.hpp
+GL/glew.h
+-
+
+/home/josh/Dev/OpenGL Game Project/src/gl/drawables/IndexBuffer.cpp
+IndexBuffer.hpp
+/home/josh/Dev/OpenGL Game Project/src/gl/drawables/IndexBuffer.hpp
+
+/home/josh/Dev/OpenGL Game Project/src/gl/drawables/IndexBuffer.hpp
+../GLDrawable.hpp
+/home/josh/Dev/OpenGL Game Project/src/gl/GLDrawable.hpp
+
+/home/josh/Dev/OpenGL Game Project/src/gl/drawables/Texture.cpp
+stb_image.h
+-
+Texture.hpp
+/home/josh/Dev/OpenGL Game Project/src/gl/drawables/Texture.hpp
+
+/home/josh/Dev/OpenGL Game Project/src/gl/drawables/Texture.hpp
+string
+-
+../GLDrawable.hpp
+/home/josh/Dev/OpenGL Game Project/src/gl/GLDrawable.hpp
+
+/home/josh/Dev/OpenGL Game Project/src/gl/drawables/VertexArray.cpp
+iostream
+-
+VertexArray.hpp
+/home/josh/Dev/OpenGL Game Project/src/gl/drawables/VertexArray.hpp
+
+/home/josh/Dev/OpenGL Game Project/src/gl/drawables/VertexArray.hpp
+unordered_map
+-
+../GLDrawable.hpp
+/home/josh/Dev/OpenGL Game Project/src/gl/GLDrawable.hpp
+VertexBuffer.hpp
+/home/josh/Dev/OpenGL Game Project/src/gl/drawables/VertexBuffer.hpp
+
+/home/josh/Dev/OpenGL Game Project/src/gl/drawables/VertexBuffer.cpp
+VertexBuffer.hpp
+/home/josh/Dev/OpenGL Game Project/src/gl/drawables/VertexBuffer.hpp
+
+/home/josh/Dev/OpenGL Game Project/src/gl/drawables/VertexBuffer.hpp
+../GLDrawable.hpp
+/home/josh/Dev/OpenGL Game Project/src/gl/GLDrawable.hpp
+
