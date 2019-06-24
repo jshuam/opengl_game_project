@@ -1,2 +1,0 @@
-/usr/bin/ar qc libcomponents.a  CMakeFiles/components.dir/DrawableComponent.cpp.o CMakeFiles/components.dir/SpriteAnimationComponent.cpp.o CMakeFiles/components.dir/SpriteComponent.cpp.o CMakeFiles/components.dir/TextComponent.cpp.o CMakeFiles/components.dir/TransformComponent.cpp.o
-/usr/bin/ranlib libcomponents.a

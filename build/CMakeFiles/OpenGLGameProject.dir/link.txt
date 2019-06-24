@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/OpenGLGameProject.dir/application.cpp.o  -o OpenGLGameProject -lGL -lGLEW -lglfw -lX11 utility/libutility.a systems/libsystems.a scenes/libscenes.a interfaces/libinterfaces.a gl/libgl.a gl/objects/libobjects.a gl/drawables/libdrawables.a entities/libentities.a core/libcore.a components/libcomponents.a 

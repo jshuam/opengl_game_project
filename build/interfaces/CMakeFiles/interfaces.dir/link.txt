@@ -1,2 +1,0 @@
-/usr/bin/ar qc libinterfaces.a  CMakeFiles/interfaces.dir/IComponent.cpp.o CMakeFiles/interfaces.dir/IRenderer.cpp.o CMakeFiles/interfaces.dir/ISystem.cpp.o
-/usr/bin/ranlib libinterfaces.a

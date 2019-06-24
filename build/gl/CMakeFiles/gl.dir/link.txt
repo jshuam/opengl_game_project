@@ -1,2 +1,0 @@
-/usr/bin/ar qc libgl.a  
-/usr/bin/ranlib libgl.a
