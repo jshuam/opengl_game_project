@@ -16,7 +16,7 @@ public:
     template <typename T>
     static T& getComponent(const uuid_t& entityId)
     {
-        return m_entities[entityId]->getComponent<T>();
+        return m_entities.at(entityId)->getComponent<T>();
     }
 
 private:

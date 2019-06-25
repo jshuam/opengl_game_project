@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.13.4 FATAL_ERROR)
-project(OpenGLGameProject)
+find_program(CMAKE_C_COMPILER NAMES $ENV{CC} gcc PATHS ENV PATH NO_DEFAULT_PATH)
+find_program(CMAKE_CXX_COMPILER NAMES $ENV{CXX} g++ PATHS ENV PATH NO_DEFAULT_PATH)
+project(OpenGLGameProject C CXX)
 
 find_package(OpenGL REQUIRED)
 if(NOT OPENGL_FOUND)
@@ -17,7 +19,7 @@ if(NOT X11_FOUND)
 endif(NOT X11_FOUND)
 
 set(DEPENDENCIES GL GLEW glfw X11)
-set (CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 17)
 
 set(APP_SOURCE_FILES 
     application.cpp

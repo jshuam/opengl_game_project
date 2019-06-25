@@ -22,7 +22,7 @@ void BatchRenderer::render()
     {
         batch.first.bind();
 
-        for (const auto& entity : batch.second)
+        for (const uuid_t& entity : batch.second)
         {
             auto& drawableComponent = EntityManager::getComponent<DrawableComponent>(entity);
             auto& transformComponent = EntityManager::getComponent<TransformComponent>(entity);
