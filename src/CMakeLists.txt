@@ -38,4 +38,4 @@ add_subdirectory(scenes)
 add_subdirectory(systems)
 add_subdirectory(utility)
 
-target_link_libraries(OpenGLGameProject utility)
+target_link_libraries(OpenGLGameProject utility ${DEPENDENCIES})

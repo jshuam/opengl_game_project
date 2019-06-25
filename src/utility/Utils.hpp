@@ -104,11 +104,3 @@ static void APIENTRY glCheckErrors(GLenum source, GLenum type, GLuint id, GLenum
         printf("[ERROR %d] %s of %s severity, raised from %s: \n%s\n", id, m_type, m_severity, m_source, message);
     }
 }
-
-struct GUIDComparator
-{
-    bool operator()(const uuid_t& left, const uuid_t& right) const
-    {
-        return uuid_compare(left, right) < 0;
-    }
-};

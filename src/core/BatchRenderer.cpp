@@ -22,10 +22,10 @@ void BatchRenderer::render()
     {
         batch.first.bind();
 
-        for (const uuid_t& entity : batch.second)
+        for (const UUID& entityId : batch.second)
         {
-            auto& drawableComponent = EntityManager::getComponent<DrawableComponent>(entity);
-            auto& transformComponent = EntityManager::getComponent<TransformComponent>(entity);
+            auto& drawableComponent = EntityManager::getComponent<DrawableComponent>(entityId);
+            auto& transformComponent = EntityManager::getComponent<TransformComponent>(entityId);
 
             for (auto& drawable : drawableComponent.getDrawables())
             {
@@ -45,7 +45,7 @@ void BatchRenderer::render()
     }
 }
 
-void BatchRenderer::addBatch(Texture batchKey, std::vector<uuid_t> batch)
+void BatchRenderer::addBatch(Texture batchKey, std::vector<UUID> batch)
 {
     m_batches.emplace(std::move(batchKey), std::move(batch));
 }

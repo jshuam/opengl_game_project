@@ -36,7 +36,7 @@ TestScene::TestScene()
     std::uniform_int_distribution<int> w_dist(0, Display::getWidth());
     std::uniform_int_distribution<int> h_dist(0, Display::getHeight());
 
-    std::vector<uuid_t> entities;
+    std::vector<UUID> entities;
 
     Texture spriteSheet("res/sprites/adventurer.png", 1);
     int numSpritesWidth = 7;

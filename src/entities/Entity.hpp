@@ -2,16 +2,16 @@
 
 #include <map>
 #include <memory>
-#include <uuid/uuid.h>
 
 #include "../components/BaseComponent.hpp"
 #include "../interfaces/IComponent.hpp"
+#include "../utility/UUID.hpp"
 
 class Entity
 {
 public:
     Entity();
-    const uuid_t& getEntityId();
+    const UUID& getEntityId();
 
     template <typename T>
     void addComponent(std::unique_ptr<BaseComponent<T>> component)
@@ -26,6 +26,6 @@ public:
     }
 
 private:
-    uuid_t m_entityId;
+    UUID m_entityId;
     std::map<unsigned int, std::unique_ptr<IComponent>> m_components;
 };

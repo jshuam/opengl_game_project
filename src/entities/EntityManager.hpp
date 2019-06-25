@@ -2,8 +2,8 @@
 
 #include <map>
 #include <memory>
-#include <uuid/uuid.h>
 
+#include "../utility/UUID.hpp"
 #include "../utility/Utils.hpp"
 #include "Entity.hpp"
 
@@ -14,11 +14,11 @@ public:
     static void createEntity(std::unique_ptr<Entity> entity);
 
     template <typename T>
-    static T& getComponent(const uuid_t& entityId)
+    static T& getComponent(const UUID& entityId)
     {
-        return m_entities.at(entityId)->getComponent<T>();
+        return m_entities[entityId]->getComponent<T>();
     }
 
 private:
-    static std::map<uuid_t, std::unique_ptr<Entity>, GUIDComparator> m_entities;
+    static std::map<UUID, std::unique_ptr<Entity>> m_entities;
 };

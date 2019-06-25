@@ -2,6 +2,7 @@
 
 #include "../gl/drawables/Texture.hpp"
 #include "../interfaces/IRenderer.hpp"
+#include "../utility/UUID.hpp"
 
 namespace std
 {
@@ -25,10 +26,10 @@ public:
     BatchRenderer() = default;
 
     virtual void render() override;
-    void addBatch(Texture batchKey, std::vector<uuid_t> batch);
+    void addBatch(Texture batchKey, std::vector<UUID> batch);
 
 private:
-    std::unordered_map<Texture, std::vector<uuid_t>> m_batches;
+    std::unordered_map<Texture, std::vector<UUID>> m_batches;
 
     float passedTime = 0;
     int index = 0;
