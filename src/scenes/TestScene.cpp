@@ -38,7 +38,7 @@ TestScene::TestScene()
 
     std::vector<UUID> entities;
 
-    Texture spriteSheet("../res/sprites/adventurer.png", 1);
+    Texture spriteSheet("res/sprites/adventurer.png", 1);
     int numSpritesWidth = 7;
     int numSpritesHeight = 11;
     float spriteWidth = spriteSheet.getWidth() / numSpritesWidth;
@@ -83,8 +83,8 @@ TestScene::TestScene()
     }
     batchRenderer->addBatch(std::move(spriteSheet), std::move(entities));
 
-    Shader vertexShader(GL_VERTEX_SHADER, "../res/shaders/vertex.glsl");
-    Shader fragmentShader(GL_FRAGMENT_SHADER, "../res/shaders/fragment.glsl");
+    Shader vertexShader(GL_VERTEX_SHADER, "res/shaders/vertex.glsl");
+    Shader fragmentShader(GL_FRAGMENT_SHADER, "res/shaders/fragment.glsl");
 
     auto program = std::make_unique<Program>();
     program->attachShader(vertexShader);
@@ -95,8 +95,8 @@ TestScene::TestScene()
 
     batchRenderer->addProgram(std::move(program));
 
-    Shader fontVertexShader(GL_VERTEX_SHADER, "../res/shaders/font_vertex.glsl");
-    Shader fontFragmentShader(GL_FRAGMENT_SHADER, "../res/shaders/font_fragment.glsl");
+    Shader fontVertexShader(GL_VERTEX_SHADER, "res/shaders/font_vertex.glsl");
+    Shader fontFragmentShader(GL_FRAGMENT_SHADER, "res/shaders/font_fragment.glsl");
 
     auto fontProgram = std::make_unique<Program>();
     fontProgram->attachShader(vertexShader);
@@ -107,7 +107,7 @@ TestScene::TestScene()
     fontProgram->setUniform1i("u_tex", 0);
 
     auto fontRenderer(std::make_unique<FontRenderer>());
-    auto fontRoboto(std::make_unique<Font>("../res/fonts/Roboto-Thin.ttf", 48));
+    auto fontRoboto(std::make_unique<Font>("res/fonts/Roboto-Thin.ttf", 48));
 
     fontRenderer->addProgram(std::move(fontProgram));
 

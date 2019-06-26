@@ -4,18 +4,27 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build hello world",
+            "label": "Generate Linux Makefiles",
             "type": "shell",
-            "command": "g++",
+            "command": "cmake",
             "args": [
-                "-g",
-                "-o",
-                "${workspaceFolder}/helloworld.out",
-                "helloworld.cpp"
+                "-B${workspaceRoot}/builds/linux",
+                "-H${workspaceRoot}/src"
             ],
+            "options": {
+                "cwd": "${workspaceRoot}/src"
+            }
+        },
+        {
+            "label": "Build Linux",
+            "type": "shell",
+            "command": "make",
+            "options": {
+                "cwd": "${workspaceRoot}/builds/linux"
+            },
             "group": {
-                "kind": "build",
-                "isDefault": true
+                "isDefault": true,
+                "kind": "build"
             }
         }
     ]

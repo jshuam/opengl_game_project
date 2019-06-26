@@ -18,7 +18,7 @@ Font::Font(std::string fontFilepath, int fontSize)
         exit(-1);
     }
 
-    if (FT_New_Face(m_ft, "../res/fonts/Roboto/Roboto-Thin.ttf", 0, &m_face))
+    if (FT_New_Face(m_ft, "res/fonts/Roboto/Roboto-Thin.ttf", 0, &m_face))
     {
         std::cout << "[ERROR] Could not load font" << std::endl;
         std::cin.get();

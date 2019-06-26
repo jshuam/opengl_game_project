@@ -5,13 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch",
+            "name": "Launch Linux",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/helloworld.out",
+            "program": "${workspaceRoot}/builds/linux/OpenGLGameProject",
+            "preLaunchTask": "Build Linux",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceRoot}",
             "environment": [],
             "externalConsole": true,
             "MIMode": "gdb",
