@@ -5,6 +5,3 @@ set(ENTITIES_SOURCE_FILES
     EntityManager.hpp
 )
 add_library(entities ${ENTITIES_SOURCE_FILES})
-
-target_link_libraries(entities core)
-

@@ -6,5 +6,3 @@ set(SCENES_SOURCE_FILES
     TestScene.hpp
 )
 add_library(scenes ${SCENES_SOURCE_FILES})
-
-target_link_libraries(scenes interfaces)

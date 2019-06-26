@@ -3,5 +3,3 @@ set(CORE_SOURCE_FILES
     BatchRenderer.hpp
 )
 add_library(core ${CORE_SOURCE_FILES})
-
-target_link_libraries(core components)

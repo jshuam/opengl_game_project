@@ -7,5 +7,3 @@ set(INTERFACES_SOURCE_FILES
     ISystem.hpp
 )
 add_library(interfaces ${INTERFACES_SOURCE_FILES})
-
-target_link_libraries(interfaces gl)

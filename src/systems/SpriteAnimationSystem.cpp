@@ -4,7 +4,7 @@
 #include "../components/TransformComponent.hpp"
 #include "../entities/EntityManager.hpp"
 
-void SpriteAnimationSystem::update() const
+void SpriteAnimationSystem::update() const 
 {
     for (auto& entity : m_entities)
     {

@@ -18,16 +18,37 @@ if(NOT X11_FOUND)
     message("ERROR: X11 not found")
 endif(NOT X11_FOUND)
 
-set(DEPENDENCIES GL GLEW glfw X11)
+find_package(PkgConfig REQUIRED)
+if(NOT PKG_CONFIG_FOUND)
+    message("ERROR: pkg-config not found")
+endif(NOT PKG_CONFIG_FOUND)
+
+pkg_check_modules(UUID REQUIRED uuid)
+if(NOT UUID_FOUND)
+    message("ERROR: uuid not found")
+endif(NOT UUID_FOUND)
+
+pkg_check_modules(GLFW REQUIRED glfw3)
+if(NOT GLFW_FOUND)
+    message("ERROR: GLFW not found")
+endif(NOT GLFW_FOUND)
+
+pkg_check_modules(FREETYPE REQUIRED freetype2)
+if(NOT FREETYPE_FOUND)
+    message("ERROR: freetype2 not found")
+endif(NOT FREETYPE_FOUND)
+
 set(CMAKE_CXX_STANDARD 17)
+
+set(INCLUDES ../include ../include/freetype2 ${UUID_INCLUDE_DIRS} ${FREETYPE_INCLUDE_DIRS})
+set(DEPENDENCIES GL GLEW glfw X11 ${UUID_LIBRARIES} ${FREETYPE_LIBRARIES})
 
 set(APP_SOURCE_FILES 
     application.cpp
 )
 add_executable(OpenGLGameProject ${APP_SOURCE_FILES})
 
-include_directories(../include)
-include_directories(../include/freetype2)
+include_directories(${INCLUDES})
 
 add_subdirectory(components)
 add_subdirectory(core)
@@ -38,4 +59,4 @@ add_subdirectory(scenes)
 add_subdirectory(systems)
 add_subdirectory(utility)
 
-target_link_libraries(OpenGLGameProject utility ${DEPENDENCIES})
+target_link_libraries(OpenGLGameProject scenes systems utility interfaces core entities components gl ${DEPENDENCIES})

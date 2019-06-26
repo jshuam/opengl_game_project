@@ -7,5 +7,3 @@ set(SYSTEMS_SOURCE_FILES
     SpriteAnimationSystem.hpp
 )
 add_library(systems ${SYSTEMS_SOURCE_FILES})
-
-target_link_libraries(systems scenes)

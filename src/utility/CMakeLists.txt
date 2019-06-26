@@ -9,5 +9,3 @@ set(UTILITY_SOURCE_FILES
     Utils.hpp
 )
 add_library(utility ${UTILITY_SOURCE_FILES})
-
-target_link_libraries(utility systems)
